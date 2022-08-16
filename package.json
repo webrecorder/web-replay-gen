@@ -4,7 +4,9 @@
   "description": "Web archive collection static site generator",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "serve": "npx @11ty/eleventy --serve",
+    "build": "npx @11ty/eleventy"
   },
   "repository": {
     "type": "git",
@@ -15,5 +17,8 @@
   "bugs": {
     "url": "https://github.com/webrecorder/web-replay-gen/issues"
   },
-  "homepage": "https://github.com/webrecorder/web-replay-gen#readme"
+  "homepage": "https://github.com/webrecorder/web-replay-gen#readme",
+  "devDependencies": {
+    "@11ty/eleventy": "^1.0.2"
+  }
 }
