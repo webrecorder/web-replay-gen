@@ -1,0 +1,19 @@
+{
+  "name": "web-replay-gen",
+  "version": "0.0.0-beta",
+  "description": "Web archive collection static site generator",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/webrecorder/web-replay-gen.git"
+  },
+  "author": "Webrecorder Software <dev@webrecorder.net>",
+  "license": "AGPL-3.0",
+  "bugs": {
+    "url": "https://github.com/webrecorder/web-replay-gen/issues"
+  },
+  "homepage": "https://github.com/webrecorder/web-replay-gen#readme"
+}
