@@ -13,19 +13,15 @@ Compatible with web archives in [WACZ format](https://specs.webrecorder.net/wacz
 
 ## Getting Started
 
-### 1. Clone `web-replay-gen`
+### 1. Create new project from template
 
-```
-git clone --depth=1 --branch=main https://github.com/webrecorder/web-replay-gen.git my-web-archive-site
-```
+[![Use this template](https://img.shields.io/badge/Use_this_template-informational)](https://github.com/webrecorder/web-replay-gen/generate)
 
-### 2. Navigate to your new project
+Clone as usual after creating your new repository from this template.
 
-```
-cd my-web-archive-site
-```
+### 2. Install dependencies
 
-### 3. Install dependencies
+Navigate to your project directory and run:
 
 ```
 npm install
