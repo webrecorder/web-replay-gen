@@ -1,0 +1,11 @@
+---
+layout: layout.njk
+---
+
+<ul>
+  {% for url in config.wacz_urls %}
+  <li>
+    <a href="/archive?url={{ url | urlencode }}">{{ url }}</a>
+  </li>
+  {% endfor %}
+</ul>
