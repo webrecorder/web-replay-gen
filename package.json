@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/webrecorder/web-replay-gen#readme",
   "devDependencies": {
-    "@11ty/eleventy": "^1.0.2"
+    "@11ty/eleventy": "^1.0.2",
+    "dotenv": "^16.0.1"
   }
 }

@@ -6,10 +6,10 @@ Compatible with web archives in [WACZ format](https://specs.webrecorder.net/wacz
 
 **Generated website features:**
 
-- Index page listing web archives with search by filename
+- Index page listing web archives
 - Page for replaying individual web archives
-- Automatic sitemap generation
-<!-- - IPFS support -->
+  <!-- - Automatic sitemap generation -->
+  <!-- - IPFS support -->
 
 ## Getting Started
 

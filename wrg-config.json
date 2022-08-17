@@ -1,8 +1,4 @@
 {
   "title": "My Web Archives",
-  "wacz_urls": [
-    "https://example.com/test.wacz",
-    "https://example.com/abc/archive.wacz",
-    "./local-path/to/my_wacz.wacz"
-  ]
+  "wacz_urls": []
 }

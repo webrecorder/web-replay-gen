@@ -3,6 +3,8 @@ logs
 npm-debug.log*
 node_modules/
 .npm
+.env
+*.local.*
 
 # Eleventy
 _site
