@@ -9,9 +9,5 @@ const wrgConfigPath = path.resolve(
 const wrgConfig = require(wrgConfigPath);
 
 module.exports = {
-  replay: wrgConfig.replay || {},
-  pages: wrgConfig.wacz_urls.map((url) => ({
-    name: url,
-    url: `/archive/?wacz_url=${encodeURIComponent(url)}`,
-  })),
+  ...wrgConfig.site,
 };

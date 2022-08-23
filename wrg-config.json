@@ -1,5 +1,8 @@
 {
-  "title": "Web Archives",
+  "site": {
+    "title": "Web Archives",
+    "url": "https://example.com"
+  },
   "replay": {
     "version": "1.6.4"
   },
