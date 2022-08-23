@@ -59,13 +59,13 @@ This will output your new site to `/_site`.
 
 ### Configuration
 
-| `wrg-config.json` |                                                                                                |
-| ----------------- | ---------------------------------------------------------------------------------------------- |
-| `site.title`      | Your website title                                                                             |
-| `site.url`        | Your website URL                                                                               |
-| `wacz_urls`       | List of WACZ file URLs                                                                         |
-| `replay`          | [ReplayWeb.page](https://github.com/webrecorder/replayweb.page#replaywebpage) configuration    |
-| `replay.version`  | ReplayWeb.page version. [See releases](https://github.com/webrecorder/replayweb.page/releases) |
+| `wrg-config.json` |                                                                                                                     |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------- |
+| `site.title`      | Your website title                                                                                                  |
+| `site.url`        | Your website URL                                                                                                    |
+| `wacz_urls`       | List of WACZ file URLs                                                                                              |
+| `replay`          | [ReplayWeb.page](https://github.com/webrecorder/replayweb.page#replaywebpage) configuration                         |
+| `replay.version`  | ReplayWeb.page version. Omit for the latest. [See releases](https://github.com/webrecorder/replayweb.page/releases) |
 
 #### Development
 
