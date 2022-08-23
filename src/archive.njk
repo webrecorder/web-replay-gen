@@ -5,12 +5,15 @@ layout: layout.njk
 {% set replayWebPageVersion = ["@", config.replay.version] | join %}
 <script src="https://cdn.jsdelivr.net/npm/replaywebpage{{ replayWebPageVersion if config.replay.version else '' }}/ui.js"></script>
 
+{# TODO style replay-web-page separately #}
 <style>
   html, body {
   width: 100%;
   height: 100%;
 }
 </style>
+
+<a href="/">Back</a>
 
 <is-land on:visible import="/components/wrg-replay.js">
 	<wrg-replay>
