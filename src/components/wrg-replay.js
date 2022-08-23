@@ -20,12 +20,12 @@ customElements.define(
 
     firstUpdated() {
       const url = new URL(window.location.href);
-      const waczParam = url.searchParams.get('wacz_url');
 
       try {
-        new URL(waczParam);
+        const replaySource = decodeURIComponent(url.hash.slice(2));
+        new URL(replaySource);
 
-        this._replaySource = window.decodeURIComponent(waczParam);
+        this._replaySource = window.decodeURIComponent(replaySource);
       } catch (e) {
         console.error(e);
 

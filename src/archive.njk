@@ -3,8 +3,8 @@ layout: layout.njk
 eleventyExcludeFromCollections: true
 ---
 <script type="module" src="/lib/is-land.js"></script>
-{% set replayWebPageVersion = ["@", config.replay.version] | join %}
-<script src="https://cdn.jsdelivr.net/npm/replaywebpage{{ replayWebPageVersion if config.replay.version else '' }}/ui.js"></script>
+{% set replayWebPageVersion = ["@", replay.version] | join %}
+<script src="https://cdn.jsdelivr.net/npm/replaywebpage{{ replayWebPageVersion if replay.version else '' }}/ui.js"></script>
 
 {# TODO style replay-web-page separately #}
 <style>
