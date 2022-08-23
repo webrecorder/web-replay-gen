@@ -1,7 +1,7 @@
 {
   "site": {
     "title": "Web Archives",
-    "url": "https://example.com"
+    "url": "http://localhost:8080"
   },
   "replay": {
     "version": "1.6.4"
