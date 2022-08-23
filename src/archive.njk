@@ -1,5 +1,11 @@
 ---
 layout: layout.njk
 ---
+<script type="module" src="/lib/is-land.js"></script>
 
 <h1>Web Archive</h1>
+
+<is-land on:visible import="/components/wrg-replay.js">
+	This is a lit component:
+	<wrg-replay name="World">Fallback content!</wrg-replay>
+</is-land>
