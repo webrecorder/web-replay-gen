@@ -2,7 +2,8 @@
 layout: layout.njk
 ---
 <script type="module" src="/lib/is-land.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/replaywebpage@1.6.4/ui.js"></script>
+{% set replayWebPageVersion = ["@", config.replay.version] | join %}
+<script src="https://cdn.jsdelivr.net/npm/replaywebpage{{ replayWebPageVersion if config.replay.version else '' }}/ui.js"></script>
 
 <style>
   html, body {

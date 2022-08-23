@@ -10,5 +10,6 @@ const wrgConfig = require(wrgConfigPath);
 
 module.exports = {
   title: wrgConfig.title || '',
+  replay: wrgConfig.replay || {},
   wacz_urls: wrgConfig.wacz_urls || [],
 };
