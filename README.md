@@ -66,3 +66,11 @@ This will output your new site to `/_site`.
 | `wacz_urls`       | List of WACZ file URLs                                                                         |
 | `replay`          | [ReplayWeb.page](https://github.com/webrecorder/replayweb.page#replaywebpage) configuration    |
 | `replay.version`  | ReplayWeb.page version. [See releases](https://github.com/webrecorder/replayweb.page/releases) |
+
+#### Development
+
+You can use a separate `wrg-config.local.json` during local development. To point the generator to your dev file, create `.env` with the following:
+
+```
+WRG_CONFIG_NAME=wrg-config.local.json
+```
