@@ -12,15 +12,32 @@ customElements.define(
         state: true,
         type: String,
       },
+      _error: {
+        state: true,
+        type: String,
+      },
     };
 
     firstUpdated() {
       const url = new URL(window.location.href);
+      const waczParam = url.searchParams.get('wacz_url');
 
-      this._replaySource = url.searchParams.get('wacz_url');
+      try {
+        new URL(waczParam);
+
+        this._replaySource = window.decodeURIComponent(waczParam);
+      } catch (e) {
+        console.error(e);
+
+        this._error = 'Invalid WACZ URL';
+      }
     }
 
     render() {
+      if (this._error) {
+        return html` ${this._error} `;
+      }
+
       return html`
         <h1>${this._replaySource}</h1>
         ${this.renderReplayWebPage()}

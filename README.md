@@ -36,8 +36,7 @@ Web Replay Gen generates a static site for you based on a list of URLs to WACZ f
   "title": "My Web Archives",
   "wacz_urls": [
     "https://example.com/test.wacz",
-    "https://example.com/abc/archive.wacz",
-    "./local-path/to/my_wacz.wacz"
+    "https://example.com/abc/archive.wacz"
   ]
 }
 ```
