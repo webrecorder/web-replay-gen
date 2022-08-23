@@ -2,10 +2,10 @@
 layout: layout.njk
 ---
 <script type="module" src="/lib/is-land.js"></script>
-
-<h1>Web Archive</h1>
+<script src="https://cdn.jsdelivr.net/npm/replaywebpage@1.6.4/ui.js"></script>
 
 <is-land on:visible import="/components/wrg-replay.js">
-	This is a lit component:
-	<wrg-replay name="World">Fallback content!</wrg-replay>
+	<wrg-replay>
+    {# TODO fallback content #}
+  </wrg-replay>
 </is-land>
