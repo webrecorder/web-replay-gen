@@ -37,7 +37,6 @@ Web Replay Gen generates a static site for you based on a list of URLs to WACZ f
     "title": "My Web Archives",
     "url": "https://example.com"
   },
-  "replay": {},
   "archives": [
     "https://example.com/test.wacz",
     "https://example.com/abc/archive.wacz"
@@ -57,9 +56,7 @@ This will output your new site to `/_site`.
 
 ## Documentation
 
-### Configuration
-
-#### `wrg-config.json` Options
+### `wrg-config.json` Options
 
 <details>
   <summary><code>site</code></summary>
@@ -93,6 +90,10 @@ This will output your new site to `/_site`.
 
 #### Array of WACZ data.
 
+| Key        | Default Value | Value Type           |     |
+| ---------- | ------------- | -------------------- | --- |
+| `archives` | `[]`          | `string[]\|Object[]` |     |
+
 WACZ data can be a plain URL or an object with `name` and `url`. For example, both entries are valid:
 
 ```json
@@ -106,10 +107,6 @@ WACZ data can be a plain URL or an object with `name` and `url`. For example, bo
   ]
 }
 ```
-
-| Key        | Default Value | Value Type           |     |
-| ---------- | ------------- | -------------------- | --- |
-| `archives` | `[]`          | `string[]\|Object[]` |     |
 
 </details>
 
