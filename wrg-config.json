@@ -1,7 +1,8 @@
 {
   "site": {
     "title": "Web Archives",
-    "url": "http://localhost:8080"
+    "url": "http://localhost:8080",
+    "logo_src": "https://raw.githubusercontent.com/webrecorder/replayweb.page/main/assets/logo.svg"
   },
   "replay": {
     "version": "1.6.4",

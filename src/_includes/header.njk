@@ -1,0 +1,12 @@
+<header class="p-2">
+  <a href="/" class="inline-flex items-center text-neutral-700">
+    {% if site.logo_src %}
+      <div class="mr-2">
+        <img src="{{ site.logo_src }}" class="w-9 h-9" title={{ site.title }} />
+      </div>
+    {% endif %}
+    <div class="font-semibold">
+      {{ site.title }}
+    </div>
+  </a>
+</header>

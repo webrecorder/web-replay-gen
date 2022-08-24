@@ -8,14 +8,6 @@ eleventyExcludeFromCollections: true
 <script src="https://cdn.jsdelivr.net/npm/replaywebpage{{ replayWebPageVersion if replay.version else '' }}/ui.js"></script>
 
 <div class="h-screen flex flex-col">
-  <div class="flex-0 p-2 bg-neutral-200 border-b invert">
-    <a
-      href="/"
-      class="text-sm text-neutral-600 hover:text-neutral-900 font-semibold"
-      >Back to all archives</a
-    >
-  </div>
-
   <is-land
     on:visible
     import="/components/wrg-replay.js"
