@@ -29,7 +29,7 @@ npm install
 
 ### 4. Configure `wrg-config.json`
 
-Web Replay Gen generates a static site for you based on a list of URLs to WACZ files. Update your `wrg-config.json` file with your website title and add your URLs to the `wacz_urls` array. Your updated `wrg-config.json` may look like this:
+Web Replay Gen generates a static site for you based on a list of URLs to WACZ files. Update your `wrg-config.json` file with your website title and add your URLs to the `archives` array. Your updated `wrg-config.json` may look like this:
 
 ```json
 {
@@ -38,7 +38,7 @@ Web Replay Gen generates a static site for you based on a list of URLs to WACZ f
     "url": "https://example.com"
   },
   "replay": {},
-  "wacz_urls": [
+  "archives": [
     "https://example.com/test.wacz",
     "https://example.com/abc/archive.wacz"
   ]
@@ -64,7 +64,7 @@ This will output your new site to `/_site`.
 | `site.title`      | Your website title                                                                                                  |
 | `site.url`        | Your website URL                                                                                                    |
 | `site.logoSrc`    | Your website logo `<img>` `src`                                                                                     |
-| `wacz_urls`       | List of WACZ file URLs                                                                                              |
+| `archives`        | List of WACZ file URLs                                                                                              |
 | `replay.version`  | ReplayWeb.page version. Omit for the latest. [See releases](https://github.com/webrecorder/replayweb.page/releases) |
 | `replay.embed`    | ReplayWeb.page [`embed` option](https://replayweb.page/docs/embedding#embedding-options).                           |
 

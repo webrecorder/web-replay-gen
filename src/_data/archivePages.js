@@ -1,7 +1,7 @@
 const wrgConfig = require('../../getConfig')();
 
 module.exports = () =>
-  wrgConfig.wacz_urls.map((url) => {
+  wrgConfig.archives.map((url) => {
     return {
       name: url,
       url: `/archive/#/${encodeURIComponent(url)}`,
