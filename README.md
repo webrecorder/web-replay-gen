@@ -59,14 +59,59 @@ This will output your new site to `/_site`.
 
 ### Configuration
 
-| `wrg-config.json` |                                                                                                                     |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------- |
-| `site.title`      | Your website title                                                                                                  |
-| `site.url`        | Your website URL                                                                                                    |
-| `site.logoSrc`    | Your website logo `<img>` `src`                                                                                     |
-| `archives`        | List of WACZ file URLs                                                                                              |
-| `replay.version`  | ReplayWeb.page version. Omit for the latest. [See releases](https://github.com/webrecorder/replayweb.page/releases) |
-| `replay.embed`    | ReplayWeb.page [`embed` option](https://replayweb.page/docs/embedding#embedding-options).                           |
+#### `wrg-config.json` Options
+
+<details>
+  <summary><code>site</code></summary>
+
+#### Object for configuring site details.
+
+| Key            | Default Value    | Value Type |                                                                     |
+| -------------- | ---------------- | ---------- | ------------------------------------------------------------------- |
+| `site`         | `{}`             | `Object`   |                                                                     |
+| `site.title`   | `"Web Archives"` | `string`   | Website title, used in browser title bar and as the primary heading |
+| `site.url`     | `""`             | `string`   | Website base URL                                                    |
+| `site.logoSrc` | `""`             | `string`   | Website logo, any valid `<img>` `src`                               |
+
+</details>
+
+<details>
+  <summary><code>replay</code></summary>
+
+#### Object for configuring the [embedded ReplayWeb.page](https://replayweb.page/docs/embedding) `<replay-web-page>` tag.
+
+| Key              | Default Value  | Value Type                        |                                                                                                                     |
+| ---------------- | -------------- | --------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| `replay`         | `{}`           | `Object`                          |                                                                                                                     |
+| `replay.version` | `"1.6.4"`      | `string`                          | ReplayWeb.page version. Omit for the latest. [See releases](https://github.com/webrecorder/replayweb.page/releases) |
+| `replay.embed`   | `"replayonly"` | `"replayonly"\|"full"\|"default"` | ReplayWeb.page [`embed` option](https://replayweb.page/docs/embedding#embedding-options)                            |
+
+</details>
+
+<details>
+  <summary><code>archives</code></summary>
+
+#### Array of WACZ data.
+
+WACZ data can be a plain URL or an object with `name` and `url`. For example, both entries are valid:
+
+```json
+{
+  "archives": [
+    "s3://my-bucket/a/archive.wacz",
+    {
+      "name": "My Web Archive",
+      "url": "s3://my-bucket/b/archive.wacz"
+    }
+  ]
+}
+```
+
+| Key        | Default Value | Value Type           |     |
+| ---------- | ------------- | -------------------- | --- |
+| `archives` | `[]`          | `string[]\|Object[]` |     |
+
+</details>
 
 #### Development
 
