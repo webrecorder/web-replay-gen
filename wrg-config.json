@@ -1,12 +1,12 @@
 {
   "site": {
     "title": "Web Archives",
-    "url": "http://localhost:8080",
-    "logoSrc": "https://raw.githubusercontent.com/webrecorder/replayweb.page/main/assets/logo.svg"
+    "url": "",
+    "logoSrc": ""
   },
   "replay": {
     "version": "1.6.4",
     "embed": "replayonly"
   },
-  "wacz_urls": []
+  "archives": []
 }

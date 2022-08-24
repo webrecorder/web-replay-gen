@@ -29,7 +29,7 @@ npm install
 
 ### 4. Configure `wrg-config.json`
 
-Web Replay Gen generates a static site for you based on a list of URLs to WACZ files. Update your `wrg-config.json` file with your website title and add your URLs to the `wacz_urls` array. Your updated `wrg-config.json` may look like this:
+Web Replay Gen generates a static site for you based on a list of URLs to WACZ files. Update your `wrg-config.json` file with your website title and add your URLs to the `archives` array. Your updated `wrg-config.json` may look like this:
 
 ```json
 {
@@ -37,8 +37,7 @@ Web Replay Gen generates a static site for you based on a list of URLs to WACZ f
     "title": "My Web Archives",
     "url": "https://example.com"
   },
-  "replay": {},
-  "wacz_urls": [
+  "archives": [
     "https://example.com/test.wacz",
     "https://example.com/abc/archive.wacz"
   ]
@@ -57,16 +56,73 @@ This will output your new site to `/_site`.
 
 ## Documentation
 
-### Configuration
+### `wrg-config.json` Options
 
-| `wrg-config.json` |                                                                                                                     |
-| ----------------- | ------------------------------------------------------------------------------------------------------------------- |
-| `site.title`      | Your website title                                                                                                  |
-| `site.url`        | Your website URL                                                                                                    |
-| `site.logoSrc`    | Your website logo `<img>` `src`                                                                                     |
-| `wacz_urls`       | List of WACZ file URLs                                                                                              |
-| `replay.version`  | ReplayWeb.page version. Omit for the latest. [See releases](https://github.com/webrecorder/replayweb.page/releases) |
-| `replay.embed`    | ReplayWeb.page [`embed` option](https://replayweb.page/docs/embedding#embedding-options).                           |
+<details>
+<summary>
+
+#### `site`
+
+Object for configuring site details.
+
+</summary>
+
+| Key            | Default Value    | Value Type |                                                                     |
+| -------------- | ---------------- | ---------- | ------------------------------------------------------------------- |
+| `site`         | `{}`             | `Object`   |                                                                     |
+| `site.title`   | `"Web Archives"` | `string`   | Website title, used in browser title bar and as the primary heading |
+| `site.url`     | `""`             | `string`   | Website base URL                                                    |
+| `site.logoSrc` | `""`             | `string`   | Website logo, any valid `<img>` `src`                               |
+
+</details>
+
+<details>
+<summary>
+
+#### `replay`
+
+Object for configuring the [embedded ReplayWeb.page](https://replayweb.page/docs/embedding) `<replay-web-page>` tag.
+
+</summary>
+
+| Key              | Default Value  | Value Type                        |                                                                                                                     |
+| ---------------- | -------------- | --------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| `replay`         | `{}`           | `Object`                          |                                                                                                                     |
+| `replay.version` | `"1.6.4"`      | `string`                          | ReplayWeb.page version. Omit for the latest. [See releases](https://github.com/webrecorder/replayweb.page/releases) |
+| `replay.embed`   | `"replayonly"` | `"replayonly"\|"full"\|"default"` | ReplayWeb.page [`embed` option](https://replayweb.page/docs/embedding#embedding-options)                            |
+
+</details>
+
+<details>
+<summary>
+
+#### `archives`
+
+Array of WACZ data.
+
+</summary>
+
+| Key        | Default Value | Value Type           |     |
+| ---------- | ------------- | -------------------- | --- |
+| `archives` | `[]`          | `string[]\|Object[]` |     |
+
+WACZ data can be a plain URL string or an object with `name` and `url`. For example, both entries are valid:
+
+```js
+{
+  "archives": [
+    // Entry 1:
+    "s3://my-bucket/a/archive.wacz",
+    // Entry 2:
+    {
+      "name": "My Web Archive",
+      "url": "s3://my-bucket/b/archive.wacz"
+    }
+  ]
+}
+```
+
+</details>
 
 #### Development
 
