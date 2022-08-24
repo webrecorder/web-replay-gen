@@ -4,7 +4,8 @@
     "url": "http://localhost:8080"
   },
   "replay": {
-    "version": "1.6.4"
+    "version": "1.6.4",
+    "embed": "replayonly"
   },
   "wacz_urls": []
 }

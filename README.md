@@ -64,8 +64,8 @@ This will output your new site to `/_site`.
 | `site.title`      | Your website title                                                                                                  |
 | `site.url`        | Your website URL                                                                                                    |
 | `wacz_urls`       | List of WACZ file URLs                                                                                              |
-| `replay`          | [ReplayWeb.page](https://github.com/webrecorder/replayweb.page#replaywebpage) configuration                         |
 | `replay.version`  | ReplayWeb.page version. Omit for the latest. [See releases](https://github.com/webrecorder/replayweb.page/releases) |
+| `replay.embed`    | ReplayWeb.page [`embed` option](https://replayweb.page/docs/embedding#embedding-options).                           |
 
 #### Development
 

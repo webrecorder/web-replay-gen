@@ -8,6 +8,10 @@ customElements.define(
   'wrg-replay',
   class extends LitElement {
     static properties = {
+      // https://replayweb.page/docs/embedding#embedding-options
+      embed: {
+        type: String,
+      },
       _replaySource: {
         state: true,
         type: String,
@@ -57,6 +61,7 @@ customElements.define(
         <replay-web-page
           source=${this._replaySource}
           replayBase="/replay/"
+          embed=${this.embed}
         ></replay-web-page>
       `;
     }
