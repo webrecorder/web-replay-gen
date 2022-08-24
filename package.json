@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "serve": "npx @11ty/eleventy --serve",
+    "serve": "concurrently \"npm run serve:eleventy\" \"npm run watch:tailwindcss\"",
+    "serve:eleventy": "npx @11ty/eleventy --serve",
+    "watch:tailwindcss": "npx tailwindcss -i ./tailwind.css -o ./_site/lib/tailwind.css --watch",
     "build": "npx @11ty/eleventy"
   },
   "repository": {
@@ -20,7 +22,9 @@
   "homepage": "https://github.com/webrecorder/web-replay-gen#readme",
   "devDependencies": {
     "@11ty/eleventy": "^1.0.2",
-    "dotenv": "^16.0.1"
+    "concurrently": "^7.3.0",
+    "dotenv": "^16.0.1",
+    "tailwindcss": "^3.1.8"
   },
   "dependencies": {
     "@11ty/is-land": "^1.0.0"
