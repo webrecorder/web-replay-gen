@@ -59,9 +59,13 @@ This will output your new site to `/_site`.
 ### `wrg-config.json` Options
 
 <details>
-  <summary><code>site</code></summary>
+<summary>
 
-#### Object for configuring site details.
+#### `site`
+
+Object for configuring site details.
+
+</summary>
 
 | Key            | Default Value    | Value Type |                                                                     |
 | -------------- | ---------------- | ---------- | ------------------------------------------------------------------- |
@@ -73,9 +77,13 @@ This will output your new site to `/_site`.
 </details>
 
 <details>
-  <summary><code>replay</code></summary>
+<summary>
 
-#### Object for configuring the [embedded ReplayWeb.page](https://replayweb.page/docs/embedding) `<replay-web-page>` tag.
+#### `replay`
+
+Object for configuring the [embedded ReplayWeb.page](https://replayweb.page/docs/embedding) `<replay-web-page>` tag.
+
+</summary>
 
 | Key              | Default Value  | Value Type                        |                                                                                                                     |
 | ---------------- | -------------- | --------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
@@ -86,20 +94,26 @@ This will output your new site to `/_site`.
 </details>
 
 <details>
-  <summary><code>archives</code></summary>
+<summary>
 
-#### Array of WACZ data.
+#### `archives`
+
+Array of WACZ data.
+
+</summary>
 
 | Key        | Default Value | Value Type           |     |
 | ---------- | ------------- | -------------------- | --- |
 | `archives` | `[]`          | `string[]\|Object[]` |     |
 
-WACZ data can be a plain URL or an object with `name` and `url`. For example, both entries are valid:
+WACZ data can be a plain URL string or an object with `name` and `url`. For example, both entries are valid:
 
-```json
+```js
 {
   "archives": [
+    // Entry 1:
     "s3://my-bucket/a/archive.wacz",
+    // Entry 2:
     {
       "name": "My Web Archive",
       "url": "s3://my-bucket/b/archive.wacz"
