@@ -2,22 +2,27 @@
 layout: layout.njk
 eleventyExcludeFromCollections: true
 ---
+
 <script type="module" src="/lib/is-land.js"></script>
 {% set replayWebPageVersion = ["@", replay.version] | join %}
 <script src="https://cdn.jsdelivr.net/npm/replaywebpage{{ replayWebPageVersion if replay.version else '' }}/ui.js"></script>
 
-{# TODO style replay-web-page separately #}
-<style>
-  html, body {
-  width: 100%;
-  height: 100%;
-}
-</style>
+<div class="h-screen flex flex-col">
+  <div class="flex-0 p-2 bg-neutral-200 border-b invert">
+    <a
+      href="/"
+      class="text-sm text-neutral-600 hover:text-neutral-900 font-semibold"
+      >Back to all archives</a
+    >
+  </div>
 
-<a href="/">Back</a>
-
-<is-land on:visible import="/components/wrg-replay.js">
-	<wrg-replay>
-    {# TODO fallback content #}
-  </wrg-replay>
-</is-land>
+  <is-land
+    on:visible
+    import="/components/wrg-replay.js"
+    class="flex-1 block overflow-hidden"
+  >
+    <wrg-replay>
+      <div class="text-neutral-500">Loading...</div>
+    </wrg-replay>
+  </is-land>
+</div>

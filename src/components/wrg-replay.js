@@ -18,6 +18,18 @@ customElements.define(
       },
     };
 
+    static styles = css`
+      :host {
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+      }
+
+      replay-web-page {
+        display: block;
+      }
+    `;
+
     firstUpdated() {
       const url = new URL(window.location.href);
 
@@ -37,14 +49,6 @@ customElements.define(
       if (this._error) {
         return html` ${this._error} `;
       }
-
-      return html`
-        <h1>${this._replaySource}</h1>
-        ${this.renderReplayWebPage()}
-      `;
-    }
-
-    renderReplayWebPage() {
       if (!this._replaySource) {
         return;
       }
