@@ -2,10 +2,19 @@
 layout: layout.njk
 ---
 
-<ul>
-  {% for page in archivePages %}
-  <li>
-    <a href="{{ page.url }}">{{ page.name }}</a>
-  </li>
-  {% endfor %}
-</ul>
+<section class="max-w-screen-lg mx-auto py-8">
+  <h1 class="my-4 text-2xl text-center">{{ site.title }}</h1>
+  <h2 class="my-2 text-neutral-500">Browse web archives</h2>
+
+  <ul class="border rounded">
+    {% for page in archivePages %}
+    <li class="border-t first:border-t-0">
+      <a
+        href="{{ page.url }}"
+        class="block p-2 text-neutral-700 hover:bg-neutral-50 hover:text-neutral-900"
+        >{{ page.name }}</a
+      >
+    </li>
+    {% endfor %}
+  </ul>
+</section>
