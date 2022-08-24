@@ -12,7 +12,6 @@ function mapToPage(data, idx) {
   let name, waczURL;
 
   if (typeof data === 'string') {
-    name = data;
     waczURL = data;
   } else if (
     typeof data === 'object' &&
@@ -24,7 +23,13 @@ function mapToPage(data, idx) {
     waczURL = data.url;
   }
 
-  if (name && waczURL) {
+  if (waczURL) {
+    if (!name) {
+      // Use filename without extension
+      const extIdx = waczURL.toLowerCase().lastIndexOf('.wacz');
+      name = waczURL.slice(0, extIdx).slice(waczURL.lastIndexOf('/') + 1);
+    }
+
     const pathname = `/archive/#/${encodeURIComponent(waczURL)}`;
 
     return { name, waczURL, pathname };
