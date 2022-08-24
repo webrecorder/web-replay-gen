@@ -1,4 +1,10 @@
 {
-  "title": "My Web Archives",
+  "site": {
+    "title": "Web Archives",
+    "url": "http://localhost:8080"
+  },
+  "replay": {
+    "version": "1.6.4"
+  },
   "wacz_urls": []
 }

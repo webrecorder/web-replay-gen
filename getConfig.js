@@ -6,9 +6,4 @@ const wrgConfigPath = path.resolve(
   process.env.WRG_CONFIG_NAME || 'wrg-config.json'
 );
 
-const wrgConfig = require(wrgConfigPath);
-
-module.exports = {
-  title: wrgConfig.title || '',
-  wacz_urls: wrgConfig.wacz_urls || [],
-};
+module.exports = () => require(wrgConfigPath);

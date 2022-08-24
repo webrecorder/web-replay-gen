@@ -1,6 +1,11 @@
 module.exports = function (eleventyConfig) {
-  // Copy the `css` folders to the output
-  eleventyConfig.addPassthroughCopy('src/style.css');
+  // Copy assets, retain dir structure
+  eleventyConfig.addPassthroughCopy('src/**/*.{css,js}');
+
+  // Copy library files to `/lib`
+  eleventyConfig.addPassthroughCopy({
+    'node_modules/@11ty/is-land/is-land.js': 'lib/is-land.js',
+  });
 
   return {
     // When a passthrough file is modified, rebuild the pages:

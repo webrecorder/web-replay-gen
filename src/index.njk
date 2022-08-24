@@ -3,9 +3,9 @@ layout: layout.njk
 ---
 
 <ul>
-  {% for url in config.wacz_urls %}
+  {% for page in archivePages %}
   <li>
-    <a href="/archive?url={{ url | urlencode }}">{{ url }}</a>
+    <a href="{{ page.url }}">{{ page.name }}</a>
   </li>
   {% endfor %}
 </ul>

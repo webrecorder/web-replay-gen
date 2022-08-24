@@ -1,5 +1,23 @@
 ---
 layout: layout.njk
+eleventyExcludeFromCollections: true
 ---
+<script type="module" src="/lib/is-land.js"></script>
+{% set replayWebPageVersion = ["@", replay.version] | join %}
+<script src="https://cdn.jsdelivr.net/npm/replaywebpage{{ replayWebPageVersion if replay.version else '' }}/ui.js"></script>
 
-<h1>Web Archive</h1>
+{# TODO style replay-web-page separately #}
+<style>
+  html, body {
+  width: 100%;
+  height: 100%;
+}
+</style>
+
+<a href="/">Back</a>
+
+<is-land on:visible import="/components/wrg-replay.js">
+	<wrg-replay>
+    {# TODO fallback content #}
+  </wrg-replay>
+</is-land>

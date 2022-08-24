@@ -33,11 +33,14 @@ Web Replay Gen generates a static site for you based on a list of URLs to WACZ f
 
 ```json
 {
-  "title": "My Web Archives",
+  "site": {
+    "title": "My Web Archives",
+    "url": "https://example.com"
+  },
+  "replay": {},
   "wacz_urls": [
     "https://example.com/test.wacz",
-    "https://example.com/abc/archive.wacz",
-    "./local-path/to/my_wacz.wacz"
+    "https://example.com/abc/archive.wacz"
   ]
 }
 ```
@@ -51,3 +54,23 @@ npm run build
 ```
 
 This will output your new site to `/_site`.
+
+## Documentation
+
+### Configuration
+
+| `wrg-config.json` |                                                                                                                     |
+| ----------------- | ------------------------------------------------------------------------------------------------------------------- |
+| `site.title`      | Your website title                                                                                                  |
+| `site.url`        | Your website URL                                                                                                    |
+| `wacz_urls`       | List of WACZ file URLs                                                                                              |
+| `replay`          | [ReplayWeb.page](https://github.com/webrecorder/replayweb.page#replaywebpage) configuration                         |
+| `replay.version`  | ReplayWeb.page version. Omit for the latest. [See releases](https://github.com/webrecorder/replayweb.page/releases) |
+
+#### Development
+
+You can use a separate `wrg-config.local.json` during local development. To point the generator to your dev file, create `.env` with the following:
+
+```
+WRG_CONFIG_NAME=wrg-config.local.json
+```
