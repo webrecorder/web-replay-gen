@@ -1,5 +1,7 @@
 const wrgConfig = require('../../getConfig')();
 
-module.exports = {
-  ...wrgConfig.site,
-};
+const site = { ...wrgConfig.site };
+
+site.url = (site.url || '').replace(/\/+$/, '');
+
+module.exports = site;
