@@ -60,7 +60,7 @@ customElements.define(
       return html`
         <replay-web-page
           source=${this._replaySource}
-          replayBase="/replay/"
+          replayBase="../replay/"
           embed=${this.embed}
         ></replay-web-page>
       `;
