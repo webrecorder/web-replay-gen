@@ -24,6 +24,8 @@ if (site.url) {
       .split('/');
 
     site.url = `https://${org}.github.io/${repo}`;
+
+    console.log(`This website will deploy to GitHub Pages at ${site.url}`);
   }
 
   site.url = site.url || '';
