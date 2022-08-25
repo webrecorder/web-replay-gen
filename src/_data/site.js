@@ -17,12 +17,13 @@ if (site.url) {
 } else {
   const originURL = execSync('git config --get remote.origin.url').toString();
 
-  console.log('originURL:', originURL);
-
-  if (hasGithubPagesWorkflow && originURL.startsWith('git@github.com:')) {
+  if (
+    hasGithubPagesWorkflow &&
+    (originURL.startsWith('git@github.com:') ||
+      originURL.startsWith('https://github.com/'))
+  ) {
     const [org, repo] = originURL
-      .replace('git@github.com:', '')
-      .slice(0, -5)
+      .slice(originURL.indexOf('github.com') + 11, -5)
       .toLowerCase()
       .split('/');
 
