@@ -131,3 +131,23 @@ You can use a separate `wrg-config.local.json` during local development. To poin
 ```
 WRG_CONFIG_NAME=wrg-config.local.json
 ```
+
+### Templates
+
+Web Replay Gen templates are written in [Nunjucks](https://mozilla.github.io/nunjucks/templating.html). You are free to use any templating language [Eleventy supports](https://www.11ty.dev/docs/languages/), like plain HTML, markdown, or ejs.
+
+### Web Components
+
+Web components in the `/components` directory are not pre-rendered at build time. Use the `<is-land>` tag to render web components at runtime. See `archive.njk` for an example and refer to the [11ty/is-land](https://github.com/11ty/is-land) docs.
+
+### Styling
+
+#### TailwindCSS
+
+[TailwindCSS](https://tailwindcss.com/) is enabled in all [Eleventy template](https://www.11ty.dev/docs/languages/) files. You can install a specific Tailwind version with `npm install -D tailwindcss@{version}`.
+
+Note: Tailwind is not available in web components (`/components/*.js`) due to limitations with the shadow DOM. See [workarounds](https://github.com/tailwindlabs/tailwindcss/discussions/1935) if you'd like to access Tailwind classes in web components.
+
+#### Customization
+
+Tailwind supports inline-style-like customization through [arbitrary values in class names](https://tailwindcss.com/docs/adding-custom-styles#using-arbitrary-values). For a more global approach to customization (for example, if you have vendor CSS file) include a `<link rel="stylesheet">` tag in your template file. Any `.css` files in `/src` will be copied to the output site folder and can be referenced in the `<link>` tag.
