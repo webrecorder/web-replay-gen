@@ -34,8 +34,7 @@ Web Replay Gen generates a static site for you based on a list of URLs to WACZ f
 ```json
 {
   "site": {
-    "title": "My Web Archives",
-    "url": "https://example.com"
+    "title": "My Web Archives"
   },
   "archives": [
     "https://example.com/test.wacz",
@@ -53,6 +52,12 @@ npm run build
 ```
 
 This will output your new site to `/_site`.
+
+### 6. Deploy
+
+Push to `main` to automatically deploy your site to GitHub Pages :sparkles:
+
+To disable publishing to Pages, simply delete the `publish-gh-pages.yml` workflow.
 
 ## Documentation
 
