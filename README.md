@@ -1,6 +1,6 @@
 # Web Replay Gen
 
-Deploy a website for viewing web archive collections with minimal setup.
+Generate a website for viewing web archive collections with minimal setup.
 
 Compatible with web archives in [WACZ format](https://specs.webrecorder.net/wacz/latest/).
 
