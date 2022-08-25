@@ -1,13 +1,14 @@
 # Web Replay Gen
 
-Generate a website for viewing web archive collections with minimal setup.
+Deploy a website for viewing web archive collections with minimal setup.
 
 Compatible with web archives in [WACZ format](https://specs.webrecorder.net/wacz/latest/).
 
-**Generated website features:**
+**Features:**
 
-- Index page listing web archives
-- Page for replaying individual web archives
+- Automatic deploy to GitHub Pages
+- List & autocomplete-search web archives
+- Embedded web archive replay
   <!-- - Automatic sitemap generation -->
   <!-- - IPFS support -->
 
