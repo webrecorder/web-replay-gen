@@ -23,7 +23,8 @@ if (site.url) {
       originURL.startsWith('https://github.com/'))
   ) {
     const [org, repo] = originURL
-      .slice(originURL.indexOf('github.com') + 11, -5)
+      .slice(originURL.indexOf('github.com') + 11)
+      .replace('.git', '')
       .toLowerCase()
       .split('/');
 
