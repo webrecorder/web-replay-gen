@@ -134,7 +134,7 @@ WRG_CONFIG_NAME=wrg-config.local.json
 
 ### Templates
 
-Web Replay Gen templates are written in the [Nunjucks](https://mozilla.github.io/nunjucks/templating.html). You are free to use any templating language [Eleventy supports](https://www.11ty.dev/docs/languages/), like plain HTML, markdown, or ejs.
+Web Replay Gen templates are written in [Nunjucks](https://mozilla.github.io/nunjucks/templating.html). You are free to use any templating language [Eleventy supports](https://www.11ty.dev/docs/languages/), like plain HTML, markdown, or ejs.
 
 ### Web Components
 
