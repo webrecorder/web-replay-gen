@@ -1,12 +1,11 @@
 {
   "site": {
     "title": "Web Archives",
-    "url": "",
-    "logoSrc": ""
+    "url": ""
   },
   "replay": {
     "version": "1.6.4",
     "embed": "replayonly"
   },
-  "archives": ["s3://webrecorder-builds/warcs/netpreserve-twitter.warc"]
+  "archives": []
 }
