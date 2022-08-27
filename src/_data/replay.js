@@ -11,8 +11,8 @@ module.exports = () => {
     ...wrgConfig.replay,
   };
 
-  if (replay.customBaseUrl) {
-    replay.baseUrl = replay.customBaseUrl.replace(/\/+$/, '');
+  if (replay.baseUrl) {
+    replay.baseUrl = replay.baseUrl.replace(/\/+$/, '');
   } else {
     replay.baseUrl = `https://cdn.jsdelivr.net/npm/replaywebpage${
       replay.version ? `@${replay.version}` : ''
