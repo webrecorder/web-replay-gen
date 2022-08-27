@@ -88,7 +88,7 @@ Object for configuring the [embedded ReplayWeb.page](https://replayweb.page/docs
 | Key              | Default Value  | Value Type                        |                                                                                                                     |
 | ---------------- | -------------- | --------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
 | `replay`         | `{}`           | `Object`                          |                                                                                                                     |
-| `replay.version` | `"1.6.4"`      | `string`                          | ReplayWeb.page version. Omit for the latest. [See releases](https://github.com/webrecorder/replayweb.page/releases) |
+| `replay.version` | `""`           | `string`                          | ReplayWeb.page version. Omit for the latest. [See releases](https://github.com/webrecorder/replayweb.page/releases) |
 | `replay.embed`   | `"replayonly"` | `"replayonly"\|"full"\|"default"` | ReplayWeb.page [`embed` option](https://replayweb.page/docs/embedding#embedding-options)                            |
 
 </details>
