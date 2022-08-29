@@ -30,7 +30,7 @@ function mapToPage(data, idx) {
       name = waczURL.slice(0, extIdx).slice(waczURL.lastIndexOf('/') + 1);
     }
 
-    const pathname = `/archive/#/${encodeURIComponent(waczURL)}`;
+    const pathname = `archive/#/${encodeURIComponent(waczURL)}`;
 
     return { name, waczURL, pathname };
   }

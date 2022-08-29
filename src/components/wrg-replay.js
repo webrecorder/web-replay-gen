@@ -12,6 +12,9 @@ customElements.define(
       embed: {
         type: String,
       },
+      replayBase: {
+        type: String,
+      },
       _replaySource: {
         state: true,
         type: String,
@@ -60,7 +63,7 @@ customElements.define(
       return html`
         <replay-web-page
           source=${this._replaySource}
-          replayBase="/replay/"
+          replayBase=${this.replayBase}
           embed=${this.embed}
         ></replay-web-page>
       `;

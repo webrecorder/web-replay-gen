@@ -10,12 +10,12 @@ layout: layout.njk
   <main class="p-2">
     <div class="text-sm text-neutral-400 mb-2">
       {{ archivePages | length }} web archives available.
-      <a href="/archives" class="font-semibold underline hover:no-underline"
+      <a href="archives" class="font-semibold underline hover:no-underline"
         >View all</a
       >
     </div>
 
-    <is-land on:visible import="/components/wrg-search.js">
+    <is-land on:visible import="../components/wrg-search.js">
       <wrg-search>
         <div class="p-2 text-neutral-500 text-center">Loading...</div>
       </wrg-search>

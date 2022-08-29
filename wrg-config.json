@@ -1,8 +1,7 @@
 {
   "site": {
     "title": "Web Archives",
-    "url": "",
-    "logoSrc": ""
+    "url": ""
   },
   "replay": {
     "version": "1.6.4",

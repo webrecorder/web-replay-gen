@@ -4,10 +4,11 @@ Generate a website for viewing web archive collections with minimal setup.
 
 Compatible with web archives in [WACZ format](https://specs.webrecorder.net/wacz/latest/).
 
-**Generated website features:**
+**Features:**
 
-- Index page listing web archives
-- Page for replaying individual web archives
+- Automatic deploy to GitHub Pages
+- List & autocomplete-search web archives
+- Embedded web archive replay
   <!-- - Automatic sitemap generation -->
   <!-- - IPFS support -->
 
@@ -34,8 +35,7 @@ Web Replay Gen generates a static site for you based on a list of URLs to WACZ f
 ```json
 {
   "site": {
-    "title": "My Web Archives",
-    "url": "https://example.com"
+    "title": "My Web Archives"
   },
   "archives": [
     "https://example.com/test.wacz",
@@ -53,6 +53,12 @@ npm run build
 ```
 
 This will output your new site to `/_site`.
+
+### 6. Deploy
+
+Push to `main` to automatically deploy your site to GitHub Pages :sparkles:
+
+To disable publishing to Pages, simply delete the `publish-gh-pages.yml` workflow.
 
 ## Documentation
 

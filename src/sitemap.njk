@@ -7,7 +7,7 @@ eleventyExcludeFromCollections: true
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 {% for page in archivePages %}
   <url>
-    <loc>{{ site.url }}{{ page.pathname | url }}/</loc>
+    <loc>{{ site.url }}/{{ page.pathname | url }}/</loc>
   </url>
   {% endfor %}
 {% for page in collections.all %}

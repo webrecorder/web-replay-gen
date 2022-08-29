@@ -8,7 +8,7 @@
     "serve": "concurrently \"npm run serve:eleventy\" \"npm run watch:tailwindcss\"",
     "serve:eleventy": "npx @11ty/eleventy --serve",
     "watch:tailwindcss": "npm run build:tailwindcss -- --watch",
-    "build": "concurrently \"npm run build:eleventy\" \"npm run build:tailwindcss\"",
+    "build": "WRG_ENVIRONMENT=production concurrently \"npm run build:eleventy\" \"npm run build:tailwindcss\"",
     "build:eleventy": "npx @11ty/eleventy",
     "build:tailwindcss": "npx tailwindcss -i ./tailwind.css -o ./_site/lib/tailwind.css"
   },
