@@ -41,10 +41,13 @@ customElements.define(
       const url = new URL(window.location.href);
 
       try {
-        const replaySource = decodeURIComponent(url.hash.slice(2));
+        let replaySource = window.decodeURIComponent(url.hash.slice(2));
+        if (replaySource.indexOf('://') === -1) {
+          replaySource = `${window.location.protocol}//${window.location.host}/${replaySource}`;
+        }
         new URL(replaySource);
 
-        this._replaySource = window.decodeURIComponent(replaySource);
+        this._replaySource = replaySource;
       } catch (e) {
         console.error(e);
 
