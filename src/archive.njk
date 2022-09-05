@@ -3,8 +3,7 @@ layout: layout.njk
 eleventyExcludeFromCollections: true
 ---
 
-{% set replayWebPageVersion = ["@", replay.version] | join %}
-<script src="https://cdn.jsdelivr.net/npm/replaywebpage{{ replayWebPageVersion if replay.version else '' }}/ui.js"></script>
+<script src="{{ replay.baseUrl }}/ui.js"></script>
 
 <div class="h-screen flex flex-col">
   <is-land

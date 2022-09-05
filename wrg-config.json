@@ -3,9 +3,5 @@
     "title": "Web Archives",
     "url": ""
   },
-  "replay": {
-    "version": "1.6.4",
-    "embed": "replayonly"
-  },
   "archives": []
 }

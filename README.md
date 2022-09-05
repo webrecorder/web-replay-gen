@@ -91,11 +91,12 @@ Object for configuring the [embedded ReplayWeb.page](https://replayweb.page/docs
 
 </summary>
 
-| Key              | Default Value  | Value Type                        |                                                                                                                     |
-| ---------------- | -------------- | --------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| `replay`         | `{}`           | `Object`                          |                                                                                                                     |
-| `replay.version` | `"1.6.4"`      | `string`                          | ReplayWeb.page version. Omit for the latest. [See releases](https://github.com/webrecorder/replayweb.page/releases) |
-| `replay.embed`   | `"replayonly"` | `"replayonly"\|"full"\|"default"` | ReplayWeb.page [`embed` option](https://replayweb.page/docs/embedding#embedding-options)                            |
+| Key              | Default Value                                  | Value Type                        |                                                                                                                     |
+| ---------------- | ---------------------------------------------- | --------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| `replay`         | `{}`                                           | `Object`                          |                                                                                                                     |
+| `replay.embed`   | `"replayonly"`                                 | `"replayonly"\|"full"\|"default"` | ReplayWeb.page [`embed` option](https://replayweb.page/docs/embedding#embedding-options)                            |
+| `replay.baseUrl` | `"https://cdn.jsdelivr.net/npm/replaywebpage"` | `string`                          | Base URL for ReplayWeb.page scripts. `replay.version` will be ignored if a base URL is specified.                   |
+| `replay.version` | `""`                                           | `string`                          | ReplayWeb.page version. Omit for the latest. [See releases](https://github.com/webrecorder/replayweb.page/releases) |
 
 </details>
 
