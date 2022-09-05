@@ -2,6 +2,8 @@
 
 Generate a website for viewing web archive collections with minimal setup.
 
+[View sample site](https://webrecorder.github.io/web-replay-gen/)
+
 Compatible with web archives in [WACZ format](https://specs.webrecorder.net/wacz/latest/).
 
 **Features:**
