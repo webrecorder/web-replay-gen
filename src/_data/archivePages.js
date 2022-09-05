@@ -38,4 +38,16 @@ function mapToPage(data, idx) {
   console.warn(`Invalid WACZ data at index ${idx}, skipping`);
 }
 
-module.exports = () => wrgConfig.archives.map(mapToPage).filter((v) => v);
+module.exports = () => {
+  if (!wrgConfig.archives) {
+    return [];
+  }
+
+  if (Array.isArray(wrgConfig.archives)) {
+    return wrgConfig.archives.map(mapToPage).filter((v) => v);
+  }
+
+  console.warn('Unrecognized config `archives` option, returning empty array.');
+
+  return [];
+};
