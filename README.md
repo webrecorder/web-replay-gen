@@ -115,18 +115,24 @@ Path or JSON used to find WACZ archive files
 | ---------- | ------------- | ---------------------------------------------- | --- |
 | `archives` | `"archives"`  | `string\|string[]\|{name:string;url:string}[]` |     |
 
-The following are all acceptable values:
+The option value can be:
 
 - Relative path to a directory containing `.wacz` files
 - Relative path to a text file with newline-separated list of remote URLs
 - JSON array of plain URL strings or an object with `name` and `url`
 - Relative path to a JSON file with an `archives` key where the value is a JSON array
 
-Example of a relative path:
+Example of relative paths:
 
 ```js
 {
-  "archives": "./archive-files/"
+  "archives": "./wacz-files/"
+}
+```
+
+```js
+{
+  "archives": "./data/archives.json"
 }
 ```
 
@@ -135,9 +141,9 @@ Example JSON array:
 ```js
 {
   "archives": [
-    // Entry 1:
+    // Plain URL string:
     "s3://my-bucket/a/archive.wacz",
-    // Entry 2:
+    // Object with name and URL:
     {
       "name": "My Web Archive",
       "url": "s3://my-bucket/b/archive.wacz"
