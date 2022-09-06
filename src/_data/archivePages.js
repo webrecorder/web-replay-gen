@@ -1,4 +1,5 @@
 const path = require('path');
+const fsPromises = require('fs/promises');
 const normalize = require('normalize-path');
 const fg = require('fast-glob');
 const wrgConfig = require('../../getConfig')();
@@ -16,6 +17,16 @@ const wrgConfig = require('../../getConfig')();
  */
 function isRelativePath(filePath) {
   return !/^([a-z0-9]+:)?[\\/]/i.test(filePath);
+}
+
+/**
+ * @param {string} filePath
+ * @returns {boolean}
+ */
+function isInRoot(filePath) {
+  const absPath = path.resolve(filePath);
+
+  return absPath.startsWith(process.env.ELEVENTY_ROOT);
 }
 
 /**
@@ -65,12 +76,16 @@ async function mapLocalFiles(filePath) {
 }
 
 /**
- * Map S3 bucket listing to archive page data
- * @param {string} url
+ * Map local JSON file to archive page data
+ * @param {string} filePath
  * @returns {Archive[]}
  */
-async function mapS3List(url) {
-  return [];
+async function mapJSONFile(filePath) {
+  const data = await fsPromises.readFile(filePath);
+
+  const { archives } = JSON.parse(data);
+
+  return archives.map(mapToPage);
 }
 
 /**
@@ -79,14 +94,25 @@ async function mapS3List(url) {
  * @returns {Archive[]}
  */
 function handleStringOpt(val) {
-  if (val.startsWith('s3://')) {
-    return mapS3List(val);
-  }
-
   const normalized = normalize(val);
 
   if (!isRelativePath(normalized)) {
-    throw new Error('Invalid config `archives` option');
+    throw new Error(
+      'Invalid config `archives` option: Only relative paths are supported at this time'
+    );
+  }
+
+  if (!isInRoot(normalized)) {
+    throw new Error(
+      'Invalid config `archives` option: Path must share root directory with Eleventy project'
+    );
+  }
+
+  switch (path.extname(val)) {
+    case '.json':
+      return mapJSONFile(normalized);
+    default:
+      break;
   }
 
   return mapLocalFiles(normalized);
@@ -108,7 +134,9 @@ module.exports = () => {
     if (Array.isArray(wrgConfig.archives)) {
       return wrgConfig.archives.map(mapToPage).filter((v) => v);
     }
-  } catch {}
+  } catch (e) {
+    console.debug(e);
+  }
 
   console.warn('Unrecognized config `archives` option, returning empty array.');
 
