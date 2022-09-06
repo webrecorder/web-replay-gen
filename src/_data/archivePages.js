@@ -89,6 +89,17 @@ async function mapJSONFile(filePath) {
 }
 
 /**
+ * Map local text file to archive page data
+ * @param {string} filePath
+ * @returns {Archive[]}
+ */
+async function mapTextFile(filePath) {
+  const data = await fsPromises.readFile(filePath, 'utf8');
+
+  return data.toString().split('\n').map(mapToPage);
+}
+
+/**
  * Derive archive data list from config archives option
  * @param {string} val - Config option value
  * @returns {Archive[]}
@@ -111,6 +122,8 @@ function handleStringOpt(val) {
   switch (path.extname(val)) {
     case '.json':
       return mapJSONFile(normalized);
+    case '.txt':
+      return mapTextFile(normalized);
     default:
       break;
   }
