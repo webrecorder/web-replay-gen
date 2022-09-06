@@ -117,12 +117,12 @@ Path or JSON used to find WACZ archive files
 
 The option value can be:
 
-- Relative path to a directory containing `.wacz` files
+- Relative path to a project directory containing `.wacz` files
 - Relative path to a text file with newline-separated list of remote URLs
 - JSON array of plain URL strings or an object with `name` and `url`
 - Relative path to a JSON file with an `archives` key where the value is a JSON array
 
-Example of relative paths:
+Paths must be a subdirectory or file in your project root (i.e. in your repo.) Examples:
 
 ```js
 {
