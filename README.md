@@ -107,15 +107,30 @@ Object for configuring the [embedded ReplayWeb.page](https://replayweb.page/docs
 
 #### `archives`
 
-Array of WACZ data.
+Path or JSON used to find WACZ archive files
 
 </summary>
 
-| Key        | Default Value | Value Type           |     |
-| ---------- | ------------- | -------------------- | --- |
-| `archives` | `[]`          | `string[]\|Object[]` |     |
+| Key        | Default Value | Value Type                                     |     |
+| ---------- | ------------- | ---------------------------------------------- | --- |
+| `archives` | `"archives"`  | `string\|string[]\|{name:string;url:string}[]` |     |
 
-WACZ data can be a plain URL string or an object with `name` and `url`. For example, both entries are valid:
+The following are all acceptable values:
+
+- Relative path to a directory containing `.wacz` files
+- Relative path to a text file with newline-separated list of remote URLs
+- JSON array of plain URL strings or an object with `name` and `url`
+- Relative path to a JSON file with an `archives` key where the value is a JSON array
+
+Example of a relative path:
+
+```js
+{
+  "archives": "./archive-files/"
+}
+```
+
+Example JSON array:
 
 ```js
 {
@@ -130,6 +145,8 @@ WACZ data can be a plain URL string or an object with `name` and `url`. For exam
   ]
 }
 ```
+
+The default behavior is to list WACZ files in the `archives` directory. WACZ files in the `archives` directory are ignored in git and and copied over to the output `_site` by default.
 
 </details>
 
