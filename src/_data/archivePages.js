@@ -4,6 +4,13 @@ const fg = require('fast-glob');
 const wrgConfig = require('../../getConfig')();
 
 /**
+ * @typedef {Object} Archive
+ * @returns {string} name - Name of archive
+ * @returns {string} waczURL - URL to WACZ file
+ * @returns {string} pathname - Site page path
+ */
+
+/**
  * @param {string} filePath
  * @returns {boolean}
  */
@@ -14,10 +21,7 @@ function isRelativePath(filePath) {
 /**
  * Transform archives data to site page data
  * @param {string|Object} data - WACZ data, can be URL string or { name: string; url: string }
- * @returns {Object} archive
- * @returns {string} archive.name - Name of archive
- * @returns {string} archive.waczURL - URL to WACZ file
- * @returns {string} archive.pathname - Site page path
+ * @returns {Archive}
  */
 function mapToPage(data, idx) {
   let name, waczURL;
@@ -50,21 +54,33 @@ function mapToPage(data, idx) {
 }
 
 /**
+ * Map local WACZ files to archive page data
  * @param {string} filePath
+ * @returns {Archive[]}
  */
-async function handleRelativePath(filePath) {
+async function mapLocalFiles(filePath) {
   const entries = await fg(path.join(filePath, '**/*.wacz'));
 
   return entries.map(mapToPage);
 }
 
 /**
+ * Map S3 bucket listing to archive page data
+ * @param {string} url
+ * @returns {Archive[]}
+ */
+async function mapS3List(url) {
+  return [];
+}
+
+/**
+ * Derive archive data list from config archives option
  * @param {string} val - Config option value
+ * @returns {Archive[]}
  */
 function handleStringOpt(val) {
   if (val.startsWith('s3://')) {
-    // TODO handle s3
-    return true;
+    return mapS3List(val);
   }
 
   const normalized = normalize(val);
@@ -73,9 +89,12 @@ function handleStringOpt(val) {
     throw new Error('Invalid config `archives` option');
   }
 
-  return handleRelativePath(normalized);
+  return mapLocalFiles(normalized);
 }
 
+/**
+ * @returns {Archive[]}
+ */
 module.exports = () => {
   try {
     if (!wrgConfig.archives) {
