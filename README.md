@@ -146,7 +146,7 @@ Example JSON array:
 }
 ```
 
-The default behavior is to list WACZ files in the `archives` directory. WACZ files in the `archives` directory are ignored in git and and copied over to the output `_site` by default.
+The default behavior is to list WACZ files in the `archives` directory. WACZ files (`.wacz`) are ignored in git and and copied over to the output `_site` by default, retaining their directory structure.
 
 </details>
 

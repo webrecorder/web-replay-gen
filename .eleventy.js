@@ -5,7 +5,7 @@ module.exports = function (eleventyConfig) {
   // Keep WACZ files in gitignore but remove from eleventyignore
   eleventyConfig.ignores.delete('*.wacz');
   // Copy WACZ files, retain dir structure
-  eleventyConfig.addPassthroughCopy('archives/**/*.wacz');
+  eleventyConfig.addPassthroughCopy('{,!(_site)/**/}*.wacz');
 
   // Copy library files to `/lib`
   eleventyConfig.addPassthroughCopy({
