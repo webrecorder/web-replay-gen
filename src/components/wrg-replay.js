@@ -19,6 +19,10 @@ customElements.define(
         state: true,
         type: String,
       },
+      _replayParams: {
+        state: true,
+        type: Object,
+      },
       _error: {
         state: true,
         type: String,
@@ -48,6 +52,11 @@ customElements.define(
         new URL(replaySource);
 
         this._replaySource = replaySource;
+
+        this._replayParams = {
+          url: url.searchParams.get('url'),
+          ts: url.searchParams.get('ts'),
+        };
       } catch (e) {
         console.error(e);
 
@@ -67,6 +76,8 @@ customElements.define(
         <replay-web-page
           source=${this._replaySource}
           replayBase=${this.replayBase}
+          url=${this._replayParams.url || ''}
+          ts=${this._replayParams.ts || ''}
           embed=${this.embed}
         ></replay-web-page>
       `;
