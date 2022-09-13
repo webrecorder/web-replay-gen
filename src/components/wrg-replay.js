@@ -45,7 +45,11 @@ customElements.define(
       const url = new URL(window.location.href);
 
       try {
-        let replaySource = window.decodeURIComponent(url.hash.slice(2));
+        const [replaySourceHash, searchParamsHash] = url.hash
+          .slice(2)
+          .split('?');
+        const searchParams = new URLSearchParams(searchParamsHash);
+        let replaySource = window.decodeURIComponent(replaySourceHash);
         if (replaySource.indexOf('://') === -1) {
           replaySource = `${window.location.protocol}//${window.location.host}/${replaySource}`;
         }
@@ -54,12 +58,12 @@ customElements.define(
         this._replaySource = replaySource;
 
         this._replayParams = {
-          url: url.searchParams.get('url')
-            ? decodeURIComponent(url.searchParams.get('url'))
+          url: searchParams.get('url')
+            ? decodeURIComponent(searchParams.get('url'))
             : '',
-          ts: url.searchParams.get('ts') || '',
-          query: url.searchParams.get('query') || '',
-          view: url.searchParams.get('view') || '',
+          ts: searchParams.get('ts') || '',
+          query: searchParams.get('query') || '',
+          view: searchParams.get('view') || '',
         };
       } catch (e) {
         console.error(e);
@@ -76,7 +80,7 @@ customElements.define(
         return;
       }
 
-      console.log(this.embed);
+      console.log(this._replayParams);
 
       return html`
         <replay-web-page
