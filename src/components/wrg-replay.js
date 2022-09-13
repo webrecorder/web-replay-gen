@@ -54,8 +54,12 @@ customElements.define(
         this._replaySource = replaySource;
 
         this._replayParams = {
-          url: url.searchParams.get('url'),
-          ts: url.searchParams.get('ts'),
+          url: url.searchParams.get('url')
+            ? decodeURIComponent(url.searchParams.get('url'))
+            : '',
+          ts: url.searchParams.get('ts') || '',
+          query: url.searchParams.get('query') || '',
+          view: url.searchParams.get('view') || '',
         };
       } catch (e) {
         console.error(e);
@@ -72,13 +76,17 @@ customElements.define(
         return;
       }
 
+      console.log(this.embed);
+
       return html`
         <replay-web-page
           source=${this._replaySource}
           replayBase=${this.replayBase}
-          url=${this._replayParams.url || ''}
-          ts=${this._replayParams.ts || ''}
           embed=${this.embed}
+          url=${this._replayParams?.url || ''}
+          ts=${this._replayParams?.ts || ''}
+          query=${this._replayParams?.query || ''}
+          view=${this._replayParams?.view || ''}
         ></replay-web-page>
       `;
     }
