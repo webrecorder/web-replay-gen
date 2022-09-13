@@ -12,7 +12,7 @@ const hasGithubPagesWorkflow = existsSync(
   )
 );
 
-if (site.url) {
+if (typeof site.url === 'string') {
   site.url = site.url.replace(/\/+$/, '');
 } else {
   const originURL = execSync('git config --get remote.origin.url').toString();

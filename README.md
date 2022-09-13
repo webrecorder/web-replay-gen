@@ -107,22 +107,43 @@ Object for configuring the [embedded ReplayWeb.page](https://replayweb.page/docs
 
 #### `archives`
 
-Array of WACZ data.
+Path or JSON used to find WACZ archive files
 
 </summary>
 
-| Key        | Default Value | Value Type           |     |
-| ---------- | ------------- | -------------------- | --- |
-| `archives` | `[]`          | `string[]\|Object[]` |     |
+| Key        | Default Value | Value Type                                     |     |
+| ---------- | ------------- | ---------------------------------------------- | --- |
+| `archives` | `"archives"`  | `string\|string[]\|{name:string;url:string}[]` |     |
 
-WACZ data can be a plain URL string or an object with `name` and `url`. For example, both entries are valid:
+The option value can be:
+
+- Relative path to a project directory containing `.wacz` files
+- Relative path to a `.txt` file with newline-separated list of remote URLs
+- JSON array of plain URL strings or an object with `name` and `url`
+- Relative path to a JSON file with an `archives` key where the value is a JSON array
+
+Paths must be a subdirectory or file in your project root (i.e. in your repo.) Examples:
+
+```js
+{
+  "archives": "./wacz-files/"
+}
+```
+
+```js
+{
+  "archives": "data/archives.json"
+}
+```
+
+Example JSON array:
 
 ```js
 {
   "archives": [
-    // Entry 1:
+    // Plain URL string:
     "s3://my-bucket/a/archive.wacz",
-    // Entry 2:
+    // Object with name and URL:
     {
       "name": "My Web Archive",
       "url": "s3://my-bucket/b/archive.wacz"
@@ -130,6 +151,8 @@ WACZ data can be a plain URL string or an object with `name` and `url`. For exam
   ]
 }
 ```
+
+The default behavior is to list WACZ files in the `archives` directory. WACZ files (`.wacz`) are ignored in git and and copied over to the output `_site` by default, retaining their directory structure.
 
 </details>
 
