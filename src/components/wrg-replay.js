@@ -19,10 +19,6 @@ customElements.define(
         state: true,
         type: String,
       },
-      _replayParams: {
-        state: true,
-        type: Object,
-      },
       _error: {
         state: true,
         type: String,
@@ -45,26 +41,13 @@ customElements.define(
       const url = new URL(window.location.href);
 
       try {
-        const [replaySourceHash, searchParamsHash] = url.hash
-          .slice(2)
-          .split('?');
-        const searchParams = new URLSearchParams(searchParamsHash);
-        let replaySource = window.decodeURIComponent(replaySourceHash);
+        let replaySource = window.decodeURIComponent(url.searchParams.get('/'));
         if (replaySource.indexOf('://') === -1) {
           replaySource = `${window.location.protocol}//${window.location.host}/${replaySource}`;
         }
         new URL(replaySource);
 
         this._replaySource = replaySource;
-
-        this._replayParams = {
-          url: searchParams.get('url')
-            ? decodeURIComponent(searchParams.get('url'))
-            : '',
-          ts: searchParams.get('ts') || '',
-          query: searchParams.get('query') || '',
-          view: searchParams.get('view') || '',
-        };
       } catch (e) {
         console.error(e);
 
@@ -80,17 +63,12 @@ customElements.define(
         return;
       }
 
-      console.log(this._replayParams);
-
       return html`
         <replay-web-page
           source=${this._replaySource}
           replayBase=${this.replayBase}
           embed=${this.embed}
-          url=${this._replayParams?.url || ''}
-          ts=${this._replayParams?.ts || ''}
-          query=${this._replayParams?.query || ''}
-          view=${this._replayParams?.view || ''}
+          deepLink
         ></replay-web-page>
       `;
     }
