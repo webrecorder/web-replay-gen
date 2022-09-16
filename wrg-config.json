@@ -1,1 +1,3 @@
-{}
+{
+  "archives": ["s3://webrecorder-builds/warcs/netpreserve-twitter.warc"]
+}

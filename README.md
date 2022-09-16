@@ -4,8 +4,6 @@ Generate a website for viewing web archive collections with minimal setup.
 
 [View sample site](https://webrecorder.github.io/web-replay-gen/)
 
-Compatible with web archives in [WACZ format](https://specs.webrecorder.net/wacz/latest/).
-
 **Features:**
 
 - Automatic deploy to GitHub Pages
@@ -14,7 +12,7 @@ Compatible with web archives in [WACZ format](https://specs.webrecorder.net/wacz
   <!-- - Automatic sitemap generation -->
   <!-- - IPFS support -->
 
-## Getting Started
+## Quick Start
 
 ### 1. Create new project from template
 
@@ -152,7 +150,7 @@ Example JSON array:
 }
 ```
 
-The default behavior is to list WACZ files in the `archives` directory. WACZ files (`.wacz`) are ignored in git and and copied over to the output `_site` by default, retaining their directory structure.
+The default behavior is to list WACZ files in the `archives` directory. Web Archive files (`.wacz`, `.warc`) are ignored in git and and copied over to the output `_site` by default, retaining their directory structure.
 
 </details>
 

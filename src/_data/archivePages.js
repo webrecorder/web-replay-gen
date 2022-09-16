@@ -52,8 +52,7 @@ function mapToPage(data, idx) {
   if (waczURL) {
     if (!name) {
       // Use filename without extension
-      const extIdx = waczURL.toLowerCase().lastIndexOf('.wacz');
-      name = waczURL.slice(0, extIdx).slice(waczURL.lastIndexOf('/') + 1);
+      name = path.parse(waczURL).name;
     }
 
     const pathname = `archive/?source=${encodeURIComponent(waczURL)}`;
@@ -70,7 +69,7 @@ function mapToPage(data, idx) {
  * @returns {Archive[]}
  */
 async function mapLocalFiles(filePath) {
-  const entries = await fg(path.join(filePath, '**/*.wacz'));
+  const entries = await fg(path.join(filePath, '**/*.wa{cz,rc}'));
 
   return entries.map(mapToPage);
 }
