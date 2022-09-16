@@ -6,7 +6,7 @@ Generate a website for viewing web archive collections with minimal setup.
 
 Compatible with web archives in [WACZ format](https://specs.webrecorder.net/wacz/latest/).
 
-**Features:**
+## Features
 
 - Automatic deploy to GitHub Pages
 - List & autocomplete-search web archives
@@ -26,7 +26,7 @@ Clone as usual after creating your new repository from this template.
 
 Navigate to your project directory and run:
 
-```
+```shell
 npm install
 ```
 
@@ -50,7 +50,7 @@ Web Replay Gen generates a static site for you based on a list of URLs to WACZ f
 
 ### 5. Generate static website
 
-```
+```shell
 npm run build
 ```
 
@@ -58,7 +58,7 @@ This will output your new site to `/_site`.
 
 ### 6. Deploy
 
-Push to `main` to automatically deploy your site to GitHub Pages :sparkles:
+Push to `main` to automatically deploy your site to GitHub Pages using [this GitHub Action](.github/workflows/publish-gh-pages.yml) :sparkles:
 
 To disable publishing to Pages, simply delete the `publish-gh-pages.yml` workflow.
 
@@ -160,7 +160,7 @@ The default behavior is to list WACZ files in the `archives` directory. WACZ fil
 
 You can use a separate `wrg-config.local.json` during local development. To point the generator to your dev file, create `.env` with the following:
 
-```
+```txt
 WRG_CONFIG_NAME=wrg-config.local.json
 ```
 
