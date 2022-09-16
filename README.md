@@ -18,6 +18,7 @@ Jump to:
 - [Quick Start](#quick-start)
 - [Configuration](#configuration)
 - [Deployment](#deployment)
+- [Dev Server](#dev-server)
 - [Templates](#templates)
 - [Web Components](#web-components)
 - [Styling](#styling)
@@ -162,9 +163,27 @@ The default behavior is to list Web Archive files in the `archives` directory. W
 
 </details>
 
-## Development
+## Deployment
 
-### Dev server
+### Github Pages
+
+By default, Web Replay Gen will deploy to Pages on every push to the `main` branch. To configure the deployment workflow, e.g. to change the release branch, update `.github/workflows/publish-gh-pages.yml`. To disable publishing to Pages, simply delete the `publish-gh-pages.yml` workflow file.
+
+#### Local web archive support
+
+Due to GitHub's [file size limit](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-large-files-on-github#file-size-limits) and lack of support for [git LFS in Pages](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-git-large-file-storage), you may run into an issue with deploying large web archive files. To resolve the issue, you can create a separate workflow for uploading web archive files elsewhere (e.g. to an S3 bucket) and configure your site with the remote URLs. Alternatively, you can self-host.
+
+### Self-hosting
+
+Run the build script to output your site into a local directory:
+
+```
+npm run build
+```
+
+This will output a production-ready build to `/_site`. Transfer the contents of `/_site` to your host.
+
+## Dev Server
 
 Run the dev server with `npm run serve` to serve files from `/_site`.
 
@@ -185,26 +204,6 @@ To disable, comment out the line in `.env`:
 ```
 # WRG_CONFIG_NAME=wrg-config.local.json
 ```
-
-## Deployment
-
-### Github Pages
-
-By default, Web Replay Gen will deploy to Pages on every push to the `main` branch. To configure the deployment workflow, e.g. to change the release branch, update `.github/workflows/publish-gh-pages.yml`. To disable publishing to Pages, simply delete the `publish-gh-pages.yml` workflow file.
-
-#### Local web archive support
-
-Due to GitHub's [file size limit](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-large-files-on-github#file-size-limits) and lack of support for [git LFS in Pages](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-git-large-file-storage), you may run into an issue with deploying large web archive files. To resolve the issue, you can create a separate workflow for uploading web archive files elsewhere (e.g. to an S3 bucket) and configure your site with the remote URLs. Alternatively, you can self-host.
-
-### Self-hosting
-
-Run the build script to output your site into a local directory:
-
-```
-npm run build
-```
-
-This will output a production-ready build to `/_site`. Transfer the contents of `/_site` to your host.
 
 ## Templates
 
