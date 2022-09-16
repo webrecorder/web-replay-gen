@@ -164,12 +164,26 @@ The default behavior is to list Web Archive files in the `archives` directory. W
 
 </details>
 
-### Development
+## Development
 
-You can use a separate `wrg-config.local.json` during local development. To point the generator to your dev file, create `.env` with the following:
+### Dev server
+
+When running the dev server, saving changes to `src` files will automatically reload the page. See [11ty Browsersync docs](https://www.11ty.dev/docs/server-browsersync/) to customize the dev server.
+
+### Local configuration
+
+Create and configure options in `wrg-config.local.json` to specify different site options during local development.
+
+To use `wrg-local.local.json`, run the following:
 
 ```
-WRG_CONFIG_NAME=wrg-config.local.json
+echo 'WRG_CONFIG_NAME=wrg-config.local.json' > .env
+```
+
+To disable, comment out the line in `.env`:
+
+```
+# WRG_CONFIG_NAME=wrg-config.local.json
 ```
 
 ## Deployment
