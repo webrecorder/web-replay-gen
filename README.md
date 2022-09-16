@@ -72,7 +72,7 @@ npm run serve
 
 Push to `main` to automatically deploy your site to GitHub Pages. :sparkles:
 
-> The [GitHub Workflow](.github/workflows/publish-gh-pages.yml) to deploy to Pages can be disabled if you are using another hosting provider. See [Deployment](#deployment) for more information.
+> You can also opt-out of Pages to use another hosting provider. See [Deployment](#deployment) for more information.
 
 ---
 
@@ -174,15 +174,19 @@ The default behavior is to list Web Archive files in the `archives` directory. W
 
 ### Github Pages
 
-By default, Web Replay Gen will deploy to Pages on every push to the `main` branch, as configured in [this GitHub Workflow](.github/workflows/publish-gh-pages.yml). To change the deployment workflow (e.g. to change the release branch) update the [`publish-gh-pages.yml`](.github/workflows/publish-gh-pages.yml) workflow file. To disable publishing to Pages, simply delete the workflow file.
+By default, Web Replay Gen will deploy to Pages on every push to the `main` branch, as configured in [this GitHub Workflow](.github/workflows/publish-gh-pages.yml). To change the deployment workflow (e.g. to change the release branch) update the [`publish-gh-pages.yml`](.github/workflows/publish-gh-pages.yml) workflow file.
 
 #### Local web archive support
 
-Due to GitHub's [file size limit](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-large-files-on-github#file-size-limits) and lack of support for [git LFS in Pages](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-git-large-file-storage), you may run into an issue with deploying large web archive files. To resolve the issue, you can create a separate workflow for uploading web archive files elsewhere (e.g. to an S3 bucket) and configure your site with the remote URLs. Alternatively, you can self-host.
+Due to GitHub's [file size limit](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-large-files-on-github#file-size-limits) and lack of support for [git LFS in Pages](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-git-large-file-storage), you may run into an issue with deploying large web archive files. To resolve the issue, you can create a separate workflow for uploading web archive files elsewhere (e.g. to an S3 bucket) and configure your site with the remote URLs. Alternatively, you can [self-host](#self-hosting).
+
+#### Opt-Out
+
+To prevent deployment to Pages, either disable the workflow [through the GitHub UI](https://docs.github.com/en/actions/managing-workflow-runs/disabling-and-enabling-a-workflow) or simply delete the workflow file (`publish-gh-pages.yml`.)
 
 ### Self-hosting
 
-Run the build script to output your site into a local directory:
+First, [remove the Pages workflow](#opt-out). Run the build script to output your site into a local directory:
 
 ```
 npm run build
