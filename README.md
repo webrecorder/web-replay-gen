@@ -4,7 +4,9 @@ Generate a website for viewing web archives.
 
 :globe_with_meridians: [Live demo](https://webrecorder.github.io/web-replay-gen/)
 
-**Features**
+## Features
+
+Compatible with web archives in [WACZ format](https://specs.webrecorder.net/wacz/latest/).
 
 - Automatic deploy to GitHub Pages
 - List & autocomplete-search web archives
@@ -37,7 +39,7 @@ Clone as usual after creating your new repository from this template.
 
 Navigate to your project directory and run:
 
-```
+```shell
 npm install
 ```
 
@@ -61,13 +63,13 @@ Add your website title and web archive URLs:
 
 To access your site from <http://localhost:8080>, run:
 
-```
+```shell
 npm run serve
 ```
 
 ### 5. Deploy to Github Pages
 
-Push to `main` to automatically deploy your site. :sparkles:
+Push to `main` to automatically deploy your site to GitHub Pages using [this GitHub Action](.github/workflows/publish-gh-pages.yml) :sparkles:
 
 ## Configuration
 
