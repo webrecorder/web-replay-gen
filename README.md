@@ -42,7 +42,7 @@ npm install
 
 ### 3. Update `wrg-config.json`
 
-Add your website title and URLs to your web archives.
+Add your website title and web archive URLs.
 
 ```diff
 {
