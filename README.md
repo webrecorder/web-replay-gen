@@ -6,8 +6,7 @@ Generate a website for viewing web archives.
 
 ## Features
 
-Compatible with web archives in [WACZ format](https://specs.webrecorder.net/wacz/latest/).
-
+- Compatible with web archives in [WACZ format](https://specs.webrecorder.net/wacz/latest/)
 - Automatic deploy to GitHub Pages
 - List & autocomplete-search web archives
 - Embedded web archive replay
@@ -45,7 +44,7 @@ npm install
 
 ### 3. Update `wrg-config.json`
 
-Add your website title and web archive URLs:
+Add your website title and web archive URL:
 
 ```diff
 {
@@ -59,6 +58,8 @@ Add your website title and web archive URLs:
 }
 ```
 
+> See [Configuration](#configuration) for all options.
+
 ### 4. Preview website
 
 To access your site from <http://localhost:8080>, run:
@@ -67,9 +68,13 @@ To access your site from <http://localhost:8080>, run:
 npm run serve
 ```
 
-### 5. Deploy to Github Pages
+### 5. Deploy to GitHub Pages
 
-Push to `main` to automatically deploy your site to GitHub Pages using [this GitHub Action](.github/workflows/publish-gh-pages.yml) :sparkles:
+Push to `main` to automatically deploy your site to GitHub Pages. :sparkles:
+
+> The [GitHub Workflow](.github/workflows/publish-gh-pages.yml) to deploy to Pages can be disabled if you are using another hosting provider. See [Deployment](#deployment) for more information.
+
+---
 
 ## Configuration
 
@@ -116,7 +121,7 @@ Object for configuring the [embedded ReplayWeb.page](https://replayweb.page/docs
 
 #### `archives`
 
-Configure location of Web Archive files
+Configure location of web archive files.
 
 </summary>
 
@@ -169,7 +174,7 @@ The default behavior is to list Web Archive files in the `archives` directory. W
 
 ### Github Pages
 
-By default, Web Replay Gen will deploy to Pages on every push to the `main` branch. To configure the deployment workflow, e.g. to change the release branch, update `.github/workflows/publish-gh-pages.yml`. To disable publishing to Pages, simply delete the `publish-gh-pages.yml` workflow file.
+By default, Web Replay Gen will deploy to Pages on every push to the `main` branch, as configured in [this GitHub Workflow](.github/workflows/publish-gh-pages.yml). To change the deployment workflow (e.g. to change the release branch) update the [`publish-gh-pages.yml`](.github/workflows/publish-gh-pages.yml) workflow file. To disable publishing to Pages, simply delete the workflow file.
 
 #### Local web archive support
 
