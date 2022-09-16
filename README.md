@@ -1,16 +1,28 @@
 # Web Replay Gen
 
-Generate a website for viewing web archive collections with minimal setup.
+Generate a website for viewing web archives.
 
-[View sample site](https://webrecorder.github.io/web-replay-gen/)
+:globe_with_meridians: [Live demo](https://webrecorder.github.io/web-replay-gen/)
 
-**Features:**
+**Features**
 
 - Automatic deploy to GitHub Pages
 - List & autocomplete-search web archives
 - Embedded web archive replay
-  <!-- - Automatic sitemap generation -->
   <!-- - IPFS support -->
+
+---
+
+Jump to:
+
+- [Quick Start](#quick-start)
+- [Configuration](#configuration)
+- [Deployment](#deployment)
+- [Templates](#templates)
+- [Web Components](#web-components)
+- [Styling](#styling)
+
+---
 
 ## Quick Start
 
@@ -54,13 +66,13 @@ npm run serve
 
 You can now view your site at <http://localhost:8080>.
 
-### 5. Deploy
+### 5. Deploy to Github Pages
 
-Push to `main` to automatically deploy your site to GitHub Pages :sparkles:
+Push to `main` to automatically deploy your site. :sparkles:
 
-## Documentation
+## Configuration
 
-### `wrg-config.json` Options
+Configure options in `wrg-config.json`:
 
 <details>
 <summary>
@@ -152,7 +164,7 @@ The default behavior is to list Web Archive files in the `archives` directory. W
 
 </details>
 
-#### Development
+### Development
 
 You can use a separate `wrg-config.local.json` during local development. To point the generator to your dev file, create `.env` with the following:
 
@@ -160,22 +172,42 @@ You can use a separate `wrg-config.local.json` during local development. To poin
 WRG_CONFIG_NAME=wrg-config.local.json
 ```
 
-### Templates
+## Deployment
+
+### Github Pages
+
+By default, Web Replay Gen will deploy to Pages on every push to the `main` branch. To configure the deployment workflow, e.g. to change the release branch, update `.github/workflows/publish-gh-pages.yml`. To disable publishing to Pages, simply delete the `publish-gh-pages.yml` workflow file.
+
+#### Local web archive support
+
+Due to GitHub's [file size limit](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-large-files-on-github#file-size-limits) and lack of support for [git LFS in Pages](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-git-large-file-storage), you may run into an issue with deploying large web archive files. To resolve, you can create a separate workflow for uploading web archive files to a separate host (such as an S3 bucket) and configure your site with the remote URLs, or you can choose another hosting provider.
+
+### Self-hosting
+
+Run the build script to output your site into a local directory:
+
+```
+npm run build
+```
+
+This will output a production-ready build to `/_site`. Transfer the contents of `/_site` to your host.
+
+## Templates
 
 Web Replay Gen templates are written in [Nunjucks](https://mozilla.github.io/nunjucks/templating.html). You are free to use any templating language [Eleventy supports](https://www.11ty.dev/docs/languages/), like plain HTML, markdown, or ejs.
 
-### Web Components
+## Web Components
 
 Web components in the `/components` directory are not pre-rendered at build time. Use the `<is-land>` tag to render web components at runtime. See `archive.njk` for an example and refer to the [11ty/is-land](https://github.com/11ty/is-land) docs.
 
-### Styling
+## Styling
 
-#### TailwindCSS
+### TailwindCSS
 
 [TailwindCSS](https://tailwindcss.com/) is enabled in all [Eleventy template](https://www.11ty.dev/docs/languages/) files. You can install a specific Tailwind version with `npm install -D tailwindcss@{version}`.
 
 Note: Tailwind is not available in web components (`/components/*.js`) due to limitations with the shadow DOM. See [workarounds](https://github.com/tailwindlabs/tailwindcss/discussions/1935) if you'd like to access Tailwind classes in web components.
 
-#### Customization
+### Customization
 
 Tailwind supports inline-style-like customization through [arbitrary values in class names](https://tailwindcss.com/docs/adding-custom-styles#using-arbitrary-values). For a more global approach to customization (for example, if you have vendor CSS file) include a `<link rel="stylesheet">` tag in your template file. Any `.css` files in `/src` will be copied to the output site folder and can be referenced in the `<link>` tag.
