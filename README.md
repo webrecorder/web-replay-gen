@@ -114,7 +114,7 @@ Object for configuring the [embedded ReplayWeb.page](https://replayweb.page/docs
 
 #### `archives`
 
-Path or JSON used to find WACZ archive files
+Configure location of Web Archive files
 
 </summary>
 
