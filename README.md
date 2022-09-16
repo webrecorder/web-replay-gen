@@ -180,7 +180,7 @@ By default, Web Replay Gen will deploy to Pages on every push to the `main` bran
 
 #### Local web archive support
 
-Due to GitHub's [file size limit](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-large-files-on-github#file-size-limits) and lack of support for [git LFS in Pages](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-git-large-file-storage), you may run into an issue with deploying large web archive files. To resolve, you can create a separate workflow for uploading web archive files to a separate host (such as an S3 bucket) and configure your site with the remote URLs, or you can choose another hosting provider.
+Due to GitHub's [file size limit](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-large-files-on-github#file-size-limits) and lack of support for [git LFS in Pages](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-git-large-file-storage), you may run into an issue with deploying large web archive files. To resolve the issue, you can create a separate workflow for uploading web archive files elsewhere (e.g. to an S3 bucket) and configure your site with the remote URLs. Alternatively, you can self-host.
 
 ### Self-hosting
 
