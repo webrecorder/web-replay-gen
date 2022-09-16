@@ -41,7 +41,9 @@ customElements.define(
       const url = new URL(window.location.href);
 
       try {
-        let replaySource = window.decodeURIComponent(url.hash.slice(2));
+        let replaySource = window.decodeURIComponent(
+          url.searchParams.get('source')
+        );
         if (replaySource.indexOf('://') === -1) {
           replaySource = `${window.location.protocol}//${window.location.host}/${replaySource}`;
         }
@@ -68,6 +70,7 @@ customElements.define(
           source=${this._replaySource}
           replayBase=${this.replayBase}
           embed=${this.embed}
+          deepLink
         ></replay-web-page>
       `;
     }
