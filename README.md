@@ -28,37 +28,35 @@ Navigate to your project directory and run:
 npm install
 ```
 
-### 4. Configure `wrg-config.json`
+### 3. Update `wrg-config.json`
 
-Web Replay Gen generates a static site for you based on a list of URLs to WACZ files. Update your `wrg-config.json` file with your website title and add your URLs to the `archives` array. Your updated `wrg-config.json` may look like this:
+Add your website title and URLs to your web archives.
 
-```json
+```diff
 {
   "site": {
-    "title": "My Web Archives"
++   "title": "My Web Archives"
   },
   "archives": [
-    "https://example.com/test.wacz",
-    "https://example.com/abc/archive.wacz"
++   "https://my-site.example.com/wacz/archive.wacz",
+-   "s3://webrecorder-builds/warcs/netpreserve-twitter.warc"
   ]
 }
 ```
 
-<!-- URLs can be relative paths to WACZ files in your local filesystem or remote URLs to WACZ files hosted online. -->
+### 4. Preview website
 
-### 5. Generate static website
+Start up the development server:
 
 ```
-npm run build
+npm run serve
 ```
 
-This will output your new site to `/_site`.
+You can now view your site at <http://localhost:8080>.
 
-### 6. Deploy
+### 5. Deploy
 
 Push to `main` to automatically deploy your site to GitHub Pages :sparkles:
-
-To disable publishing to Pages, simply delete the `publish-gh-pages.yml` workflow.
 
 ## Documentation
 
@@ -150,7 +148,7 @@ Example JSON array:
 }
 ```
 
-The default behavior is to list WACZ files in the `archives` directory. Web Archive files (`.wacz`, `.warc`) are ignored in git and and copied over to the output `_site` by default, retaining their directory structure.
+The default behavior is to list Web Archive files in the `archives` directory. Web Archive files (`.wacz`, `.warc`) are ignored in git and and copied over to the output `_site` by default, retaining their directory structure.
 
 </details>
 
