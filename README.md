@@ -42,7 +42,7 @@ npm install
 
 ### 3. Update `wrg-config.json`
 
-Add your website title and web archive URLs.
+Add your website title and web archive URLs:
 
 ```diff
 {
@@ -58,13 +58,11 @@ Add your website title and web archive URLs.
 
 ### 4. Preview website
 
-Start up the development server:
+To access your site from <http://localhost:8080>, run:
 
 ```
 npm run serve
 ```
-
-You can now view your site at <http://localhost:8080>.
 
 ### 5. Deploy to Github Pages
 
@@ -168,7 +166,9 @@ The default behavior is to list Web Archive files in the `archives` directory. W
 
 ### Dev server
 
-When running the dev server, saving changes to `src` files will automatically reload the page. See [11ty Browsersync docs](https://www.11ty.dev/docs/server-browsersync/) to customize the dev server.
+Run the dev server with `npm run serve` to serve files from `/_site`.
+
+Saving changes to `src` will automatically reload the page. See [11ty Browsersync docs](https://www.11ty.dev/docs/server-browsersync/) to customize the dev server.
 
 ### Local configuration
 
