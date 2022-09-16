@@ -41,7 +41,9 @@ customElements.define(
       const url = new URL(window.location.href);
 
       try {
-        let replaySource = window.decodeURIComponent(url.searchParams.get('/'));
+        let replaySource = window.decodeURIComponent(
+          url.searchParams.get('source')
+        );
         if (replaySource.indexOf('://') === -1) {
           replaySource = `${window.location.protocol}//${window.location.host}/${replaySource}`;
         }
