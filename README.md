@@ -1,20 +1,32 @@
 # Web Replay Gen
 
-Generate a website for viewing web archive collections with minimal setup.
+Generate a website for viewing web archives.
 
-[View sample site](https://webrecorder.github.io/web-replay-gen/)
-
-Compatible with web archives in [WACZ format](https://specs.webrecorder.net/wacz/latest/).
+:globe_with_meridians: [Live demo](https://webrecorder.github.io/web-replay-gen/)
 
 ## Features
 
+- Compatible with web archives in [WACZ format](https://specs.webrecorder.net/wacz/latest/)
 - Automatic deploy to GitHub Pages
 - List & autocomplete-search web archives
 - Embedded web archive replay
-  <!-- - Automatic sitemap generation -->
   <!-- - IPFS support -->
 
-## Getting Started
+---
+
+Jump to:
+
+- [Quick Start](#quick-start)
+- [Configuration](#configuration)
+- [Deployment](#deployment)
+- [Dev Server](#dev-server)
+- [Templates](#templates)
+- [Web Components](#web-components)
+- [Styling](#styling)
+
+---
+
+## Quick Start
 
 ### 1. Create new project from template
 
@@ -30,41 +42,43 @@ Navigate to your project directory and run:
 npm install
 ```
 
-### 4. Configure `wrg-config.json`
+### 3. Update `wrg-config.json`
 
-Web Replay Gen generates a static site for you based on a list of URLs to WACZ files. Update your `wrg-config.json` file with your website title and add your URLs to the `archives` array. Your updated `wrg-config.json` may look like this:
+Add your website title and web archive URL:
 
-```json
+```diff
 {
   "site": {
-    "title": "My Web Archives"
++   "title": "My Web Archives"
   },
   "archives": [
-    "https://example.com/test.wacz",
-    "https://example.com/abc/archive.wacz"
++   "https://my-site.example.com/wacz/archive.wacz",
+-   "s3://webrecorder-builds/warcs/netpreserve-twitter.warc"
   ]
 }
 ```
 
-<!-- URLs can be relative paths to WACZ files in your local filesystem or remote URLs to WACZ files hosted online. -->
+> See [Configuration](#configuration) for all options.
 
-### 5. Generate static website
+### 4. Preview website
+
+To access your site from <http://localhost:8080>, run:
 
 ```shell
-npm run build
+npm run serve
 ```
 
-This will output your new site to `/_site`.
+### 5. Deploy to GitHub Pages
 
-### 6. Deploy
+Push to `main` to automatically deploy your site to GitHub Pages. :sparkles:
 
-Push to `main` to automatically deploy your site to GitHub Pages using [this GitHub Action](.github/workflows/publish-gh-pages.yml) :sparkles:
+> You can also opt-out of Pages to use another hosting provider. See [Deployment](#deployment) for more information.
 
-To disable publishing to Pages, simply delete the `publish-gh-pages.yml` workflow.
+---
 
-## Documentation
+## Configuration
 
-### `wrg-config.json` Options
+Configure options in `wrg-config.json`:
 
 <details>
 <summary>
@@ -107,7 +121,7 @@ Object for configuring the [embedded ReplayWeb.page](https://replayweb.page/docs
 
 #### `archives`
 
-Path or JSON used to find WACZ archive files
+Configure location of web archive files.
 
 </summary>
 
@@ -152,34 +166,72 @@ Example JSON array:
 }
 ```
 
-The default behavior is to list WACZ files in the `archives` directory. WACZ files (`.wacz`) are ignored in git and and copied over to the output `_site` by default, retaining their directory structure.
+The default behavior is to list Web Archive files in the `archives` directory. Web Archive files (`.wacz`, `.warc`) are ignored in git and and copied over to the output `_site` by default, retaining their directory structure.
 
 </details>
 
-#### Development
+## Deployment
 
-You can use a separate `wrg-config.local.json` during local development. To point the generator to your dev file, create `.env` with the following:
+### Github Pages
 
-```txt
-WRG_CONFIG_NAME=wrg-config.local.json
+By default, Web Replay Gen will deploy to Pages on every push to the `main` branch, as configured in [this GitHub Workflow](.github/workflows/publish-gh-pages.yml). To change the deployment workflow (e.g. to change the release branch) update the [`publish-gh-pages.yml`](.github/workflows/publish-gh-pages.yml) workflow file.
+
+#### Local web archive support
+
+Due to GitHub's [file size limit](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-large-files-on-github#file-size-limits) and lack of support for [git LFS in Pages](https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-git-large-file-storage), you may run into an issue with deploying large web archive files. To resolve the issue, you can create a separate workflow for uploading web archive files elsewhere (e.g. to an S3 bucket) and configure your site with the remote URLs. Alternatively, you can [self-host](#self-hosting).
+
+#### Opt-Out
+
+To prevent deployment to Pages, either disable the workflow [through the GitHub UI](https://docs.github.com/en/actions/managing-workflow-runs/disabling-and-enabling-a-workflow) or simply delete the workflow file (`publish-gh-pages.yml`.)
+
+### Self-hosting
+
+First, [remove the Pages workflow](#opt-out). Run the build script to output your site into a local directory:
+
+```
+npm run build
 ```
 
-### Templates
+This will output a production-ready build to `/_site`. Transfer the contents of `/_site` to your host.
+
+## Dev Server
+
+Run the dev server with `npm run serve` to serve files from `/_site`.
+
+Saving changes to `src` will automatically reload the page. See [11ty Browsersync docs](https://www.11ty.dev/docs/server-browsersync/) to customize the dev server.
+
+### Local configuration
+
+Create and configure options in `wrg-config.local.json` to specify different site options during local development.
+
+To use `wrg-local.local.json`, run the following:
+
+```
+echo 'WRG_CONFIG_NAME=wrg-config.local.json' > .env
+```
+
+To disable, comment out the line in `.env`:
+
+```
+# WRG_CONFIG_NAME=wrg-config.local.json
+```
+
+## Templates
 
 Web Replay Gen templates are written in [Nunjucks](https://mozilla.github.io/nunjucks/templating.html). You are free to use any templating language [Eleventy supports](https://www.11ty.dev/docs/languages/), like plain HTML, markdown, or ejs.
 
-### Web Components
+## Web Components
 
 Web components in the `/components` directory are not pre-rendered at build time. Use the `<is-land>` tag to render web components at runtime. See `archive.njk` for an example and refer to the [11ty/is-land](https://github.com/11ty/is-land) docs.
 
-### Styling
+## Styling
 
-#### TailwindCSS
+### TailwindCSS
 
 [TailwindCSS](https://tailwindcss.com/) is enabled in all [Eleventy template](https://www.11ty.dev/docs/languages/) files. You can install a specific Tailwind version with `npm install -D tailwindcss@{version}`.
 
 Note: Tailwind is not available in web components (`/components/*.js`) due to limitations with the shadow DOM. See [workarounds](https://github.com/tailwindlabs/tailwindcss/discussions/1935) if you'd like to access Tailwind classes in web components.
 
-#### Customization
+### Customization
 
 Tailwind supports inline-style-like customization through [arbitrary values in class names](https://tailwindcss.com/docs/adding-custom-styles#using-arbitrary-values). For a more global approach to customization (for example, if you have vendor CSS file) include a `<link rel="stylesheet">` tag in your template file. Any `.css` files in `/src` will be copied to the output site folder and can be referenced in the `<link>` tag.
