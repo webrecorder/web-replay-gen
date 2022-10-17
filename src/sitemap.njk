@@ -5,15 +5,17 @@ eleventyExcludeFromCollections: true
 
 <?xml version="1.0" encoding="utf-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+{% if site.staticPages !== false %}
 {% for page in archivePages %}
   <url>
     <loc>{{ site.url }}/{{ page.pathname | url }}/</loc>
   </url>
-  {% endfor %}
+{% endfor %}
+{% endif %}
 {% for page in collections.all %}
   <url>
     <loc>{{ site.url }}{{ page.url | url }}</loc>
     <lastmod>{{ page.date.toISOString() }}</lastmod>
   </url>
-  {% endfor %}
+{% endfor %}
 </urlset>
