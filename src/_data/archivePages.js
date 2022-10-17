@@ -77,11 +77,17 @@ async function mapLocalFiles(filePath) {
  * @returns {Archive[]}
  */
 async function mapJSONFile(filePath) {
-  const data = await fsPromises.readFile(filePath);
+  try {
+    const data = await fsPromises.readFile(filePath);
 
-  const { archives } = JSON.parse(data);
+    const { archives } = JSON.parse(data);
 
-  return archives.map(mapToPage);
+    return archives.map(mapToPage);
+  } catch (err) {
+    console.debug(err);
+  }
+
+  return [];
 }
 
 /**
@@ -124,7 +130,9 @@ function handleStringOpt(val) {
       break;
   }
 
-  return mapLocalFiles(normalized);
+  // return mapLocalFiles(normalized);
+
+  return [];
 }
 
 /**
