@@ -130,15 +130,18 @@ function handleStringOpt(val) {
       break;
   }
 
-  // return mapLocalFiles(normalized);
-
-  return [];
+  return mapLocalFiles(normalized);
 }
 
 /**
  * @returns {Archive[]}
  */
 module.exports = () => {
+  if (wrgConfig.site.runtimeOnlyArchives) {
+    // Let client handle getting archives
+    return [];
+  }
+
   try {
     if (!wrgConfig.archives) {
       return handleStringOpt('archives');

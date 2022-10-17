@@ -4,13 +4,13 @@ customElements.define(
   'wrg-archives-count',
   class extends LitElement {
     static properties = {
-      value: {
-        type: Number,
+      archives: {
+        type: Array,
       },
     };
 
     render() {
-      return html` ${this.value}`;
+      return html` ${this.archives?.length}`;
     }
   }
 );

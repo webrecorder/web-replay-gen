@@ -126,18 +126,18 @@ Configure location of web archive files.
 
 </summary>
 
-| Key        | Default Value | Value Type                                     |     |
-| ---------- | ------------- | ---------------------------------------------- | --- |
-| `archives` | `"archives"`  | `string\|string[]\|{name:string;url:string}[]` |     |
+| Key        | Default Value | Value Type                                     |
+| ---------- | ------------- | ---------------------------------------------- |
+| `archives` | `"archives"`  | `string\|string[]\|{name:string;url:string}[]` |
 
-The option value can be:
+By default, the generator gets a list of archives at build-time to generate static HTML from archive data. Option values for build-time archives can be:
 
-- Relative path to a project directory containing `.wacz` files
-- Relative path to a `.txt` file with newline-separated list of remote URLs
 - JSON array of plain URL strings or an object with `name` and `url`
-- Relative path to a JSON file with an `archives` key where the value is a JSON array
+- Relative path to directory containing `.wacz` files
+- Relative path to `.txt` file with newline-separated list of remote URLs
+- Relative path to JSON file with an `archives` key where the value is a JSON array
 
-Paths must be a subdirectory or file in your project root (i.e. in your repo.) Examples:
+Relative paths are relative to your project root (i.e. where you execute your `npm run build` command.) Examples:
 
 ```js
 {
@@ -172,6 +172,52 @@ Example JSON array:
 ```
 
 The default behavior is to list Web Archive files in the `archives` directory. Web Archive files (`.wacz`, `.warc`) are ignored in git and and copied over to the output `_site` by default, retaining their directory structure.
+
+##### Run-time archive options
+
+When build-time rendering of archives is disabled with `runtimeOnlyArchives`, the `archives` option must point to a JSON file **relative to \_site** with an `.archives` array of `{ name, url }`. For example:
+
+```js
+// _site/data/archives.json
+{
+  "archives": [
+    // Valid: Object with name and URL:
+    {
+      "name": "My Web Archive",
+      "url": "s3://my-bucket/b/archive.wacz"
+    }
+    // Invalid: Plain URL string
+    "s3://my-bucket/a/archive.wacz"
+  ]
+}
+```
+
+See [runtime-only-archives](./examples/runtime-only-archives/) for a more in-depth example.
+
+</details>
+
+<details>
+<summary>
+
+#### `runtimeOnlyArchives`
+
+Configure whether archive data configured when the website is built or when the website is loaded in the browser.
+
+</summary>
+
+| Key                   | Default Value | Value Type |
+| --------------------- | ------------- | ---------- |
+| `runtimeOnlyArchives` | `undefined`   | `boolean`  |
+
+By default, archives are configured at build-time (i.e. when you run `npm run build`) in order to pre-process data and render static HTML based on that data. However, you may have a use case where you need to check archive configuration every time the website loads in the browser. Setting `runtimeOnlyArchives` to `true` enables you to do things like configure and update archive data without redeploying your entire website.
+
+Caveats:
+
+- The generated sitemap will no longer list a page per archive.
+- `archives` must be a JSON file relative to the generated `_site` directory. For example, if you have a JSON file in `_site/public/data.json`, `archives` should be `./public/data.json`.
+- JSON data must conform to an array of objects with `name` and `url`.
+
+See [runtime-only-archives](./examples/runtime-only-archives/) for a more in-depth example.
 
 </details>
 

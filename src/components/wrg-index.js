@@ -40,6 +40,10 @@ customElements.define(
     `;
 
     render() {
+      if (!this.archives) {
+        return '';
+      }
+
       return html`
         <ul>
           ${this.archives.map(

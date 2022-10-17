@@ -1,0 +1,4 @@
+{
+  "runtimeOnlyArchives": true,
+  "archives": "./public_data/archives.json"
+}
