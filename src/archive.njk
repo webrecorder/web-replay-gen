@@ -6,13 +6,7 @@ eleventyExcludeFromCollections: true
 <script src="{{ replay.baseUrl }}/ui.js"></script>
 
 <div class="h-screen flex flex-col">
-  <is-land
-    on:visible
-    import="../components/wrg-replay.js"
-    class="flex-1 block overflow-hidden"
-  >
-    <wrg-replay embed="{{ replay.embed }}" replayBase="{{ site.url if build.environment==='production' else '' }}/replay/">
-      <div class="p-2 text-neutral-500 text-center">Loading...</div>
-    </wrg-replay>
-  </is-land>
+  <wrg-replay class="flex-1 block overflow-hidden" embed="{{ replay.embed }}" replayBase="{{ site.url if build.environment==='production' else '' }}/replay/">
+    <div class="p-2 text-neutral-500 text-center">Loading...</div>
+  </wrg-replay>
 </div>

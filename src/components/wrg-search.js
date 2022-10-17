@@ -1,20 +1,23 @@
-import {
-  html,
-  css,
-  LitElement,
-} from 'https://cdn.jsdelivr.net/gh/lit/dist@2/core/lit-core.min.js';
-import Fuse from 'https://cdn.jsdelivr.net/npm/fuse.js@6.6.2/dist/fuse.esm.js';
-import 'https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.0.0-beta.81/dist/components/card/card.js';
-import 'https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.0.0-beta.81/dist/components/input/input.js';
-import 'https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.0.0-beta.81/dist/components/menu/menu.js';
-import 'https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.0.0-beta.81/dist/components/menu-item/menu-item.js';
-import 'https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.0.0-beta.81/dist/components/menu-label/menu-label.js';
-import { archivePages } from '../archivePages.js';
+import { html, css, LitElement } from 'lit';
+import Fuse from 'fuse.js';
+import '@shoelace-style/shoelace/dist/components/card/card.js';
+import '@shoelace-style/shoelace/dist/components/menu/menu.js';
+import '@shoelace-style/shoelace/dist/components/menu-item/menu-item.js';
+import '@shoelace-style/shoelace/dist/components/menu-label/menu-label.js';
+import('@shoelace-style/shoelace/dist/components/input/input.js').catch(
+  (err) => {
+    console.error(err);
+    // TODO handle not rendering server-side due to `FormData`
+  }
+);
 
 customElements.define(
   'wrg-search',
   class extends LitElement {
     static properties = {
+      archives: {
+        type: Array,
+      },
       _isMenuVisible: {
         state: true,
         type: Boolean,
@@ -57,12 +60,18 @@ customElements.define(
       }
     `;
 
-    // For fuzzy search
-    _fuse = new Fuse(archivePages, {
-      keys: ['name'],
-      shouldSort: false,
-      threshold: 0.4, // stricter; default is 0.6
-    });
+    _fuse = null;
+
+    willUpdate(changedProperties) {
+      if (changedProperties.has('archives') && this.archives) {
+        // For fuzzy search
+        this._fuse = new Fuse(this.archives || [], {
+          keys: ['name'],
+          shouldSort: false,
+          threshold: 0.4, // stricter; default is 0.6
+        });
+      }
+    }
 
     render() {
       return html`
@@ -98,7 +107,7 @@ customElements.define(
             @sl-select=${(e) => {
               const { item } = e.detail;
               this._search = item.innerText;
-              this._selectedArchive = archivePages.find(
+              this._selectedArchive = this.archives.find(
                 ({ pathname }) => pathname === item.value
               );
               this._isMenuVisible = false;
