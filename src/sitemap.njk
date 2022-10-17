@@ -8,7 +8,7 @@ eleventyExcludeFromCollections: true
 {% if site.staticPages !== false %}
 {% for page in archivePages %}
   <url>
-    <loc>{{ site.url }}/{{ page.pathname | url }}/</loc>
+    <loc>{{ site.url }}/archive/?source={{ page.url | urlencode }}/</loc>
   </url>
 {% endfor %}
 {% endif %}

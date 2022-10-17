@@ -45,27 +45,14 @@ customElements.define(
           ${this.archives.map(
             (page) => html`
               <li>
-                <a href=${page.pathname}>${page.name}</a>
+                <a href="archive/?source=${encodeURIComponent(page.url)}"
+                  >${page.name}</a
+                >
               </li>
             `
           )}
         </ul>
       `;
-      // return html`
-      //   <ul>
-      //     ${this.archives.map(
-      //       (page) => html`
-      //         <li class="border-t first:border-t-0">
-      //           <a
-      //             href="{{ page.pathname }}"
-      //             class="block p-2 text-neutral-700 hover:bg-neutral-50 hover:text-neutral-900"
-      //             >${page.name}</a
-      //           >
-      //         </li>
-      //       `
-      //     )}
-      //   </ul>
-      // `;
     }
   }
 );

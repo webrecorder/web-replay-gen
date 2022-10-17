@@ -11,6 +11,10 @@ import('@shoelace-style/shoelace/dist/components/input/input.js').catch(
   }
 );
 
+function getPathname(url) {
+  return `archive/?source=${encodeURIComponent(url)}`;
+}
+
 customElements.define(
   'wrg-search',
   class extends LitElement {
@@ -108,7 +112,7 @@ customElements.define(
               const { item } = e.detail;
               this._search = item.innerText;
               this._selectedArchive = this.archives.find(
-                ({ pathname }) => pathname === item.value
+                ({ url }) => url === item.value
               );
               this._isMenuVisible = false;
             }}
@@ -123,7 +127,7 @@ customElements.define(
                   ${data.map(
                     (page) =>
                       html`
-                        <sl-menu-item value=${page.pathname}
+                        <sl-menu-item value=${page.url}
                           >${page.name}</sl-menu-item
                         >
                       `
@@ -143,8 +147,10 @@ customElements.define(
       return html`
         <sl-card>
           <h3 class="card-heading">${this._selectedArchive.name}</h3>
-          <div>${this._selectedArchive.waczURL}</div>
-          <div><a href=${this._selectedArchive.pathname}>View archive</a></div>
+          <div>${this._selectedArchive.url}</div>
+          <div>
+            <a href=${getPathname(this._selectedArchive.url)}>View archive</a>
+          </div>
         </sl-card>
       `;
     }
