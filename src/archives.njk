@@ -14,16 +14,6 @@ layout: layout.njk
       >
     </div>
 
-    <ul class="border rounded mt-2">
-      {% for page in archivePages %}
-      <li class="border-t first:border-t-0">
-        <a
-          href="{{ page.pathname }}"
-          class="block p-2 text-neutral-700 hover:bg-neutral-50 hover:text-neutral-900"
-          >{{ page.name }}</a
-        >
-      </li>
-      {% endfor %}
-    </ul>
+    <wrg-index archives="{{ archivePages | dump }}"></wrg-index>
   </main>
 </section>
