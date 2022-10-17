@@ -9,7 +9,7 @@ layout: layout.njk
 
   <main class="p-2">
     <div class="text-sm text-neutral-400 mb-2">
-      {{ archivePages | length }} web archives available.
+      <wrg-archives-count value="{{ archivePages | length }}"></wrg-archives-count> web archives available.
       <a href="archives" class="font-semibold underline hover:no-underline"
         >View all</a
       >
