@@ -3,9 +3,10 @@
   "version": "1.0.0-beta",
   "description": "Web archive collection static site generator",
   "main": "index.js",
+  "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "serve": "concurrently \"npm run serve:eleventy\" \"npm run watch:tailwindcss\"",
+    "serve": "concurrently --kill-others \"npm run serve:eleventy\" \"npm run watch:tailwindcss\"",
     "serve:eleventy": "npx @11ty/eleventy --serve",
     "watch:tailwindcss": "npm run build:tailwindcss -- --watch",
     "build": "WRG_ENVIRONMENT=production concurrently \"npm run build:eleventy\" \"npm run build:tailwindcss\"",
