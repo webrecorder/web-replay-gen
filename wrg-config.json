@@ -1,4 +1,7 @@
 {
   "site": {},
-  "archives": ["s3://webrecorder-builds/warcs/netpreserve-twitter.warc"]
+  "archives": [
+    "https://replayweb.page/docs/assets/example.wacz",
+    "s3://webrecorder-builds/warcs/netpreserve-twitter.warc"
+  ]
 }

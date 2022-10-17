@@ -6,11 +6,12 @@ Generate a website for viewing web archives.
 
 ## Features
 
-- Compatible with web archives in [WACZ format](https://specs.webrecorder.net/wacz/latest/)
+- Compatible with web archives in [WACZ format](https://specs.webrecorder.net/wacz/latest/) (WARC also supported)
 - Automatic deploy to GitHub Pages
 - List & autocomplete-search web archives
 - Embedded web archive replay
-  <!-- - IPFS support -->
+- Load web archives from any `https://` or `s3://` URLs.
+- IPFS Support Coming soon
 
 ---
 
@@ -49,11 +50,11 @@ Add your website title and web archive URL:
 ```diff
 {
   "site": {
-+   "title": "My Web Archives"
+    "title": "My Web Archives"
   },
   "archives": [
-+   "https://my-site.example.com/wacz/archive.wacz",
--   "s3://webrecorder-builds/warcs/netpreserve-twitter.warc"
+    "https://replayweb.page/docs/assets/example.wacz",
+    "s3://webrecorder-builds/warcs/netpreserve-twitter.warc"
   ]
 }
 ```
@@ -156,7 +157,11 @@ Example JSON array:
 {
   "archives": [
     // Plain URL string:
+    "https://replayweb.page/docs/assets/example.wacz"
+
+    // Plain URL string to S3 bucket
     "s3://my-bucket/a/archive.wacz",
+
     // Object with name and URL:
     {
       "name": "My Web Archive",
