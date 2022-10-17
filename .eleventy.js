@@ -1,6 +1,8 @@
 module.exports = function (eleventyConfig) {
   // Copy assets, retain dir structure
-  eleventyConfig.addPassthroughCopy('src/**/*.{css,js}');
+  eleventyConfig.addPassthroughCopy('src/[!_data]**/*.{css,js}');
+  // Copy public data
+  eleventyConfig.addPassthroughCopy('src/public_data/[!.]*');
 
   // Keep web archive files in gitignore but remove from eleventyignore
   eleventyConfig.ignores.delete('*.wacz');
