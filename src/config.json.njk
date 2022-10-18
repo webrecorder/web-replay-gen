@@ -1,5 +1,5 @@
 ---
-permalink: wrg-config.json
+permalink: wrg-runtime-config.json
 eleventyExcludeFromCollections: true
 ---
 {
@@ -7,5 +7,11 @@ eleventyExcludeFromCollections: true
     "title": "{{ site.title }}",
     "url": "{{ site.url }}",
     "logoSrc": "{{ site.logoSrc }}"
-  }
+  },
+  "archives": [{% for item in archivePages %}
+    {
+      "name": "{{ item.name }}",
+      "url": "{{ item.url }}"
+    }{% if not loop.last %},{% endif %}{% endfor %}
+  ]
 }

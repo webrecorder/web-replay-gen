@@ -48,11 +48,11 @@ The following is not:
 }
 ```
 
-To make sharing archives easier, you can first generate a `__generated__/archives.json` file through the normal build-time workflow.
+To make sharing archives easier, you can first generate a formatted `wrg-runtime-config.json` file through the normal build-time workflow.
 
 Steps:
 
-1. Specify unprocessed archive data as `archives` in `wrg-config.json`.
+1. Specify unprocessed archive data as `archives` in your project root `wrg-config.json`.
 
 ```json
 {
@@ -60,19 +60,17 @@ Steps:
 }
 ```
 
-2. Build `_site/__generated__/archives.json`.
+2. Generate new `wrg-runtime-config.json` in `_site`.
 
 ```
 npm run build
 ```
 
-3. Replace `archives` in `wrg-config.json` with `runtimeOnlyArchives` pointing to the generated file.
+3. Replace `archives` in project root `wrg-config.json` with `runtimeOnlyArchives` pointing to the generated file in `_site`.
 
 ```diff
 {
 -  "archives": "./tmp/data_sources/archives.json"
-+  "runtimeOnlyArchives": "./__generated__/archives.json"
++  "runtimeOnlyArchives": "./wrg-runtime-config.json"
 }
 ```
-
-You can rename the `__generated__` so that it doesn't get accidentally replaced when rebuilding.
