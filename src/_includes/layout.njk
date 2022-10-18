@@ -102,26 +102,21 @@
         // You may also prefer to bundle your components into fewer JS modules.
         // See https://lit.dev/docs/tools/production/#building-with-rollup for
         // more details.
-        {% for path in wc.filePaths %}
-        import('{{ path }}');
-        {% endfor %}
+        await Promise.all([
+          {% for path in wc.filePaths %}
+          import('{{ path }}'),
+          {% endfor %}
+        ]);
 
-        // Set during server pre-render
-        const runtimeOnlyArchives = "{{ archiveConfig.runtimeOnlyArchives }}";
+        // Update with archives in runtime config.
+        // If `archives` are the same, components should not update.
+        const config = (await import('./wrg-runtime-config.json')).default;
+        const archives = JSON.stringify(config.archives);
 
-        if (runtimeOnlyArchives) {
-          const data = (await import(runtimeOnlyArchives)).default
-          const archives = JSON.stringify(data.archives)
-
-          // Timeout is a bit hacky, but it fixes hydration errors
-          window.setTimeout(() => {
-            // TODO generate component list?
-            document.querySelectorAll('[archives]').forEach(elem => {
-              elem.setAttribute('archives', archives)
-            })
-          }, 100);
-        }
-
+        // TODO generate component list?
+        document.querySelectorAll('[archives]').forEach(elem => {
+          elem.setAttribute('archives', archives);
+        });
       })();
     </script>
   </body>
