@@ -15,7 +15,7 @@ Your `wrg-config.json` should look like this:
 
 ```json
 {
-  "archives": "./data_sources/archives.json"
+  "runtimeOnlyArchives": "./data_sources/archives.json"
 }
 ```
 

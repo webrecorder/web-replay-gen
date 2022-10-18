@@ -130,7 +130,7 @@ Configure location of web archive files.
 | ---------- | ------------- | ---------------------------------------------- |
 | `archives` | `"archives"`  | `string\|string[]\|{name:string;url:string}[]` |
 
-By default, the generator gets a list of archives at build-time to generate static HTML from archive data. Option values for build-time archives can be:
+Option values can be:
 
 - JSON array of plain URL strings or an object with `name` and `url`
 - Relative path to directory containing `.wacz` files
@@ -173,29 +173,6 @@ Example JSON array:
 
 The default behavior is to list Web Archive files in the `archives` directory. Web Archive files (`.wacz`, `.warc`) are ignored in git and and copied over to the output `_site` by default, retaining their directory structure.
 
-##### Run-time archives option
-
-When skipping archive pre-processing with `runtimeOnlyArchives`, the `archives` option must point to a JSON file **relative to \_site** with an `.archives` array of `{ name, url }`. For example, given the following folder structure:
-
-```
-.
-├── _site
-│   ├── index.html
-│   └── data_sources
-│       └── archives.json
-└── wrg-config.json
-```
-
-Your `wrg-config.json` should look like this:
-
-```js
-{
-  "archives": "./data_sources/archives.json"
-}
-```
-
-See [runtime-only-archives](./examples/runtime-only-archives/) for the full example.
-
 </details>
 
 <details>
@@ -203,20 +180,20 @@ See [runtime-only-archives](./examples/runtime-only-archives/) for the full exam
 
 #### `runtimeOnlyArchives`
 
-Configure whether archive data configured when the website is built or when the website is loaded in the browser.
+Configure archive location when the website is loaded in the browser.
 
 </summary>
 
-| Key                   | Default Value | Value Type |
-| --------------------- | ------------- | ---------- |
-| `runtimeOnlyArchives` | `undefined`   | `boolean`  |
+| Key                   | Default Value | Value Type |                                                        |
+| --------------------- | ------------- | ---------- | ------------------------------------------------------ |
+| `runtimeOnlyArchives` | `undefined`   | `string`   | Path to JSON file with `archives`, relative to `_site` |
 
-By default, archives are configured at build-time (i.e. when you run `npm run build`) in order to pre-process data and render static HTML based on that data. However, you may have a use case where you need to check archive configuration every time the website loads in the browser. Setting `runtimeOnlyArchives` to `true` enables you to do things like configure and update archive data without redeploying your entire website.
+By default, the generator configures the location of your archives at build-time (i.e. when you run `npm run build`) in order to pre-process data and render static HTML based on that data. However, you may have a use case where you need to check archive locations every time the website loads in the browser. Setting `runtimeOnlyArchives` enables you to do things like configure and update archive data without redeploying your entire website.
 
 Caveats:
 
 - The generated sitemap will no longer list a page per archive.
-- `archives` must be a JSON file relative to the generated `_site` directory. For example, if you have a JSON file in `_site/public/data.json`, `archives` should be `./public/data.json`.
+- Top-level `archives` config must be a JSON file relative to the generated `_site` directory. For example, if you have a JSON file in `_site/data/archive-list.json`, `archives` should be `./data/archive-list.json`.
 - JSON data must conform to an array of objects with `name` and `url`.
 
 See [runtime-only-archives](./examples/runtime-only-archives/) for a more in-depth example.
