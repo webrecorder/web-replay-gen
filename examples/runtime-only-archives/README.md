@@ -7,8 +7,7 @@ Point `runtimeOnlyArchives` to a JSON file relative to `_site` to skip archive p
 ├── _site
 │   ├── custom_data_source
 │   │   └── archives.json
-│   ├── index.html
-│   └── wrg-runtime-config.json
+│   └── index.html
 └── wrg-config.json
 ```
 
