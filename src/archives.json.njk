@@ -1,13 +1,8 @@
 ---
-permalink: wrg-runtime-config.json
+permalink: wrg-archives.json
 eleventyExcludeFromCollections: true
 ---
 {
-  "site": {
-    "title": "{{ site.title }}",
-    "url": "{{ site.url }}",
-    "logoSrc": "{{ site.logoSrc }}"
-  },
   "archives": [{% for item in archivePages %}
     {
       "name": "{{ item.name }}",

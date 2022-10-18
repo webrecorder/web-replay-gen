@@ -152,19 +152,7 @@ function handleStringOpt(val) {
  * @returns {Archive[]}
  */
 module.exports = async () => {
-  if (wrgConfig.runtimeOnlyArchives) {
-    // Return values without processing
-    const json = await getJSONFile(
-      path.join('_site', wrgConfig.runtimeOnlyArchives)
-    );
-    return json.archives;
-  }
-
   try {
-    if (!wrgConfig.archives) {
-      return handleStringOpt('archives');
-    }
-
     if (typeof wrgConfig.archives === 'string') {
       return handleStringOpt(wrgConfig.archives);
     }

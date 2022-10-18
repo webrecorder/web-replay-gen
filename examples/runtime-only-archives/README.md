@@ -1,13 +1,14 @@
 # Example: Runtime-Only Archives
 
-Point `runtimeOnlyArchives` to a JSON file relative to `_site` to skip archive pre-processing and pre-rednering. The specified JSON file must have an `archives` array of `{ url }`. For example, given the following folder structure:
+Point `runtimeOnlyArchives` to a JSON file relative to `_site` to skip archive pre-processing and pre-rendering. The specified JSON file must have an `archives` array of `{ url }`. For example, given the following folder structure:
 
 ```
 .
 ├── _site
+│   ├── custom_data_source
+│   │   └── archives.json
 │   ├── index.html
-│   └── data_sources
-│       └── archives.json
+│   └── wrg-runtime-config.json
 └── wrg-config.json
 ```
 
@@ -15,11 +16,11 @@ Your `wrg-config.json` should look like this:
 
 ```json
 {
-  "runtimeOnlyArchives": "./data_sources/archives.json"
+  "runtimeOnlyArchives": "./custom_data_source/archives.json"
 }
 ```
 
-Now, `data_sources/archives.json` will be refreshed every time someone visits your website.
+Now, visitors to your website will see up-to-date data from `custom_data_source/archives.json`.
 
 Since `archives.json` will be loaded as-is and not processed by the generator, the only valid `archives` value is an array of objects with `name` and `url`. For example, the following is valid:
 
@@ -48,7 +49,7 @@ The following is not:
 }
 ```
 
-To make sharing archives easier, you can first generate a formatted `wrg-runtime-config.json` file through the normal build-time workflow.
+To make sharing and updating archives easier, you can generate a formatted `wrg-archives.json` file to use as your runtime archives JSON.
 
 Steps:
 
@@ -56,21 +57,23 @@ Steps:
 
 ```json
 {
-  "archives": "./tmp/data_sources/archives.json"
+  "archives": "./tmp/my-archives.json"
 }
 ```
 
-2. Generate new `wrg-runtime-config.json` in `_site`.
+2. Generate `wrg-archives.json` in `_site`.
 
 ```
-npm run build
+npm run build:archives-json
 ```
 
 3. Replace `archives` in project root `wrg-config.json` with `runtimeOnlyArchives` pointing to the generated file in `_site`.
 
 ```diff
 {
--  "archives": "./tmp/data_sources/archives.json"
-+  "runtimeOnlyArchives": "./wrg-runtime-config.json"
+-  "archives": "./tmp/my-archives.json"
++  "runtimeOnlyArchives": "./wrg-archives.json"
 }
 ```
+
+4. Update and deploy `_site/wrg-archives.json` without rebuilding your entire website.

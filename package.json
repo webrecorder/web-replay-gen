@@ -11,6 +11,7 @@
     "watch:tailwindcss": "npm run build:tailwindcss -- --watch",
     "build": "WRG_ENVIRONMENT=production concurrently \"npm run build:eleventy\" \"npm run build:tailwindcss\"",
     "build:eleventy": "npx @11ty/eleventy",
+    "build:archives-json": "npx @11ty/eleventy --input=src/archives.json.njk",
     "build:tailwindcss": "npx tailwindcss -i ./tailwind.css -o ./_site/lib/tailwind.css"
   },
   "repository": {

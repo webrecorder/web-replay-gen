@@ -6,6 +6,8 @@ node_modules/
 .env
 *.local.*
 .DS_Store
+tmp
+.tmp
 
 # Eleventy
 _site

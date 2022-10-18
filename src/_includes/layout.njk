@@ -108,14 +108,18 @@
           {% endfor %}
         ]);
 
+
+        const config = (await import('./wrg-runtime-config.json')).default;
         // Update with archives in runtime config.
         // If `archives` are the same, components should not update.
-        const config = (await import('./wrg-runtime-config.json')).default;
-        const archives = JSON.stringify(config.archives);
+        let archives = config.runtimeOnlyArchives
+          ? (await import(config.runtimeOnlyArchives)).default.archives
+          : config.archives;
+        const archivesStr = JSON.stringify(archives);
 
         // TODO generate component list?
         document.querySelectorAll('[archives]').forEach(elem => {
-          elem.setAttribute('archives', archives);
+          elem.setAttribute('archives', archivesStr);
         });
       })();
     </script>

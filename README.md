@@ -126,9 +126,9 @@ Configure location of web archive files at website build-time.
 
 </summary>
 
-| Key        | Default Value | Value Type                                     |
-| ---------- | ------------- | ---------------------------------------------- |
-| `archives` | `"archives"`  | `string\|string[]\|{name:string;url:string}[]` |
+| Key        | Default Value | Value Type                                                |
+| ---------- | ------------- | --------------------------------------------------------- |
+| `archives` | `undefined`   | `undefined\|string\|string[]\|{name:string;url:string}[]` |
 
 Pre-process and render static HTML based on archive data. Option values can be:
 
@@ -171,8 +171,6 @@ Example JSON array:
 }
 ```
 
-The default behavior is to list Web Archive files in the `archives` directory. Web Archive files (`.wacz`, `.warc`) are ignored in git and and copied over to the output `_site` by default, retaining their directory structure.
-
 </details>
 
 <details>
@@ -184,9 +182,9 @@ Configure location of web archives when the website loads in the browser.
 
 </summary>
 
-| Key                   | Default Value | Value Type |                                                        |
-| --------------------- | ------------- | ---------- | ------------------------------------------------------ |
-| `runtimeOnlyArchives` | `undefined`   | `string`   | Path to JSON file with `archives`, relative to `_site` |
+| Key                   | Default Value | Value Type          |                                                        |
+| --------------------- | ------------- | ------------------- | ------------------------------------------------------ |
+| `runtimeOnlyArchives` | `undefined`   | `undefined\|string` | Path to JSON file with `archives`, relative to `_site` |
 
 By default, the generator configures the location of your archives at build-time (i.e. when you run `npm run build`) in order to pre-process data and render static HTML based on that data. However, you may have a use case where you need to check archive locations every time the website loads in the browser. Setting `runtimeOnlyArchives` enables you to do things like configure and update archive data without redeploying your entire website.
 
