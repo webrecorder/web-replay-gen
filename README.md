@@ -122,7 +122,7 @@ Object for configuring the [embedded ReplayWeb.page](https://replayweb.page/docs
 
 #### `archives`
 
-Configure location of web archive files.
+Configure location of web archive files at website build-time.
 
 </summary>
 
@@ -130,14 +130,14 @@ Configure location of web archive files.
 | ---------- | ------------- | ---------------------------------------------- |
 | `archives` | `"archives"`  | `string\|string[]\|{name:string;url:string}[]` |
 
-Option values can be:
+Pre-process and render static HTML based on archive data. Option values can be:
 
 - JSON array of plain URL strings or an object with `name` and `url`
 - Relative path to directory containing `.wacz` files
 - Relative path to `.txt` file with newline-separated list of remote URLs
 - Relative path to JSON file with an `archives` key where the value is a JSON array
 
-Relative paths are relative to your project root (i.e. where you execute your `npm run build` command.) Examples:
+Paths should be relative to your project root (i.e. where you execute your `npm run build` command.) Examples:
 
 ```js
 {
@@ -180,7 +180,7 @@ The default behavior is to list Web Archive files in the `archives` directory. W
 
 #### `runtimeOnlyArchives`
 
-Configure archive location when the website is loaded in the browser.
+Configure location of web archives when the website loads in the browser.
 
 </summary>
 

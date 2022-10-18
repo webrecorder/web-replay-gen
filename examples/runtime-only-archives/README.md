@@ -1,6 +1,6 @@
-# Example: Run-time-Only Archives
+# Example: Runtime-Only Archives
 
-When skipping archive pre-processing and pre-rendering with `runtimeOnlyArchives`, the `archives` option must point to a JSON file relative to `_site`, with an `.archives` array of `{ name, url }`. For example, given the following folder structure:
+Point `runtimeOnlyArchives` to a JSON file relative to `_site` to skip archive pre-processing and pre-rednering. The specified JSON file must have an `archives` array of `{ name, url }`. For example, given the following folder structure:
 
 ```
 .
@@ -19,7 +19,7 @@ Your `wrg-config.json` should look like this:
 }
 ```
 
-When your website loads in the browser, it will load `archives.json` from `data_sources`.
+Now, `data_sources/archives.json` will be refreshed every time someone visits your website.
 
 Since `archives.json` will be loaded as-is and not processed by the generator, the only valid `archives` value is an array of objects with `name` and `url`. For example, the following is valid:
 
@@ -48,3 +48,32 @@ The following is not:
   ]
 }
 ```
+
+To make sharing archives easier, you can first generate a `__generated__/archives.json` file for your run-time, through the normal build-time workflow.
+
+Steps:
+
+1. Specify unprocessed archive data as `archives` in `wrg-config.json`.
+
+```json
+{
+  "archives": "./tmp/data_sources/archives.json"
+}
+```
+
+2. Build `_site/__generated__/archives.json`.
+
+```
+npm run build
+```
+
+3. Replace `archives` in `wrg-config.json` with `runtimeOnlyArchives` pointing to the generated file.
+
+```diff
+{
+-  "archives": "./tmp/data_sources/archives.json"
++  "runtimeOnlyArchives": "./__generated__/archives.json"
+}
+```
+
+You can rename the `__generated__` so that it doesn't get accidentally replaced when rebuilding.
