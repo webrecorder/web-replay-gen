@@ -3,9 +3,7 @@ const litPlugin = require('@lit-labs/eleventy-plugin-lit');
 
 module.exports = function (eleventyConfig) {
   // Copy assets, retain dir structure
-  eleventyConfig.addPassthroughCopy('src/[!_data]**/*.{css,js}');
-  // Copy public data
-  eleventyConfig.addPassthroughCopy('src/public_data/[!.]*');
+  eleventyConfig.addPassthroughCopy('src/[!_data]**/*.{css,js,json}');
 
   // Keep web archive files in gitignore but remove from eleventyignore
   eleventyConfig.ignores.delete('*.wacz');

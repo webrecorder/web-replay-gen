@@ -1,4 +1,4 @@
 {
   "runtimeOnlyArchives": true,
-  "archives": "./public_data/archives.json"
+  "archives": "./data_sources/archives.json"
 }

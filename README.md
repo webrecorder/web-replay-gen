@@ -173,26 +173,28 @@ Example JSON array:
 
 The default behavior is to list Web Archive files in the `archives` directory. Web Archive files (`.wacz`, `.warc`) are ignored in git and and copied over to the output `_site` by default, retaining their directory structure.
 
-##### Run-time archive options
+##### Run-time archives option
 
-When build-time rendering of archives is disabled with `runtimeOnlyArchives`, the `archives` option must point to a JSON file **relative to \_site** with an `.archives` array of `{ name, url }`. For example:
+When skipping archive pre-processing with `runtimeOnlyArchives`, the `archives` option must point to a JSON file **relative to \_site** with an `.archives` array of `{ name, url }`. For example, given the following folder structure:
+
+```
+.
+├── _site
+│   ├── index.html
+│   └── data_sources
+│       └── archives.json
+└── wrg-config.json
+```
+
+Your `wrg-config.json` should look like this:
 
 ```js
-// _site/data/archives.json
 {
-  "archives": [
-    // Valid: Object with name and URL:
-    {
-      "name": "My Web Archive",
-      "url": "s3://my-bucket/b/archive.wacz"
-    }
-    // Invalid: Plain URL string
-    "s3://my-bucket/a/archive.wacz"
-  ]
+  "archives": "./data_sources/archives.json"
 }
 ```
 
-See [runtime-only-archives](./examples/runtime-only-archives/) for a more in-depth example.
+See [runtime-only-archives](./examples/runtime-only-archives/) for the full example.
 
 </details>
 
