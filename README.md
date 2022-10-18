@@ -193,8 +193,7 @@ By default, the generator configures the location of your archives at build-time
 Caveats:
 
 - The generated sitemap will no longer list a page per archive.
-- Top-level `archives` config must be a JSON file relative to the generated `_site` directory. For example, if you have a JSON file in `_site/data/archive-list.json`, `archives` should be `./data/archive-list.json`.
-- JSON data must conform to an array of objects with `name` and `url`.
+- JSON data must conform to an array of objects with `url` and optionally `name`.
 
 See [runtime-only-archives](./examples/runtime-only-archives/) for a more in-depth example.
 
