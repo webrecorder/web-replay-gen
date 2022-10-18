@@ -61,6 +61,23 @@ function mapToPage(data, idx) {
 }
 
 /**
+ * Get JSON file contents
+ * @param {string} filePath
+ * @returns {Archive[]}
+ */
+async function getJSONFile(filePath) {
+  try {
+    const data = await fsPromises.readFile(filePath);
+
+    return JSON.parse(data);
+  } catch (err) {
+    console.debug(err);
+  }
+
+  return {};
+}
+
+/**
  * Map local WACZ files to archive page data
  * @param {string} filePath
  * @returns {Archive[]}
@@ -78,9 +95,7 @@ async function mapLocalFiles(filePath) {
  */
 async function mapJSONFile(filePath) {
   try {
-    const data = await fsPromises.readFile(filePath);
-
-    const { archives } = JSON.parse(data);
+    const { archives } = await getJSONFile(filePath);
 
     return archives.map(mapToPage);
   } catch (err) {
@@ -136,10 +151,13 @@ function handleStringOpt(val) {
 /**
  * @returns {Archive[]}
  */
-module.exports = () => {
-  if (wrgConfig.site.runtimeOnlyArchives) {
-    // Let client handle getting archives
-    return [];
+module.exports = async () => {
+  if (wrgConfig.runtimeOnlyArchives) {
+    // Return values without processing
+    const json = await getJSONFile(
+      path.join('_site', wrgConfig.runtimeOnlyArchives)
+    );
+    return json.archives;
   }
 
   try {
