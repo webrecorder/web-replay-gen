@@ -2,4 +2,11 @@
 permalink: __generated__/archives.json
 eleventyExcludeFromCollections: true
 ---
-{ "archives": {{ archivePages | dump | safe }} }
+{
+  "archives": [{% for item in archivePages %}
+    {
+      "name": "{{ item.name }}",
+      "url": "{{ item.url }}"
+    }{% if not loop.last %},{% endif %}{% endfor %}
+  ]
+}

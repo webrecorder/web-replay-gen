@@ -3,5 +3,9 @@ permalink: wrg-config.json
 eleventyExcludeFromCollections: true
 ---
 {
-  "site": {{ site | dump | safe }}
+  "site": {
+    "title": "{{ site.title }}",
+    "url": "{{ site.url }}",
+    "logoSrc": "{{ site.logoSrc }}"
+  }
 }
