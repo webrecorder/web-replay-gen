@@ -49,7 +49,7 @@ The following is not:
 }
 ```
 
-To make sharing archives easier, you can first generate a `__generated__/archives.json` file for your run-time, through the normal build-time workflow.
+To make sharing archives easier, you can first generate a `__generated__/archives.json` file through the normal build-time workflow.
 
 Steps:
 
