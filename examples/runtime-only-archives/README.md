@@ -48,6 +48,8 @@ The following is not:
 }
 ```
 
+### Generate archives JSON
+
 To make sharing and updating archives easier, you can generate a formatted `wrg-archives.json` file to use as your runtime archives JSON.
 
 Steps:
@@ -60,13 +62,19 @@ Steps:
 }
 ```
 
-2. Generate `wrg-archives.json` in `_site`.
+2. Generate `wrg-archives.json` in `.tmp`.
 
 ```
 npm run build:archives-json
 ```
 
-3. Replace `archives` in project root `wrg-config.json` with `runtimeOnlyArchives` pointing to the generated file in `_site`.
+3. Move `wrg-archives.json` to `_site`.
+
+```
+mv .tmp/wrg-archives.json _site
+```
+
+4. Replace `archives` in project root `wrg-config.json` with `runtimeOnlyArchives` pointing to the generated file in `.tmp`.
 
 ```diff
 {
@@ -75,4 +83,4 @@ npm run build:archives-json
 }
 ```
 
-4. Update and deploy `_site/wrg-archives.json` without rebuilding your entire website.
+5. Update and deploy `_site/wrg-archives.json` without rebuilding your entire website.
