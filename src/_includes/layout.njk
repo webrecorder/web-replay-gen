@@ -106,18 +106,22 @@
         import('{{ path }}');
         {% endfor %}
 
-        {% if archiveConfig.runtimeOnlyArchives %}
-        const data = (await import("{{ archiveConfig.runtimeOnlyArchives }}")).default
-        const archives = JSON.stringify(data.archives)
+        // Set during server pre-render
+        const runtimeOnlyArchives = "{{ archiveConfig.runtimeOnlyArchives }}";
 
-        // Timeout is a bit hacky, but it fixes hydration errors
-        window.setTimeout(() => {
-          // TODO generate component list?
-          document.querySelectorAll('[archives]').forEach(elem => {
-            elem.setAttribute('archives', archives)
-          })
-        }, 100)
-        {% endif %}
+        if (runtimeOnlyArchives) {
+          const data = (await import(runtimeOnlyArchives)).default
+          const archives = JSON.stringify(data.archives)
+
+          // Timeout is a bit hacky, but it fixes hydration errors
+          window.setTimeout(() => {
+            // TODO generate component list?
+            document.querySelectorAll('[archives]').forEach(elem => {
+              elem.setAttribute('archives', archives)
+            })
+          }, 100);
+        }
+
       })();
     </script>
   </body>
