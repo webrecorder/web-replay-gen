@@ -50,7 +50,7 @@ customElements.define(
             (page) => html`
               <li>
                 <a href="archive/?source=${encodeURIComponent(page.url)}"
-                  >${page.name}</a
+                  >${page.name || page.url}</a
                 >
               </li>
             `

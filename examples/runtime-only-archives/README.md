@@ -1,6 +1,6 @@
 # Example: Runtime-Only Archives
 
-Point `runtimeOnlyArchives` to a JSON file relative to `_site` to skip archive pre-processing and pre-rednering. The specified JSON file must have an `archives` array of `{ name, url }`. For example, given the following folder structure:
+Point `runtimeOnlyArchives` to a JSON file relative to `_site` to skip archive pre-processing and pre-rednering. The specified JSON file must have an `archives` array of `{ url }`. For example, given the following folder structure:
 
 ```
 .
@@ -31,7 +31,6 @@ Since `archives.json` will be loaded as-is and not processed by the generator, t
       "url": "https://replayweb.page/docs/assets/example.wacz"
     },
     {
-      "name": "Netpreserve Twitter",
       "url": "s3://webrecorder-builds/warcs/netpreserve-twitter.warc"
     }
   ]
