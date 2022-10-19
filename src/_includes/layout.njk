@@ -7,11 +7,58 @@
     <title>{{ site.title }}</title>
     <base href="{{ site.url if build.environment==='production' else '' }}/">
     <link href="lib/tailwind.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.0.0-beta.81/dist/themes/light.css" />
-    <script type="module" src="lib/is-land.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.0.0-beta.83/dist/themes/light.css" />
+    <!-- Shim ES module support -->
+    <script async src="https://ga.jspm.io/npm:es-module-shims@1.6.2/dist/es-module-shims.js"></script>
+    <!-- TODO build import map? -->
+    <script type="importmap-shim">
+    {
+      "imports": {
+        "@lit/reactive-element": "/node_modules/@lit/reactive-element/reactive-element.js",
+        "@shoelace-style/shoelace/": "https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.0.0-beta.83/",
+        "lit": "/node_modules/lit/index.js",
+        "lit-element/lit-element.js": "/node_modules/lit-element/lit-element.js",
+        "lit-html": "/node_modules/lit-html/lit-html.js",
+        "lit-html/": "/node_modules/lit-html/",
+        "fuse.js": "https://cdn.jsdelivr.net/npm/fuse.js@6.6.2/dist/fuse.esm.js"
+      }
+    }
+    </script>
+    <!-- As an optimization, immediately begin fetching the JavaScript modules
+    that we know for sure we'll eventually need. It's important we don't
+    execute them yet, though. -->
+    {% for path in wc.filePaths %}
+    <link rel="modulepreload" href="{{ path }}" />
+    {% endfor %}
   </head>
   <body>
     {% include "header.njk" %}
     {{ content | safe }}
+
+    <!-- Use a type=module script so that we can use dynamic module imports.
+         Note this pattern will not work in IE11. -->
+    <script type="module-shim">
+      (async () => {
+        // Load component definitions.
+        await Promise.all([
+          {% for path in wc.filePaths %}
+          import('{{ path }}'),
+          {% endfor %}
+        ]);
+
+        const config = (await import('./wrg-runtime-config.json')).default;
+        // Update with archives in runtime config.
+        // If `archives` are the same, components should not update.
+        let archives = config.runtimeOnlyArchives
+          ? (await import(config.runtimeOnlyArchives)).default.archives
+          : config.archives;
+        const archivesStr = JSON.stringify(archives);
+
+        // TODO generate component list?
+        document.querySelectorAll('[archives]').forEach(elem => {
+          elem.setAttribute('archives', archivesStr);
+        });
+      })();
+    </script>
   </body>
 </html>

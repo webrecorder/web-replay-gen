@@ -23,6 +23,7 @@ if (typeof site.url === 'string') {
       originURL.startsWith('https://github.com/'))
   ) {
     const [org, repo] = originURL
+      .trim()
       .slice(originURL.indexOf('github.com') + 11)
       .replace('.git', '')
       .toLowerCase()

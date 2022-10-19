@@ -8,22 +8,12 @@ layout: layout.njk
   <main class="p-2">
 
     <div class="text-sm text-neutral-400 mb-2">
-      {{ archivePages | length }} web archives available.
+      <wrg-archives-count archives="{{ archivePages | dump }}"></wrg-archives-count> web archives available.
       <a href="../" class="font-semibold underline hover:no-underline"
         >Search by name</a
       >
     </div>
 
-    <ul class="border rounded mt-2">
-      {% for page in archivePages %}
-      <li class="border-t first:border-t-0">
-        <a
-          href="{{ page.pathname }}"
-          class="block p-2 text-neutral-700 hover:bg-neutral-50 hover:text-neutral-900"
-          >{{ page.name }}</a
-        >
-      </li>
-      {% endfor %}
-    </ul>
+    <wrg-index archives="{{ archivePages | dump }}"></wrg-index>
   </main>
 </section>

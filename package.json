@@ -3,13 +3,15 @@
   "version": "1.0.0-beta",
   "description": "Web archive collection static site generator",
   "main": "index.js",
+  "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "serve": "concurrently \"npm run serve:eleventy\" \"npm run watch:tailwindcss\"",
+    "serve": "concurrently --kill-others \"npm run serve:eleventy\" \"npm run watch:tailwindcss\"",
     "serve:eleventy": "npx @11ty/eleventy --serve",
     "watch:tailwindcss": "npm run build:tailwindcss -- --watch",
     "build": "WRG_ENVIRONMENT=production concurrently \"npm run build:eleventy\" \"npm run build:tailwindcss\"",
     "build:eleventy": "npx @11ty/eleventy",
+    "build:archives-json": "npx @11ty/eleventy --input=src/archives.json.njk",
     "build:tailwindcss": "npx tailwindcss -i ./tailwind.css -o ./_site/lib/tailwind.css"
   },
   "repository": {
@@ -31,6 +33,6 @@
     "tailwindcss": "^3.1.8"
   },
   "dependencies": {
-    "@11ty/is-land": "^1.0.0"
+    "lit": "^2.4.0"
   }
 }

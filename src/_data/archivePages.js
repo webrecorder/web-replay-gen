@@ -7,8 +7,7 @@ const wrgConfig = require('../../getConfig')();
 /**
  * @typedef {Object} Archive
  * @returns {string} name - Name of archive
- * @returns {string} waczURL - URL to WACZ file
- * @returns {string} pathname - Site page path
+ * @returns {string} url - URL to WACZ file
  */
 
 /**
@@ -35,10 +34,10 @@ function isInRoot(filePath) {
  * @returns {Archive}
  */
 function mapToPage(data, idx) {
-  let name, waczURL;
+  let name, url;
 
   if (typeof data === 'string') {
-    waczURL = data;
+    url = data;
   } else if (
     typeof data === 'object' &&
     data.constructor === Object &&
@@ -46,21 +45,36 @@ function mapToPage(data, idx) {
     data.url
   ) {
     name = data.name;
-    waczURL = data.url;
+    url = data.url;
   }
 
-  if (waczURL) {
+  if (url) {
     if (!name) {
       // Use filename without extension
-      name = path.parse(waczURL).name;
+      name = path.parse(url).name;
     }
 
-    const pathname = `archive/?source=${encodeURIComponent(waczURL)}`;
-
-    return { name, waczURL, pathname };
+    return { name, url };
   }
 
   console.warn(`Invalid WACZ data at index ${idx}, skipping`);
+}
+
+/**
+ * Get JSON file contents
+ * @param {string} filePath
+ * @returns {Archive[]}
+ */
+async function getJSONFile(filePath) {
+  try {
+    const data = await fsPromises.readFile(filePath);
+
+    return JSON.parse(data);
+  } catch (err) {
+    console.debug(err);
+  }
+
+  return {};
 }
 
 /**
@@ -80,11 +94,15 @@ async function mapLocalFiles(filePath) {
  * @returns {Archive[]}
  */
 async function mapJSONFile(filePath) {
-  const data = await fsPromises.readFile(filePath);
+  try {
+    const { archives } = await getJSONFile(filePath);
 
-  const { archives } = JSON.parse(data);
+    return archives.map(mapToPage);
+  } catch (err) {
+    console.debug(err);
+  }
 
-  return archives.map(mapToPage);
+  return [];
 }
 
 /**
@@ -133,12 +151,8 @@ function handleStringOpt(val) {
 /**
  * @returns {Archive[]}
  */
-module.exports = () => {
+module.exports = async () => {
   try {
-    if (!wrgConfig.archives) {
-      return handleStringOpt('archives');
-    }
-
     if (typeof wrgConfig.archives === 'string') {
       return handleStringOpt(wrgConfig.archives);
     }

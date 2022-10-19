@@ -122,22 +122,22 @@ Object for configuring the [embedded ReplayWeb.page](https://replayweb.page/docs
 
 #### `archives`
 
-Configure location of web archive files.
+Configure location of web archive files at website build-time.
 
 </summary>
 
-| Key        | Default Value | Value Type                                     |     |
-| ---------- | ------------- | ---------------------------------------------- | --- |
-| `archives` | `"archives"`  | `string\|string[]\|{name:string;url:string}[]` |     |
+| Key        | Default Value | Value Type                                                |
+| ---------- | ------------- | --------------------------------------------------------- |
+| `archives` | `undefined`   | `undefined\|string\|string[]\|{name:string;url:string}[]` |
 
-The option value can be:
+Pre-process and render static HTML based on archive data. Option values can be:
 
-- Relative path to a project directory containing `.wacz` files
-- Relative path to a `.txt` file with newline-separated list of remote URLs
 - JSON array of plain URL strings or an object with `name` and `url`
-- Relative path to a JSON file with an `archives` key where the value is a JSON array
+- Relative path to directory containing `.wacz` files
+- Relative path to `.txt` file with newline-separated list of remote URLs
+- Relative path to JSON file with an `archives` key where the value is a JSON array
 
-Paths must be a subdirectory or file in your project root (i.e. in your repo.) Examples:
+Paths should be relative to your project root (i.e. where you execute your `npm run build` command.) Examples:
 
 ```js
 {
@@ -171,7 +171,29 @@ Example JSON array:
 }
 ```
 
-The default behavior is to list Web Archive files in the `archives` directory. Web Archive files (`.wacz`, `.warc`) are ignored in git and and copied over to the output `_site` by default, retaining their directory structure.
+</details>
+
+<details>
+<summary>
+
+#### `runtimeOnlyArchives`
+
+Configure location of web archives when the website loads in the browser.
+
+</summary>
+
+| Key                   | Default Value | Value Type          |                                                        |
+| --------------------- | ------------- | ------------------- | ------------------------------------------------------ |
+| `runtimeOnlyArchives` | `undefined`   | `undefined\|string` | Path to JSON file with `archives`, relative to `_site` |
+
+By default, the generator configures the location of your archives at build-time (i.e. when you run `npm run build`) in order to pre-process data and render static HTML based on that data. However, you may have a use case where you need to check archive locations every time the website loads in the browser. Setting `runtimeOnlyArchives` enables you to do things like configure and update archive data without redeploying your entire website.
+
+Caveats:
+
+- The generated sitemap will no longer list a page per archive.
+- JSON data must conform to an array of objects with `url` and optionally `name`.
+
+See [runtime-only-archives](./examples/runtime-only-archives/) for a more in-depth example.
 
 </details>
 
@@ -227,7 +249,7 @@ Web Replay Gen templates are written in [Nunjucks](https://mozilla.github.io/nun
 
 ## Web Components
 
-Web components in the `/components` directory are not pre-rendered at build time. Use the `<is-land>` tag to render web components at runtime. See `archive.njk` for an example and refer to the [11ty/is-land](https://github.com/11ty/is-land) docs.
+Web components in the `/components` directory will be pre-rendered at build-time and hydrated at run-time. See `archive.njk` for an example and refer to the [@lit-labs/eleventy-plugin-lit](https://github.com/lit/lit/tree/main/packages/labs/eleventy-plugin-lit) docs to customize SSR behavior.
 
 ## Styling
 
