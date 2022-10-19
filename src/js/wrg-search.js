@@ -5,7 +5,7 @@ import '@shoelace-style/shoelace/dist/components/menu/menu.js';
 import '@shoelace-style/shoelace/dist/components/menu-item/menu-item.js';
 import '@shoelace-style/shoelace/dist/components/menu-label/menu-label.js';
 import '@shoelace-style/shoelace/dist/components/input/input.js';
-import archives from './archives.js';
+import config from './config.js';
 
 function getPathname(url) {
   return `archive/?source=${encodeURIComponent(url)}`;
@@ -57,8 +57,8 @@ customElements.define(
       }
     `;
 
-    _archives = archives;
-    _fuse = new Fuse(archives || [], {
+    _archives = config.archives;
+    _fuse = new Fuse(config.archives, {
       keys: ['name'],
       shouldSort: false,
       threshold: 0.4, // stricter; default is 0.6

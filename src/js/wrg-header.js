@@ -1,5 +1,5 @@
 import { html, css, LitElement } from 'lit';
-import config from '../wrg-config.json';
+import config from './config.js';
 
 customElements.define(
   'wrg-header',
@@ -32,7 +32,7 @@ customElements.define(
       }
     `;
 
-    _title = config.site.title || 'Web Archives';
+    _title = config.site.title;
     _logoSrc = config.site.logoSrc;
 
     render() {

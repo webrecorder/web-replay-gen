@@ -1,5 +1,5 @@
 import { html, css, LitElement } from 'lit';
-import archives from './archives.js';
+import config from './config.js';
 
 /**
  * List archives
@@ -34,7 +34,7 @@ customElements.define(
       }
     `;
 
-    _archives = archives;
+    _archives = config.archives;
 
     render() {
       if (!this._archives) {

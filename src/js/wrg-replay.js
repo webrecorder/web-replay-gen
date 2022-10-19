@@ -1,5 +1,7 @@
 import { html, css, LitElement } from 'lit';
-import replayOpts from './replay.js';
+import config from './config.js';
+
+const replayOpts = config.replay;
 
 customElements.define(
   'wrg-replay',

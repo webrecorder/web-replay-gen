@@ -35,10 +35,8 @@
 
     <script type="module-shim">
       (async () => {
-        const config = (await import('./wrg-config.json')).default;
-        // TODO ensure config conforms to shape
-        const { site = {} } = config || {};
-        document.title = site.title || 'Web Archives';
+        const config = (await import('./js/config.js')).default;
+        document.title = config.site.title;
       })();
     </script>
   </body>

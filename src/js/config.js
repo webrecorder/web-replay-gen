@@ -1,11 +1,24 @@
-/** Archives config */
 import config from '../wrg-config.json';
+
+class Site {
+  constructor({ title, logoSrc = '' }) {
+    this.title = title || 'Web Archives';
+    this.logoSrc = logoSrc;
+  }
+}
 
 class Archive {
   constructor({ name, url = '' }) {
     this.url = url;
     this.name =
       name || url.slice(url.lastIndexOf('/') + 1, url.lastIndexOf('.'));
+  }
+}
+
+class ReplayOptions {
+  constructor({ embed, replayBase }) {
+    this.embed = embed || 'embed';
+    this.replayBase = replayBase || './replay/';
   }
 }
 
@@ -36,8 +49,12 @@ function makeArchive(data, idx) {
   console.error(`Invalid WACZ data at index ${idx || 'unknown'}, skipping`);
 }
 
-function getArchives() {
-  return config.archives.map(makeArchive);
+class WRGConfig {
+  constructor({ site, replay, archives }) {
+    this.site = new Site(site || {});
+    this.replay = new ReplayOptions(replay || {});
+    this.archives = (archives || []).map(makeArchive);
+  }
 }
 
-export default getArchives();
+export default new WRGConfig(config);
