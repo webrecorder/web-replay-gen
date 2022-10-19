@@ -1,3 +1,4 @@
+/** Archives config */
 import config from '../wrg-runtime-config.json';
 
 class Archive {

@@ -32,8 +32,8 @@ customElements.define(
       }
     `;
 
-    _title = config.title || 'Web Archives';
-    _logoSrc = config.logoSrc;
+    _title = config.site.title || 'Web Archives';
+    _logoSrc = config.site.logoSrc;
 
     render() {
       return html`

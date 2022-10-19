@@ -1,7 +1,7 @@
 module.exports = function (eleventyConfig) {
-  // Copy and watch changes in JS files
-  eleventyConfig.addPassthroughCopy('src/js/*.js');
-  eleventyConfig.addWatchTarget('src/js/*.js');
+  // Copy and watch assets, retain dir structure
+  eleventyConfig.addPassthroughCopy('src/[!_]**/*.{css,js}');
+  eleventyConfig.addWatchTarget('src/[!_]**/*.{css,js}');
 
   // Keep web archive files in gitignore but remove from eleventyignore
   eleventyConfig.ignores.delete('*.wacz');

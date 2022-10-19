@@ -5,21 +5,16 @@ const normalize = require('normalize-path');
 const fg = require('fast-glob');
 const wrgConfig = require('../../getConfig')();
 
-function formatReplay() {
-  const replay = {
-    embed: 'replayonly',
-    ...wrgConfig.replay,
-  };
+function formatReplayBaseURL() {
+  let replayBaseURL = wrgConfig.replayBaseURL;
 
-  if (replay.baseUrl) {
-    replay.baseUrl = replay.baseUrl.replace(/\/+$/, '');
+  if (replayBaseURL) {
+    replayBaseURL = replayBaseURL.replace(/\/+$/, '');
   } else {
-    replay.baseUrl = `https://cdn.jsdelivr.net/npm/replaywebpage${
-      replay.version ? `@${replay.version}` : ''
-    }`;
+    replayBaseURL = `https://cdn.jsdelivr.net/npm/replaywebpage`;
   }
 
-  return replay;
+  return replayBaseURL;
 }
 
 function formatArchives() {
@@ -149,7 +144,8 @@ function formatArchives() {
 module.exports = () => {
   return {
     site: { ...wrgConfig.site },
-    replay: formatReplay(),
+    replay: { ...wrgConfig.replay },
+    replayBaseURL: formatReplayBaseURL(),
     archives: formatArchives(),
   };
 };

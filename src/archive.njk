@@ -3,10 +3,10 @@ layout: layout.njk
 eleventyExcludeFromCollections: true
 ---
 
-<script src="{{ replay.baseUrl }}/ui.js"></script>
+<script src="{{ config.replayBaseURL }}/ui.js"></script>
 
 <div class="h-screen flex flex-col">
-  <wrg-replay class="flex-1 block overflow-hidden" embed="{{ replay.embed }}" replayBase="{{ site.url if build.environment==='production' else '' }}/replay/">
+  <wrg-replay class="flex-1 block overflow-hidden">
     <div class="p-2 text-neutral-500 text-center">Loading...</div>
   </wrg-replay>
 </div>

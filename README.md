@@ -108,12 +108,26 @@ Object for configuring the [embedded ReplayWeb.page](https://replayweb.page/docs
 
 </summary>
 
-| Key              | Default Value                                  | Value Type                        |                                                                                                                     |
-| ---------------- | ---------------------------------------------- | --------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| `replay`         | `{}`                                           | `Object`                          |                                                                                                                     |
-| `replay.embed`   | `"replayonly"`                                 | `"replayonly"\|"full"\|"default"` | ReplayWeb.page [`embed` option](https://replayweb.page/docs/embedding#embedding-options)                            |
-| `replay.baseUrl` | `"https://cdn.jsdelivr.net/npm/replaywebpage"` | `string`                          | Base URL for ReplayWeb.page scripts. `replay.version` will be ignored if a base URL is specified.                   |
-| `replay.version` | `""`                                           | `string`                          | ReplayWeb.page version. Omit for the latest. [See releases](https://github.com/webrecorder/replayweb.page/releases) |
+| Key                 | Default Value  | Value Type                        |                                                                                               |
+| ------------------- | -------------- | --------------------------------- | --------------------------------------------------------------------------------------------- |
+| `replay`            | `{}`           | `Object`                          |                                                                                               |
+| `replay.embed`      | `"replayonly"` | `"replayonly"\|"full"\|"default"` | ReplayWeb.page [`embed` option](https://replayweb.page/docs/embedding#embedding-options)      |
+| `replay.replayBase` | `"./replay/"`  | `"./replay/"\|string"`            | ReplayWeb.page [`replayBase` option](https://replayweb.page/docs/embedding#embedding-options) |
+
+</details>
+
+<details>
+<summary>
+
+#### `replayBaseURL`
+
+Base URL for ReplayWeb.page scripts.
+
+</summary>
+
+| Key             | Default Value                                  | Value Type |                                                                                                   |
+| --------------- | ---------------------------------------------- | ---------- | ------------------------------------------------------------------------------------------------- |
+| `replayBaseURL` | `"https://cdn.jsdelivr.net/npm/replaywebpage"` | `string`   | Base URL for ReplayWeb.page scripts. `replay.version` will be ignored if a base URL is specified. |
 
 </details>
 
