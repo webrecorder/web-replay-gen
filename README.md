@@ -116,26 +116,6 @@ Object for configuring the [embedded ReplayWeb.page](https://replayweb.page/docs
 
 </details>
 
-<details>
-<summary>
-
-#### `replayBaseURL` [_Build-time Only_]
-
-Base URL for ReplayWeb.page scripts.
-
-</summary>
-
-| Key             | Default Value                                  | Value Type |                                     |
-| --------------- | ---------------------------------------------- | ---------- | ----------------------------------- |
-| `replayBaseURL` | `"https://cdn.jsdelivr.net/npm/replaywebpage"` | `string`   | Base URL for ReplayWeb.page scripts |
-
-This option can only be set at build-time (i.e. when you run `npm run build`.) Updates to `replayBaseURL` in your output `_site/wrg-config.json` file will have no effect.
-
-</details>
-
-<details>
-<summary>
-
 #### `archives`
 
 Configure location of web archive files.
@@ -175,6 +155,28 @@ Setting `archivesPath` will override this option.
 
 </details>
 
+### Build-time Only Configuration
+
+The following options can only be set at build-time (i.e. when you run `npm run build`.) Updates to options in your output `_site/wrg-config.json` file will have no effect.
+
+<details>
+<summary>
+
+#### `replayBaseURL` [_Build-time Only_]
+
+Base URL for ReplayWeb.page scripts.
+
+</summary>
+
+| Key             | Default Value                                  | Value Type |                                     |
+| --------------- | ---------------------------------------------- | ---------- | ----------------------------------- |
+| `replayBaseURL` | `"https://cdn.jsdelivr.net/npm/replaywebpage"` | `string`   | Base URL for ReplayWeb.page scripts |
+
+</details>
+
+<details>
+<summary>
+
 <details>
 <summary>
 
@@ -208,7 +210,7 @@ Examples:
 }
 ```
 
-Take precedence over the `archives` array. This option can only be set at build-time (i.e. when you run `npm run build`.) Updates to `archivesPath` in your output `_site/wrg-config.json` file will have no effect.
+Take precedence over the `archives` array.
 
 </details>
 
