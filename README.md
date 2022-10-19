@@ -79,7 +79,7 @@ Push to `main` to automatically deploy your site to GitHub Pages. :sparkles:
 
 ## Configuration
 
-Configure options in `wrg-config.json`. Most options can be re-configured at run-time, i.e. when someone visits your website.
+Configure options in `wrg-config.json`.
 
 <details>
 <summary>
@@ -119,7 +119,7 @@ Object for configuring the [embedded ReplayWeb.page](https://replayweb.page/docs
 <details>
 <summary>
 
-#### `replayBaseURL`
+#### `replayBaseURL` [_Build-time Only_]
 
 Base URL for ReplayWeb.page scripts.
 
@@ -129,6 +129,8 @@ Base URL for ReplayWeb.page scripts.
 | --------------- | ---------------------------------------------- | ---------- | ------------------------------------------------------------------------------------------------- |
 | `replayBaseURL` | `"https://cdn.jsdelivr.net/npm/replaywebpage"` | `string`   | Base URL for ReplayWeb.page scripts. `replay.version` will be ignored if a base URL is specified. |
 
+This option can only be set at build-time (i.e. when you run `npm run build`.) Updates to `replayBaseURL` in your output `_site/wrg-config.json` file will have no effect.
+
 </details>
 
 <details>
@@ -136,7 +138,7 @@ Base URL for ReplayWeb.page scripts.
 
 #### `archives`
 
-Configure location of web archive files at website build-time.
+Configure location of web archive files.
 
 </summary>
 
