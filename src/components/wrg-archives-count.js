@@ -1,4 +1,5 @@
 import { html, css, LitElement } from 'lit';
+import config from '../wrg-config.json';
 
 customElements.define(
   'wrg-archives-count',
@@ -9,8 +10,10 @@ customElements.define(
       },
     };
 
+    _archives = config.archives;
+
     render() {
-      return html` ${this.archives?.length}`;
+      return html` ${this._archives?.length}`;
     }
   }
 );

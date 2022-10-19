@@ -5,6 +5,7 @@ import '@shoelace-style/shoelace/dist/components/menu/menu.js';
 import '@shoelace-style/shoelace/dist/components/menu-item/menu-item.js';
 import '@shoelace-style/shoelace/dist/components/menu-label/menu-label.js';
 import '@shoelace-style/shoelace/dist/components/input/input.js';
+import config from '../wrg-config.json';
 
 function getPathname(url) {
   return `archive/?source=${encodeURIComponent(url)}`;
@@ -14,9 +15,6 @@ customElements.define(
   'wrg-search',
   class extends LitElement {
     static properties = {
-      archives: {
-        type: Array,
-      },
       _isMenuVisible: {
         state: true,
         type: Boolean,
@@ -59,18 +57,12 @@ customElements.define(
       }
     `;
 
-    _fuse = null;
-
-    willUpdate(changedProperties) {
-      if (changedProperties.has('archives') && this.archives) {
-        // For fuzzy search
-        this._fuse = new Fuse(this.archives || [], {
-          keys: ['name'],
-          shouldSort: false,
-          threshold: 0.4, // stricter; default is 0.6
-        });
-      }
-    }
+    _archives = config.archives;
+    _fuse = new Fuse(config.archives || [], {
+      keys: ['name'],
+      shouldSort: false,
+      threshold: 0.4, // stricter; default is 0.6
+    });
 
     render() {
       return html`
@@ -106,7 +98,7 @@ customElements.define(
             @sl-select=${(e) => {
               const { item } = e.detail;
               this._search = item.innerText;
-              this._selectedArchive = this.archives.find(
+              this._selectedArchive = this._archives.find(
                 ({ url }) => url === item.value
               );
               this._isMenuVisible = false;

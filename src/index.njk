@@ -9,12 +9,17 @@ layout: layout.njk
 
   <main class="p-2">
     <div class="text-sm text-neutral-400 mb-2">
-      <wrg-archives-count archives="{{ archivePages | dump }}"></wrg-archives-count> web archives available.
+      <wrg-archives-count></wrg-archives-count> web archives available.
       <a href="archives" class="font-semibold underline hover:no-underline"
         >View all</a
       >
     </div>
 
-    <wrg-search archives="{{ archivePages | dump }}"></wrg-search>
+    <wrg-search></wrg-search>
   </main>
 </section>
+
+<script type="module-shim">
+  import('./components/wrg-archives-count.js');
+  import('./components/wrg-search.js');
+</script>
