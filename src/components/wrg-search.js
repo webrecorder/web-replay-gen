@@ -1,19 +1,10 @@
 import { html, css, LitElement } from 'lit';
-import('@shoelace-style/shoelace/dist/components/card/card.js').catch(
-  console.debug
-);
-import('@shoelace-style/shoelace/dist/components/menu/menu.js').catch(
-  console.debug
-);
-import('@shoelace-style/shoelace/dist/components/menu-item/menu-item.js').catch(
-  console.debug
-);
-import(
-  '@shoelace-style/shoelace/dist/components/menu-label/menu-label.js'
-).catch(console.debug);
-import('@shoelace-style/shoelace/dist/components/input/input.js').catch(
-  console.debug
-);
+import Fuse from 'fuse.js';
+import '@shoelace-style/shoelace/dist/components/card/card.js';
+import '@shoelace-style/shoelace/dist/components/menu/menu.js';
+import '@shoelace-style/shoelace/dist/components/menu-item/menu-item.js';
+import '@shoelace-style/shoelace/dist/components/menu-label/menu-label.js';
+import '@shoelace-style/shoelace/dist/components/input/input.js';
 
 function getPathname(url) {
   return `archive/?source=${encodeURIComponent(url)}`;
@@ -73,17 +64,12 @@ customElements.define(
     willUpdate(changedProperties) {
       if (changedProperties.has('archives') && this.archives) {
         // For fuzzy search
-        this._initFuse();
+        this._fuse = new Fuse(this.archives || [], {
+          keys: ['name'],
+          shouldSort: false,
+          threshold: 0.4, // stricter; default is 0.6
+        });
       }
-    }
-
-    async _initFuse() {
-      const Fuse = (await import('fuse.js')).default;
-      this._fuse = new Fuse(this.archives || [], {
-        keys: ['name'],
-        shouldSort: false,
-        threshold: 0.4, // stricter; default is 0.6
-      });
     }
 
     render() {

@@ -1,6 +1,3 @@
-const fg = require('fast-glob');
-const litPlugin = require('@lit-labs/eleventy-plugin-lit');
-
 module.exports = function (eleventyConfig) {
   // Copy assets, retain dir structure
   eleventyConfig.addPassthroughCopy('src/[!_data]**/*.{css,js,json}');
@@ -16,17 +13,12 @@ module.exports = function (eleventyConfig) {
   const litLibs = [
     'node_modules/@lit/reactive-element/reactive-element.js',
     'node_modules/@lit/reactive-element/css-tag.js',
-    'node_modules/@webcomponents/template-shadowroot/template-shadowroot.js',
-    'node_modules/@webcomponents/template-shadowroot/_implementation/',
-    'node_modules/lit/experimental-hydrate-support.js',
     'node_modules/lit/index.js',
     'node_modules/lit-element/lit-element.js',
-    'node_modules/lit-element/experimental-hydrate-support.js',
     'node_modules/lit-html/lit-html.js',
     'node_modules/lit-html/is-server.js',
     'node_modules/lit-html/directive.js',
     'node_modules/lit-html/directive-helpers.js',
-    'node_modules/lit-html/experimental-hydrate.js',
     'node_modules/fuse.js/dist/fuse.esm.js',
   ].reduce(
     (acc, path) => ({
@@ -37,11 +29,6 @@ module.exports = function (eleventyConfig) {
   );
   eleventyConfig.addPassthroughCopy(litLibs);
 
-  // Set up Lit SSR
-  eleventyConfig.addPlugin(litPlugin, {
-    mode: 'worker',
-    componentModules: fg.sync('src/components/**/*.js'),
-  });
   eleventyConfig.addWatchTarget('src/components/');
 
   return {
