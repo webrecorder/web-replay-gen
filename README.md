@@ -262,9 +262,9 @@ To disable, comment out the line in `.env`:
 
 Web Replay Gen templates are written in [Nunjucks](https://mozilla.github.io/nunjucks/templating.html). You are free to use any templating language [Eleventy supports](https://www.11ty.dev/docs/languages/), like plain HTML, markdown, or ejs.
 
-## Web Components
+## Web Components & JavaScript
 
-Web components in the `/components` directory will be pre-rendered at build-time and hydrated at run-time. See `archive.njk` for an example and refer to the [@lit-labs/eleventy-plugin-lit](https://github.com/lit/lit/tree/main/packages/labs/eleventy-plugin-lit) docs to customize SSR behavior.
+JS files in `/js` will be copied as-is to `_site`.
 
 ## Styling
 

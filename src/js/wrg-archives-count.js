@@ -1,5 +1,5 @@
 import { html, css, LitElement } from 'lit';
-import config from '.././wrg-config.json.json';
+import config from '../wrg-config.json';
 
 customElements.define(
   'wrg-archives-count',

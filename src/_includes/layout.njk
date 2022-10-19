@@ -24,7 +24,7 @@
     </script>
     <!-- As an optimization, immediately begin fetching the JavaScript modules
     that we know for sure we'll eventually need.. -->
-    <link rel="modulepreload-shim" href="././wrg-config.json.json" />
+    <link rel="modulepreload-shim" href="./wrg-config.json" />
     {% for path in js.filePaths %}
     <link rel="modulepreload-shim" href="{{ path }}" />
     {% endfor %}
@@ -35,7 +35,7 @@
 
     <script type="module-shim">
       (async () => {
-        const config = (await import('././wrg-config.json.json')).default;
+        const config = (await import('./wrg-config.json')).default;
         // TODO ensure config conforms to shape
         const { site = {} } = config || {};
         document.title = site.title || 'Web Archives';
