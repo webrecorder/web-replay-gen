@@ -116,6 +116,9 @@ Object for configuring the [embedded ReplayWeb.page](https://replayweb.page/docs
 
 </details>
 
+<details>
+<summary>
+
 #### `archives`
 
 Configure location of web archive files.
@@ -155,7 +158,7 @@ Setting `archivesPath` will override this option.
 
 </details>
 
-### Build-time Only Configuration
+### Build-time options
 
 The following options can only be set at build-time (i.e. when you run `npm run build`.) Updates to options in your output `_site/wrg-config.json` file will have no effect.
 
@@ -173,9 +176,6 @@ Base URL for ReplayWeb.page scripts.
 | `replayBaseURL` | `"https://cdn.jsdelivr.net/npm/replaywebpage"` | `string`   | Base URL for ReplayWeb.page scripts |
 
 </details>
-
-<details>
-<summary>
 
 <details>
 <summary>
