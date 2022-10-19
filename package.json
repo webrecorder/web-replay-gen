@@ -35,7 +35,6 @@
   "dependencies": {
     "@lit-labs/eleventy-plugin-lit": "^0.2.3",
     "@webcomponents/template-shadowroot": "^0.1.0",
-    "fuse.js": "^6.6.2",
     "lit": "^2.4.0"
   }
 }
