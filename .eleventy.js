@@ -18,7 +18,6 @@ module.exports = function (eleventyConfig) {
     'node_modules/@lit/reactive-element/css-tag.js',
     'node_modules/@webcomponents/template-shadowroot/template-shadowroot.js',
     'node_modules/@webcomponents/template-shadowroot/_implementation/',
-    'node_modules/@shoelace-style/shoelace/dist/',
     'node_modules/lit/experimental-hydrate-support.js',
     'node_modules/lit/index.js',
     'node_modules/lit-element/lit-element.js',
