@@ -125,9 +125,9 @@ Base URL for ReplayWeb.page scripts.
 
 </summary>
 
-| Key             | Default Value                                  | Value Type |                                                                                                   |
-| --------------- | ---------------------------------------------- | ---------- | ------------------------------------------------------------------------------------------------- |
-| `replayBaseURL` | `"https://cdn.jsdelivr.net/npm/replaywebpage"` | `string`   | Base URL for ReplayWeb.page scripts. `replay.version` will be ignored if a base URL is specified. |
+| Key             | Default Value                                  | Value Type |                                     |
+| --------------- | ---------------------------------------------- | ---------- | ----------------------------------- |
+| `replayBaseURL` | `"https://cdn.jsdelivr.net/npm/replaywebpage"` | `string`   | Base URL for ReplayWeb.page scripts |
 
 This option can only be set at build-time (i.e. when you run `npm run build`.) Updates to `replayBaseURL` in your output `_site/wrg-config.json` file will have no effect.
 
