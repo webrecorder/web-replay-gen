@@ -12,7 +12,7 @@
       async
       src="https://ga.jspm.io/npm:es-module-shims@1.6.2/dist/es-module-shims.js"
     ></script>
-    <link rel="modulepreload-shim" href="./wrg-config.json" />
+    <link rel="modulepreload-shim" href="./wrg-runtime-config.json" />
     <!-- Map CDN imports -->
     <script type="importmap-shim">
     {
@@ -35,7 +35,7 @@
 
     <script type="module-shim">
       (async () => {
-        const config = (await import('./wrg-config.json')).default;
+        const config = (await import('./wrg-runtime-config.json')).default;
         // TODO ensure config conforms to shape
         const { site = {} } = config || {};
         document.title = site.title || 'Web Archives';

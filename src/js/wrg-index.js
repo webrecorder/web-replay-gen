@@ -1,5 +1,5 @@
 import { html, css, LitElement } from 'lit';
-import config from '../wrg-config.json';
+import archives from './archives.js';
 
 /**
  * List archives
@@ -34,7 +34,7 @@ customElements.define(
       }
     `;
 
-    _archives = config.archives;
+    _archives = archives;
 
     render() {
       if (!this._archives) {

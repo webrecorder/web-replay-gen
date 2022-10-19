@@ -1,0 +1,11 @@
+---
+permalink: wrg-runtime-config.json
+eleventyExcludeFromCollections: true
+---
+{
+  "site": {
+    "title": "{{ config.site.title }}",
+    "logoSrc": "{{ config.site.logoSrc }}"
+  },
+  "archives": {{ config.archives | dump | safe }}
+}
