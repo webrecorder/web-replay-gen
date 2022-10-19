@@ -180,7 +180,7 @@ Setting `archivesPath` will override this option.
 
 #### `archivesPath` [_Build-time Only_]
 
-Path to web archive files.
+Path to local web archive files.
 
 </summary>
 
@@ -198,17 +198,17 @@ Examples:
 
 ```js
 {
-  "archives": "./wacz-files/"
+  "archivesPath": "./wacz-files/"
 }
 ```
 
 ```js
 {
-  "archives": "data/archives.json"
+  "archivesPath": "./source_data/archives.json"
 }
 ```
 
-This option will take precedence over the `archives` array.
+Take precedence over the `archives` array. This option can only be set at build-time (i.e. when you run `npm run build`.) Updates to `archivesPath` in your output `_site/wrg-config.json` file will have no effect.
 
 </details>
 
