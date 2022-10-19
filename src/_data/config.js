@@ -141,11 +141,11 @@ function formatArchives() {
   return [];
 }
 
-module.exports = () => {
+module.exports = async () => {
   return {
     site: { ...wrgConfig.site },
     replay: { ...wrgConfig.replay },
     replayBaseURL: formatReplayBaseURL(),
-    archives: formatArchives(),
+    archives: await formatArchives(),
   };
 };
