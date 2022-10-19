@@ -19,7 +19,6 @@ module.exports = function (eleventyConfig) {
     'node_modules/lit-html/is-server.js',
     'node_modules/lit-html/directive.js',
     'node_modules/lit-html/directive-helpers.js',
-    'node_modules/fuse.js/dist/fuse.esm.js',
   ].reduce(
     (acc, path) => ({
       ...acc,
