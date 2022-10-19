@@ -262,9 +262,18 @@ To disable, comment out the line in `.env`:
 
 Web Replay Gen templates are written in [Nunjucks](https://mozilla.github.io/nunjucks/templating.html). You are free to use any templating language [Eleventy supports](https://www.11ty.dev/docs/languages/), like plain HTML, markdown, or ejs.
 
-## Web Components & JavaScript
+## Web Components & client-side JavaScript
 
-JS files in `/js` will be copied as-is to `_site`.
+JS files in `/js` will be copied as-is to `_site`. To include JS files in templates, import as ES modules and use [`module-shim`](https://github.com/guybedford/es-module-shims). For example, to render a Web Component called `my-component`:
+
+```html
+<!-- my-template.njk -->
+<my-component></my-component>
+
+<script type="module-shim">
+  import('./js/my-component.js');
+</script>
+```
 
 ## Styling
 
