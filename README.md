@@ -142,18 +142,59 @@ Configure location of web archive files.
 
 </summary>
 
-| Key        | Default Value | Value Type                                                |
-| ---------- | ------------- | --------------------------------------------------------- |
-| `archives` | `undefined`   | `undefined\|string\|string[]\|{name:string;url:string}[]` |
+| Key        | Default Value | Value Type                                        |
+| ---------- | ------------- | ------------------------------------------------- |
+| `archives` | `[]`          | `undefined\|string[]\|{name:string;url:string}[]` |
 
-Pre-process and render static HTML based on archive data. Option values can be:
+Option values can be a JSON array of plain URL strings or an object with `name` and `url`
 
-- JSON array of plain URL strings or an object with `name` and `url`
+Example:
+
+```js
+{
+  "archives": [
+    // Plain URL string:
+    "https://replayweb.page/docs/assets/example.wacz"
+
+    // Plain URL string to S3 bucket
+    "s3://my-bucket/a/archive.wacz",
+
+    // Plain URL string to a file relative to output `_site`
+    "./public-data/",
+
+    // Object with name and URL:
+    {
+      "name": "My Web Archive",
+      "url": "s3://my-bucket/b/archive.wacz"
+    }
+  ]
+}
+```
+
+Setting `archivesPath` will override this option.
+
+</details>
+
+<details>
+<summary>
+
+#### `archivesPath` [_Build-time Only_]
+
+Path to web archive files.
+
+</summary>
+
+| Key            | Default Value | Value Type |
+| -------------- | ------------- | ---------- |
+| `archivesPath` | `undefined`   | `string`   |
+
+Paths should be relative to your project root (i.e. where you execute `npm run build`.) Option values can be:
+
 - Relative path to directory containing `.wacz` files
 - Relative path to `.txt` file with newline-separated list of remote URLs
 - Relative path to JSON file with an `archives` key where the value is a JSON array
 
-Paths should be relative to your project root (i.e. where you execute your `npm run build` command.) Examples:
+Examples:
 
 ```js
 {
@@ -167,49 +208,7 @@ Paths should be relative to your project root (i.e. where you execute your `npm 
 }
 ```
 
-Example JSON array:
-
-```js
-{
-  "archives": [
-    // Plain URL string:
-    "https://replayweb.page/docs/assets/example.wacz"
-
-    // Plain URL string to S3 bucket
-    "s3://my-bucket/a/archive.wacz",
-
-    // Object with name and URL:
-    {
-      "name": "My Web Archive",
-      "url": "s3://my-bucket/b/archive.wacz"
-    }
-  ]
-}
-```
-
-</details>
-
-<details>
-<summary>
-
-#### `runtimeOnlyArchives`
-
-Configure location of web archives when the website loads in the browser.
-
-</summary>
-
-| Key                   | Default Value | Value Type          |                                                        |
-| --------------------- | ------------- | ------------------- | ------------------------------------------------------ |
-| `runtimeOnlyArchives` | `undefined`   | `undefined\|string` | Path to JSON file with `archives`, relative to `_site` |
-
-By default, the generator configures the location of your archives at build-time (i.e. when you run `npm run build`) in order to pre-process data and render static HTML based on that data. However, you may have a use case where you need to check archive locations every time the website loads in the browser. Setting `runtimeOnlyArchives` enables you to do things like configure and update archive data without redeploying your entire website.
-
-Caveats:
-
-- The generated sitemap will no longer list a page per archive.
-- JSON data must conform to an array of objects with `url` and optionally `name`.
-
-See [runtime-only-archives](./examples/runtime-only-archives/) for a more in-depth example.
+This option will take precedence over the `archives` array.
 
 </details>
 

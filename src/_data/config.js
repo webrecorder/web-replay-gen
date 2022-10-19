@@ -125,8 +125,8 @@ function formatArchives() {
   }
 
   try {
-    if (typeof wrgConfig.archives === 'string') {
-      return handleStringOpt(wrgConfig.archives);
+    if (wrgConfig.archivesPath || typeof wrgConfig.archives === 'string') {
+      return handleStringOpt(wrgConfig.archivesPath || wrgConfig.archives);
     }
 
     if (Array.isArray(wrgConfig.archives)) {
