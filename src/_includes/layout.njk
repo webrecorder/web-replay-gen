@@ -12,7 +12,6 @@
       async
       src="https://ga.jspm.io/npm:es-module-shims@1.6.2/dist/es-module-shims.js"
     ></script>
-    <link rel="modulepreload-shim" href="./wrg-runtime-config.json" />
     <!-- Map CDN imports -->
     <script type="importmap-shim">
     {
@@ -25,7 +24,8 @@
     </script>
     <!-- As an optimization, immediately begin fetching the JavaScript modules
     that we know for sure we'll eventually need.. -->
-    {% for path in wc.filePaths %}
+    <link rel="modulepreload-shim" href="./wrg-runtime-config.json" />
+    {% for path in js.filePaths %}
     <link rel="modulepreload-shim" href="{{ path }}" />
     {% endfor %}
   </head>
