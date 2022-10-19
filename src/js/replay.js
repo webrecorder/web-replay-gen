@@ -1,5 +1,5 @@
 /** Replay config */
-import config from '../wrg-runtime-config.json';
+import config from '.././wrg-config.json.json';
 
 class ReplayOptions {
   constructor({ embed, replayBase }) {

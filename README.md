@@ -79,7 +79,7 @@ Push to `main` to automatically deploy your site to GitHub Pages. :sparkles:
 
 ## Configuration
 
-Configure options in `wrg-config.json`:
+Configure options in `wrg-config.json`. Most options can be re-configured at run-time, i.e. when someone visits your website.
 
 <details>
 <summary>

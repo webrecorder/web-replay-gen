@@ -1,5 +1,5 @@
 /** Archives config */
-import config from '../wrg-runtime-config.json';
+import config from '.././wrg-config.json.json';
 
 class Archive {
   constructor({ name, url = '' }) {
