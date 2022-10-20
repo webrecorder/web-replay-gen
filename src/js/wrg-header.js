@@ -1,20 +1,9 @@
 import { html, css, LitElement } from 'lit';
+import config from './config.js';
 
 customElements.define(
   'wrg-header',
   class extends LitElement {
-    static properties = {
-      url: {
-        type: String,
-      },
-      title: {
-        type: String,
-      },
-      logoSrc: {
-        type: String,
-      },
-    };
-
     static styles = css`
       header {
         padding: var(--sl-spacing-x-small);
@@ -43,23 +32,26 @@ customElements.define(
       }
     `;
 
+    _title = config.site.title;
+    _logoSrc = config.site.logoSrc;
+
     render() {
       return html`
         <header>
-          <a class="home-link" href="${this.url}">
-            ${this.logoSrc
+          <a class="home-link" href="/">
+            ${this._logoSrc
               ? html`
                   <div class="logo-wrapper">
                     <img
                       class="logo"
-                      src="${this.logoSrc}"
-                      alt="${this.title} logo"
+                      src="${this._logoSrc}"
+                      alt="${this._title} logo"
                       loading="lazy"
                     />
                   </div>
                 `
               : ''}
-            <div class="title">${this.title}</div>
+            <div class="title">${this._title}</div>
           </a>
         </header>
       `;

@@ -1,0 +1,12 @@
+---
+permalink: ./wrg-config.json
+eleventyExcludeFromCollections: true
+---
+{
+  "site": {
+    "title": "{{ config.site.title }}",
+    "logoSrc": "{{ config.site.logoSrc }}"
+  },
+  "replay": {{ config.replay | dump | safe }},
+  "archives": {{ config.archives | dump | safe }}
+}

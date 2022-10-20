@@ -1,16 +1,11 @@
 import { html, css, LitElement } from 'lit';
+import config from './config.js';
 
 customElements.define(
   'wrg-archives-count',
   class extends LitElement {
-    static properties = {
-      archives: {
-        type: Array,
-      },
-    };
-
     render() {
-      return html` ${this.archives?.length}`;
+      return html` ${config.archives.length}`;
     }
   }
 );

@@ -1,4 +1,5 @@
 import { html, css, LitElement } from 'lit';
+import config from './config.js';
 
 /**
  * List archives
@@ -6,12 +7,6 @@ import { html, css, LitElement } from 'lit';
 customElements.define(
   'wrg-index',
   class extends LitElement {
-    static properties = {
-      archives: {
-        type: Array,
-      },
-    };
-
     static styles = css`
       ul {
         border: var(--sl-panel-border-width) solid var(--sl-panel-border-color);
@@ -39,14 +34,16 @@ customElements.define(
       }
     `;
 
+    _archives = config.archives;
+
     render() {
-      if (!this.archives) {
+      if (!this._archives) {
         return '';
       }
 
       return html`
         <ul>
-          ${this.archives.map(
+          ${this._archives.map(
             (page) => html`
               <li>
                 <a href="archive/?source=${encodeURIComponent(page.url)}"

@@ -1,13 +1,12 @@
 import { html, css, LitElement } from 'lit';
+import config from './config.js';
+
+const replayOpts = config.replay;
 
 customElements.define(
   'wrg-replay',
   class extends LitElement {
     static properties = {
-      // https://replayweb.page/docs/embedding#embedding-options
-      embed: {
-        type: String,
-      },
       replayBase: {
         type: String,
       },
@@ -64,8 +63,8 @@ customElements.define(
       return html`
         <replay-web-page
           source=${this._replaySource}
-          replayBase=${this.replayBase}
-          embed=${this.embed}
+          replayBase=${replayOpts.replayBase}
+          embed=${replayOpts.embed}
           deepLink
         ></replay-web-page>
       `;

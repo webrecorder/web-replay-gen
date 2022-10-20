@@ -1,5 +1,5 @@
-<wrg-header
-  url="{{ site.url if build.environment==='production' else '/' }}"
-  title="{{ site.title }}"
-  logoSrc="{{ site.logoSrc }}"
-></wrg-header>
+<wrg-header></wrg-header>
+
+<script type="module-shim">
+  import('./js/wrg-header.js');
+</script>

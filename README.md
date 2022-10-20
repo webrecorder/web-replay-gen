@@ -79,7 +79,7 @@ Push to `main` to automatically deploy your site to GitHub Pages. :sparkles:
 
 ## Configuration
 
-Configure options in `wrg-config.json`:
+Configure options in `wrg-config.json`.
 
 <details>
 <summary>
@@ -108,12 +108,11 @@ Object for configuring the [embedded ReplayWeb.page](https://replayweb.page/docs
 
 </summary>
 
-| Key              | Default Value                                  | Value Type                        |                                                                                                                     |
-| ---------------- | ---------------------------------------------- | --------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
-| `replay`         | `{}`                                           | `Object`                          |                                                                                                                     |
-| `replay.embed`   | `"replayonly"`                                 | `"replayonly"\|"full"\|"default"` | ReplayWeb.page [`embed` option](https://replayweb.page/docs/embedding#embedding-options)                            |
-| `replay.baseUrl` | `"https://cdn.jsdelivr.net/npm/replaywebpage"` | `string`                          | Base URL for ReplayWeb.page scripts. `replay.version` will be ignored if a base URL is specified.                   |
-| `replay.version` | `""`                                           | `string`                          | ReplayWeb.page version. Omit for the latest. [See releases](https://github.com/webrecorder/replayweb.page/releases) |
+| Key                 | Default Value  | Value Type                        |                                                                                               |
+| ------------------- | -------------- | --------------------------------- | --------------------------------------------------------------------------------------------- |
+| `replay`            | `{}`           | `Object`                          |                                                                                               |
+| `replay.embed`      | `"replayonly"` | `"replayonly"\|"full"\|"default"` | ReplayWeb.page [`embed` option](https://replayweb.page/docs/embedding#embedding-options)      |
+| `replay.replayBase` | `"./replay/"`  | `"./replay/"\|string"`            | ReplayWeb.page [`replayBase` option](https://replayweb.page/docs/embedding#embedding-options) |
 
 </details>
 
@@ -122,36 +121,17 @@ Object for configuring the [embedded ReplayWeb.page](https://replayweb.page/docs
 
 #### `archives`
 
-Configure location of web archive files at website build-time.
+Configure location of web archive files.
 
 </summary>
 
-| Key        | Default Value | Value Type                                                |
-| ---------- | ------------- | --------------------------------------------------------- |
-| `archives` | `undefined`   | `undefined\|string\|string[]\|{name:string;url:string}[]` |
+| Key        | Default Value | Value Type                                        |
+| ---------- | ------------- | ------------------------------------------------- |
+| `archives` | `[]`          | `undefined\|string[]\|{name:string;url:string}[]` |
 
-Pre-process and render static HTML based on archive data. Option values can be:
+Option values can be a JSON array of plain URL strings or an object with `name` and `url`
 
-- JSON array of plain URL strings or an object with `name` and `url`
-- Relative path to directory containing `.wacz` files
-- Relative path to `.txt` file with newline-separated list of remote URLs
-- Relative path to JSON file with an `archives` key where the value is a JSON array
-
-Paths should be relative to your project root (i.e. where you execute your `npm run build` command.) Examples:
-
-```js
-{
-  "archives": "./wacz-files/"
-}
-```
-
-```js
-{
-  "archives": "data/archives.json"
-}
-```
-
-Example JSON array:
+Example:
 
 ```js
 {
@@ -162,6 +142,9 @@ Example JSON array:
     // Plain URL string to S3 bucket
     "s3://my-bucket/a/archive.wacz",
 
+    // Plain URL string to a file relative to output `_site`
+    "./public-data/",
+
     // Object with name and URL:
     {
       "name": "My Web Archive",
@@ -171,29 +154,63 @@ Example JSON array:
 }
 ```
 
+Setting `archivesPath` will override this option.
+
+</details>
+
+### Build-time options
+
+The following options can only be set at build-time (i.e. when you run `npm run build`.) Updates to options in your output `_site/wrg-config.json` file will have no effect.
+
+<details>
+<summary>
+
+#### `replayBaseURL` [_Build-time Only_]
+
+Base URL for ReplayWeb.page scripts.
+
+</summary>
+
+| Key             | Default Value                                  | Value Type |                                     |
+| --------------- | ---------------------------------------------- | ---------- | ----------------------------------- |
+| `replayBaseURL` | `"https://cdn.jsdelivr.net/npm/replaywebpage"` | `string`   | Base URL for ReplayWeb.page scripts |
+
 </details>
 
 <details>
 <summary>
 
-#### `runtimeOnlyArchives`
+#### `archivesPath` [_Build-time Only_]
 
-Configure location of web archives when the website loads in the browser.
+Path to local web archive files.
 
 </summary>
 
-| Key                   | Default Value | Value Type          |                                                        |
-| --------------------- | ------------- | ------------------- | ------------------------------------------------------ |
-| `runtimeOnlyArchives` | `undefined`   | `undefined\|string` | Path to JSON file with `archives`, relative to `_site` |
+| Key            | Default Value | Value Type |
+| -------------- | ------------- | ---------- |
+| `archivesPath` | `undefined`   | `string`   |
 
-By default, the generator configures the location of your archives at build-time (i.e. when you run `npm run build`) in order to pre-process data and render static HTML based on that data. However, you may have a use case where you need to check archive locations every time the website loads in the browser. Setting `runtimeOnlyArchives` enables you to do things like configure and update archive data without redeploying your entire website.
+Paths should be relative to your project root (i.e. where you execute `npm run build`.) Option values can be:
 
-Caveats:
+- Relative path to directory containing `.wacz` files
+- Relative path to `.txt` file with newline-separated list of remote URLs
+- Relative path to JSON file with an `archives` key where the value is a JSON array
 
-- The generated sitemap will no longer list a page per archive.
-- JSON data must conform to an array of objects with `url` and optionally `name`.
+Examples:
 
-See [runtime-only-archives](./examples/runtime-only-archives/) for a more in-depth example.
+```js
+{
+  "archivesPath": "./wacz-files/"
+}
+```
+
+```js
+{
+  "archivesPath": "./source_data/archives.json"
+}
+```
+
+Take precedence over the `archives` array.
 
 </details>
 
@@ -247,9 +264,18 @@ To disable, comment out the line in `.env`:
 
 Web Replay Gen templates are written in [Nunjucks](https://mozilla.github.io/nunjucks/templating.html). You are free to use any templating language [Eleventy supports](https://www.11ty.dev/docs/languages/), like plain HTML, markdown, or ejs.
 
-## Web Components
+## Web Components & client-side JavaScript
 
-Web components in the `/components` directory will be pre-rendered at build-time and hydrated at run-time. See `archive.njk` for an example and refer to the [@lit-labs/eleventy-plugin-lit](https://github.com/lit/lit/tree/main/packages/labs/eleventy-plugin-lit) docs to customize SSR behavior.
+JS files in `/js` will be copied as-is to `_site`. To include JS files in templates, import as ES modules and use [`module-shim`](https://github.com/guybedford/es-module-shims). For example, to render a Web Component called `my-component`:
+
+```html
+<!-- my-template.njk -->
+<my-component></my-component>
+
+<script type="module-shim">
+  import('./js/my-component.js');
+</script>
+```
 
 ## Styling
 
