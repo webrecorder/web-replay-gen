@@ -39,12 +39,7 @@ customElements.define(
         let replaySource = window.decodeURIComponent(
           url.searchParams.get('source')
         );
-        if (replaySource.indexOf('://') === -1) {
-          replaySource = `${window.location.protocol}//${window.location.host}/${replaySource}`;
-        }
-        new URL(replaySource);
-
-        this._replaySource = replaySource;
+        this._replaySource = new URL("../" + replaySource, window.location.href).href;
       } catch (e) {
         console.error(e);
 

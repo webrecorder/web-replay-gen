@@ -7,12 +7,12 @@ eleventyExcludeFromCollections: true
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 {% for page in archivePages %}
   <url>
-    <loc>{{ site.url }}/archive/?source={{ page.url | urlencode }}/</loc>
+    <loc>./archive/?source={{ page.url | urlencode }}/</loc>
   </url>
 {% endfor %}
 {% for page in collections.all %}
   <url>
-    <loc>{{ site.url }}{{ page.url | url }}</loc>
+    <loc>{{ page.url | url }}</loc>
     <lastmod>{{ page.date.toISOString() }}</lastmod>
   </url>
 {% endfor %}

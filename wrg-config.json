@@ -1,6 +1,6 @@
 {
   "site": {
-    "url": "https://webrecorder.github.io/web-replay-gen/"
+    "title": "Web Replay Gen Example"
   },
   "archives": [
     "https://replayweb.page/docs/assets/example.wacz",

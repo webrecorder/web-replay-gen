@@ -1,5 +1,6 @@
+{% set relPath = ".." if page.outputPath.split('/').length == 3 else "." %}
 <wrg-header></wrg-header>
 
 <script type="module-shim">
-  import('./js/wrg-header.js');
+  import('{{ relPath }}/js/wrg-header.js');
 </script>
