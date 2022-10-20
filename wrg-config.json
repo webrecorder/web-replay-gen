@@ -1,5 +1,7 @@
 {
-  "site": {},
+  "site": {
+    "url": "https://webrecorder.github.io/web-replay-gen/"
+  },
   "archives": [
     "https://replayweb.page/docs/assets/example.wacz",
     "s3://webrecorder-builds/warcs/netpreserve-twitter.warc"
