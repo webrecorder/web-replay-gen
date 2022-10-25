@@ -18,7 +18,7 @@ class Archive {
 class ReplayOptions {
   constructor({ embed, replayBase }) {
     this.embed = embed || 'embed';
-    this.replayBase = replayBase || './replay/';
+    this.replayBase = replayBase || '../replay/';
   }
 }
 

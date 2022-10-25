@@ -46,7 +46,7 @@ customElements.define(
           ${this._archives.map(
             (page) => html`
               <li>
-                <a href="archive/?source=${encodeURIComponent(page.url)}"
+                <a href="../archive/?source=${encodeURIComponent(page.url)}"
                   >${page.name || page.url}</a
                 >
               </li>

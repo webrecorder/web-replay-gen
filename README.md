@@ -94,7 +94,6 @@ Object for configuring site details.
 | -------------- | ---------------- | ---------- | ------------------------------------------------------------------- |
 | `site`         | `{}`             | `Object`   |                                                                     |
 | `site.title`   | `"Web Archives"` | `string`   | Website title, used in browser title bar and as the primary heading |
-| `site.url`     | `""`             | `string`   | Website base URL                                                    |
 | `site.logoSrc` | `""`             | `string`   | Website logo, any valid `<img>` `src`                               |
 
 </details>

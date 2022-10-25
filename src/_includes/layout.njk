@@ -1,11 +1,11 @@
+{% set relPath = ".." if page.outputPath.split('/').length == 3 else "." %}
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <base href="{{ site.url if site.url else '/' }}" />
-    <link href="lib/tailwind.css" rel="stylesheet">
+    <link href="{{ relPath }}/lib/tailwind.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@shoelace-style/shoelace@2.0.0-beta.83/dist/themes/light.css" />
     <!-- Shim ES module support -->
     <script
@@ -24,10 +24,13 @@
     </script>
     <!-- As an optimization, immediately begin fetching the JavaScript modules
     that we know for sure we'll eventually need.. -->
-    <link rel="modulepreload-shim" href="./wrg-config.json" />
+
+    <link rel="modulepreload-shim" href="{{ relPath }}/wrg-config.json" />
     {% for path in js.filePaths %}
-    <link rel="modulepreload-shim" href="{{ path }}" />
+    <link rel="modulepreload-shim" href="{{ relPath }}/{{ path }}" />
     {% endfor %}
+
+
   </head>
   <body>
     {% include "header.njk" %}
@@ -35,7 +38,7 @@
 
     <script type="module-shim">
       (async () => {
-        const config = (await import('./js/config.js')).default;
+        const config = (await import('{{ relPath }}/js/config.js')).default;
         document.title = config.site.title;
       })();
     </script>
