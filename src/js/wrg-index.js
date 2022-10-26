@@ -32,6 +32,27 @@ customElements.define(
       a:hover {
         background-color: var(--sl-color-neutral-50);
       }
+
+      .archive {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        white-space: nowrap;
+      }
+
+      .name {
+        flex: 1;
+      }
+
+      .description {
+        font-size: var(--sl-font-size-x-small);
+        color: var(--sl-color-neutral-500);
+        text-overflow: ellipsis;
+        overflow: hidden;
+        width: 20rem;
+        max-width: 50%;
+        text-align: right;
+      }
     `;
 
     _archives = config.archives;
@@ -46,9 +67,15 @@ customElements.define(
           ${this._archives.map(
             (page) => html`
               <li>
-                <a href="../archive/?source=${encodeURIComponent(page.url)}"
-                  >${page.name || page.url}</a
+                <a
+                  href="../archive/?source=${encodeURIComponent(page.url)}"
+                  title=${page.description}
                 >
+                  <div class="archive">
+                    <div class="name">${page.name}</div>
+                    <div class="description">${page.description}</div>
+                  </div>
+                </a>
               </li>
             `
           )}
