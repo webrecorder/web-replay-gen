@@ -49,11 +49,38 @@ customElements.define(
         box-shadow: var(--sl-shadow-large);
       }
 
+      a {
+        color: var(--sl-color-blue-600);
+        font-weight: var(--sl-font-weight-semibold);
+        text-decoration: none;
+        padding: var(--sl-input-spacing-small);
+      }
+
+      a:hover,
+      a:active {
+        text-decoration: underline;
+      }
+
       .card-heading {
         margin-top: 0;
         margin-bottom: 4px;
         font-size: var(--sl-font-size-large);
         font-weight: var(--sl-font-weight-semibold);
+      }
+
+      .url {
+        font-size: var(--sl-font-size-small);
+        color: var(--sl-color-neutral-400);
+        margin-bottom: var(--sl-spacing-small);
+      }
+
+      .description {
+        color: var(--sl-color-neutral-600);
+        margin-bottom: var(--sl-spacing-small);
+      }
+
+      footer {
+        text-align: right;
       }
     `;
 
@@ -134,10 +161,15 @@ customElements.define(
       return html`
         <sl-card>
           <h3 class="card-heading">${this._selectedArchive.name}</h3>
-          <div>${this._selectedArchive.url}</div>
-          <div>
-            <a href=${getPathname(this._selectedArchive.url)}>View archive</a>
-          </div>
+          <div class="url">${this._selectedArchive.url}</div>
+          ${this._selectedArchive.description
+            ? html`<div class="description">
+                ${this._selectedArchive.description}
+              </div>`
+            : ''}
+          <footer>
+            <a href=${getPathname(this._selectedArchive.url)}>View Archive</a>
+          </footer>
         </sl-card>
       `;
     }
