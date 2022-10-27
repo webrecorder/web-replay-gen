@@ -8,8 +8,9 @@ class Site {
 }
 
 class Archive {
-  constructor({ name, url = '' }) {
+  constructor({ name, url = '', description = '' }) {
     this.url = url;
+    this.description = description;
     this.name =
       name || url.slice(url.lastIndexOf('/') + 1, url.lastIndexOf('.'));
   }
@@ -43,7 +44,7 @@ function makeArchive(data, idx) {
   }
 
   if (url) {
-    return new Archive({ name, url });
+    return new Archive({ name, url, description: data.description });
   }
 
   console.error(`Invalid WACZ data at index ${idx || 'unknown'}, skipping`);
