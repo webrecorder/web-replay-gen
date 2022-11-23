@@ -1,9 +1,10 @@
 import config from '../wrg-config.json';
 
 class Site {
-  constructor({ title, logoSrc = '' }) {
+  constructor({ title, logoSrc = '', url = '/' }) {
     this.title = title || 'Web Archives';
     this.logoSrc = logoSrc;
+    this.url = url;
   }
 }
 

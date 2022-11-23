@@ -5,7 +5,8 @@ eleventyExcludeFromCollections: true
 {
   "site": {
     "title": "{{ config.site.title }}",
-    "logoSrc": "{{ config.site.logoSrc }}"
+    "logoSrc": "{{ config.site.logoSrc }}",
+    "url": "{{ config.site.url }}"
   },
   "replay": {{ config.replay | dump | safe }},
   "archives": {{ config.archives | dump | safe }}

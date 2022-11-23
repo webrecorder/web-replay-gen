@@ -33,12 +33,13 @@ customElements.define(
     `;
 
     _title = config.site.title;
+    _url = config.site.url;
     _logoSrc = config.site.logoSrc;
 
     render() {
       return html`
         <header>
-          <a class="home-link" href="/">
+          <a class="home-link" href="${this._url}">
             ${this._logoSrc
               ? html`
                   <div class="logo-wrapper">
