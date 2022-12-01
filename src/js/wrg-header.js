@@ -32,13 +32,17 @@ customElements.define(
       }
     `;
 
+    static properties = {
+      homeUrl: { type: String }
+    };
+
     _title = config.site.title;
     _logoSrc = config.site.logoSrc;
 
     render() {
       return html`
         <header>
-          <a class="home-link" href="/">
+          <a class="home-link" href="${this.homeUrl}">
             ${this._logoSrc
               ? html`
                   <div class="logo-wrapper">
