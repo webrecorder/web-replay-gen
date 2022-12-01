@@ -4,6 +4,13 @@ import config from './config.js';
 customElements.define(
   'wrg-header',
   class extends LitElement {
+    static properties = {
+      homeUrl: {
+        state: true,
+        type: String
+      }
+    };
+
     static styles = css`
       header {
         padding: var(--sl-spacing-x-small);
@@ -31,10 +38,6 @@ customElements.define(
         font-weight: 600;
       }
     `;
-
-    static properties = {
-      homeUrl: { type: String }
-    };
 
     _title = config.site.title;
     _logoSrc = config.site.logoSrc;
