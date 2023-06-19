@@ -4,6 +4,12 @@ import config from './config.js';
 customElements.define(
   'wrg-header',
   class extends LitElement {
+    static properties = {
+      homeUrl: {
+        type: String
+      }
+    };
+
     static styles = css`
       header {
         padding: var(--sl-spacing-x-small);
@@ -38,7 +44,7 @@ customElements.define(
     render() {
       return html`
         <header>
-          <a class="home-link" href="/">
+          <a class="home-link" href="${this.homeUrl}">
             ${this._logoSrc
               ? html`
                   <div class="logo-wrapper">
