@@ -95,7 +95,7 @@ customElements.define(
       return html`
         <sl-input
           value=${this._search || ''}
-          placeholder="Search web archives by name..."
+          placeholder="Search web archive collections by name..."
           size="large"
           clearable
           type="search"
