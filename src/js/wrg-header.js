@@ -6,7 +6,6 @@ customElements.define(
   class extends LitElement {
     static properties = {
       homeUrl: {
-        state: true,
         type: String
       }
     };
