@@ -1,5 +1,5 @@
 import { html, css, LitElement } from 'lit';
-import config from './config.js';
+import initConfig from './config.js';
 
 customElements.define(
   'wrg-header',
@@ -7,7 +7,13 @@ customElements.define(
     static properties = {
       homeUrl: {
         type: String
-      }
+      },
+      _title: {
+        type: String
+      },
+      _logoSrc: {
+        type: String
+      }  
     };
 
     static styles = css`
@@ -38,8 +44,11 @@ customElements.define(
       }
     `;
 
-    _title = config.site.title;
-    _logoSrc = config.site.logoSrc;
+    async firstUpdated() {
+      const config = await initConfig(this.homeUrl);
+      this._title = config.site.title;
+      this._logoSrc = config.site.logoSrc;
+    }
 
     render() {
       return html`

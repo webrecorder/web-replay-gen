@@ -1,4 +1,6 @@
-import config from '../wrg-config.json';
+//import config from '../wrg-config.json';
+
+//const config = await import("../wrg-config.json");
 
 class Site {
   constructor({ title, logoSrc = '' }) {
@@ -51,11 +53,31 @@ function makeArchive(data, idx) {
 }
 
 class WRGConfig {
-  constructor({ site, replay, archives }) {
+  constructor(prefix) {
+    this.inited = this.load(prefix + "wrg-config.json");
+  }
+
+  async load(name) {
+    const resp = await fetch(name);
+    const json = await resp.json();
+    this.init(json);
+  }
+
+  init({ site, replay, archives }) {
     this.site = new Site(site || {});
     this.replay = new ReplayOptions(replay || {});
     this.archives = (archives || []).map(makeArchive);
   }
 }
 
-export default new WRGConfig(config);
+let config = null;
+
+async function initConfig(prefix) {
+  if (!config) {
+    config = new WRGConfig(prefix);
+  }
+  await config.inited;
+  return config;
+}
+
+export default initConfig;

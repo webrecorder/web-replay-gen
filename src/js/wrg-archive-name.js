@@ -1,12 +1,22 @@
 import { html, css, LitElement } from 'lit';
-import config from './config.js';
+import initConfig from './config.js';
 
 customElements.define(
   'wrg-archive-name',
   class extends LitElement {
+    static properties = {
+      title: {
+        type: String
+      }  
+    };
+    
+    async firstUpdated() {
+      const config = await initConfig();
+      this.title = config && config.site && config.site.title;
+    }
+
     render() {
-      const title = config && config.site && config.site.title;
-      return html`<b>${title}</b>`;
+      return html`<b>${this.title}</b>`;
     }
   }
 );
