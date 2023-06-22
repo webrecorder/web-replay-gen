@@ -963,7 +963,7 @@ lit-html/directives/if-defined.js:
                 ${this._selectedArchive.description}
               </div>`:""}
           <footer>
-            <a href=${e=this._selectedArchive.url,`archive/?source=${encodeURIComponent(e)}`}>View Archive</a>
+            <a href=${e=this._selectedArchive.url,`../archive/?source=${encodeURIComponent(e)}`}>View Archive</a>
           </footer>
         </sl-card>
       `}})})();

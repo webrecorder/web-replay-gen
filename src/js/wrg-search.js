@@ -8,7 +8,7 @@ import '@shoelace-style/shoelace/dist/components/input/input.js';
 import initConfig from './config.js';
 
 function getPathname(url) {
-  return `archive/?source=${encodeURIComponent(url)}`;
+  return `../archive/?source=${encodeURIComponent(url)}`;
 }
 
 customElements.define(
