@@ -74,7 +74,7 @@ const oe=Symbol.for(""),le=e=>{if((null==e?void 0:e.r)===oe)return null==e?void 
           ${this._archives.map((e=>U`
               <li>
                 <a
-                  href="../archive/?source=${encodeURIComponent(e.url)}"
+                  href="./archive/?source=${encodeURIComponent(e.url)}"
                   title=${e.description}
                 >
                   <div class="archive">
