@@ -1,7 +1,5 @@
 import { html, css, LitElement } from 'lit';
-import config from './config.js';
-
-const replayOpts = config.replay;
+import initConfig from './config.js';
 
 customElements.define(
   'wrg-replay',
@@ -9,6 +7,9 @@ customElements.define(
     static properties = {
       replayBase: {
         type: String,
+      },
+      replayOpts: {
+        type: Object,
       },
       _replaySource: {
         state: true,
@@ -32,7 +33,11 @@ customElements.define(
       }
     `;
 
-    firstUpdated() {
+    async firstUpdated() {
+      const config = await initConfig();
+
+      this.replayOpts = config.replay;
+
       const url = new URL(window.location.href);
 
       try {
@@ -59,8 +64,8 @@ customElements.define(
       return html`
         <replay-web-page
           source=${this._replaySource}
-          replayBase=${replayOpts.replayBase}
-          embed=${replayOpts.embed}
+          replayBase=${this.replayOpts.replayBase}
+          embed=${this.replayOpts.embed}
           deepLink
         ></replay-web-page>
       `;

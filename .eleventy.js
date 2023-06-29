@@ -3,6 +3,7 @@ const config = require('./getConfig')();
 module.exports = function (eleventyConfig) {
   // Copy and watch assets, retain dir structure
   eleventyConfig.addPassthroughCopy('src/[!_]**/*.{css,js}');
+  eleventyConfig.addPassthroughCopy('dist/**');
   eleventyConfig.addWatchTarget('src/[!_]**/*.{css,js}');
 
   // Keep web archive files in gitignore but remove from eleventyignore

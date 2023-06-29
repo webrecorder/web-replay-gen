@@ -2,25 +2,21 @@ import { html, css, LitElement } from 'lit';
 import initConfig from './config.js';
 
 customElements.define(
-  'wrg-archives-count',
+  'wrg-archive-name',
   class extends LitElement {
     static properties = {
-      archives: {
-        type: Object
+      title: {
+        type: String
       }  
     };
-
+    
     async firstUpdated() {
       const config = await initConfig();
-      this.archives = config.archives;
+      this.title = config && config.site && config.site.title;
     }
 
     render() {
-      if (!this.archives) {
-        return;
-      }
-
-      return html` ${this.archives.length}`;
+      return html`<b>${this.title}</b>`;
     }
   }
 );

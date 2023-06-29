@@ -3,17 +3,18 @@ layout: layout.njk
 ---
 
 <section class="max-w-screen-md mx-auto">
-  <h1 class="my-4 text-2xl text-center text-neutral-600">Browse <wrg-archive-name></wrg-archive-name> Collections</h1>
+  <h1 class="my-4 text-2xl text-center text-neutral-600">
+    <wrg-archive-name></wrg-archive-name>
+  </h1>
 
   <main class="p-2">
-
     <div class="text-sm text-neutral-400 mb-2">
       <wrg-archives-count></wrg-archives-count> collections available.
-      <a href="./search" class="font-semibold underline hover:no-underline"
-        >Search by name</a
+      <a href="../" class="font-semibold underline hover:no-underline"
+        >Browse all</a
       >
     </div>
 
-    <wrg-index></wrg-index>
+    <wrg-search></wrg-search>
   </main>
 </section>

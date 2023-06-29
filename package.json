@@ -1,15 +1,15 @@
 {
   "name": "web-replay-gen",
-  "version": "1.0.0-beta",
+  "version": "1.1.0-beta",
   "description": "Web archive collection static site generator",
   "main": "index.js",
   "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "serve": "concurrently --kill-others \"npm run serve:eleventy\" \"npm run watch:tailwindcss\"",
+    "serve": "npm run serve:eleventy; npm run watch:tailwindcss",
     "serve:eleventy": "npx @11ty/eleventy --serve",
     "watch:tailwindcss": "npm run build:tailwindcss -- --watch",
-    "build": "WRG_ENVIRONMENT=production concurrently \"npm run build:eleventy\" \"npm run build:tailwindcss\"",
+    "build": "WRG_ENVIRONMENT=production webpack --mode production; WRG_ENVIRONMENT=production npm run build:eleventy; WRG_ENVIRONMENT=production npm run build:tailwindcss",
     "build:eleventy": "npx @11ty/eleventy",
     "build:archives-json": "npx @11ty/eleventy --input=src/archives.json.njk",
     "build:tailwindcss": "npx tailwindcss -i ./tailwind.css -o ./_site/lib/tailwind.css"
@@ -26,13 +26,20 @@
   "homepage": "https://github.com/webrecorder/web-replay-gen#readme",
   "devDependencies": {
     "@11ty/eleventy": "^1.0.2",
-    "concurrently": "^7.3.0",
+    "concurrently": "^8.2.0",
     "dotenv": "^16.0.1",
     "fast-glob": "^3.2.11",
     "normalize-path": "^3.0.0",
-    "tailwindcss": "^3.1.8"
+    "string-width": "^6.1.0",
+    "tailwindcss": "^3.1.8",
+    "terser-webpack-plugin": "^5.3.9",
+    "webpack": "^5.87.0",
+    "webpack-cli": "^5.1.4"
   },
   "dependencies": {
-    "lit": "^2.4.0"
+    "@shoelace-style/shoelace": "^2.4.0",
+    "fuse.js": "^6.6.2",
+    "lit": "^2.4.0",
+    "micromark": "^3.2.0"
   }
 }
