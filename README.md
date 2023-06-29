@@ -33,7 +33,9 @@ Jump to:
 
 [![Use this template](https://img.shields.io/badge/Use_this_template-informational)](https://github.com/webrecorder/web-replay-gen/generate)
 
-Clone as usual after creating your new repository from this template.
+In the new repository, go to "Settings" > "Pages" for the new repository and under "Source" select "GitHub Actions".
+
+Once settings have been updated, clone your new repository as usual to your local machine.
 
 ### 2. Install dependencies
 
